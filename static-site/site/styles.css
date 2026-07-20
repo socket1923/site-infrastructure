@@ -87,19 +87,9 @@ h1,h2,h3{line-height:1.2}
 .case-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:42px}
 .case-grid h3{margin:18px 0 8px}
 .case-grid h3:first-child{margin-top:0}
-.disclosure,.safety-note{margin-top:26px}
-
-.contact-grid{display:grid;grid-template-columns:minmax(280px,.8fr) minmax(340px,1.2fr);gap:42px;align-items:start}
-.check-list{padding-left:22px}
-.check-list li{margin-bottom:8px}
-.contact-form{display:grid;gap:17px}
-.contact-form label{display:grid;gap:6px;color:var(--text);font-weight:650}
-.contact-form label span{color:var(--sub);font-weight:400;font-size:13px}
-.contact-form input,.contact-form select,.contact-form textarea{width:100%;padding:12px 13px;background:var(--bg);border:1px solid var(--line);border-radius:9px;color:var(--text);font:inherit}
-.contact-form textarea{resize:vertical}
-.contact-form .consent{display:flex;align-items:flex-start;gap:10px;font-weight:400;color:var(--sub)}
-.contact-form .consent input{width:auto;margin-top:6px}
-.honeypot,.success-message{display:none}
+.disclosure{margin-top:26px}
+.profile-card{display:flex;flex-direction:column}
+.profile-card .btn{margin-top:auto}
 .fine-print{font-size:12px;color:var(--sub)}
 
 .footer{border-top:1px solid var(--line);padding:34px 0;color:var(--sub);text-align:center}
@@ -109,7 +99,7 @@ h1,h2,h3{line-height:1.2}
 @media (max-width:920px){
   .grid-3{grid-template-columns:1fr 1fr}
   .process-grid{grid-template-columns:repeat(3,1fr)}
-  .feature,.case-grid,.split-callout,.contact-grid{grid-template-columns:1fr}
+  .feature,.case-grid,.split-callout{grid-template-columns:1fr}
 }
 @media (max-width:720px){
   .hero{padding:72px 0 58px}
