@@ -17,6 +17,23 @@ if [[ "$DELIVERY" != "$EXPECTED_DELIVERY" ]]; then
   exit 78
 fi
 
+NNP=$(docker service inspect --format '{{.Spec.TaskTemplate.ContainerSpec.Privileges.NoNewPrivileges}}' "$SERVICE")
+if [[ "$NNP" != "true" ]]; then
+  echo "service is missing the required no-new-privileges control" >&2
+  exit 78
+fi
+
+runtime_security_counts() {
+  ACTIVE=0
+  SECURE=0
+  while IFS= read -r CONTAINER; do
+    [[ -n "$CONTAINER" ]] || continue
+    ACTIVE=$((ACTIVE + 1))
+    OPTIONS=$(docker inspect --format '{{json .HostConfig.SecurityOpt}}' "$CONTAINER")
+    [[ "$OPTIONS" == *'no-new-privileges'* ]] && SECURE=$((SECURE + 1))
+  done < <(docker ps --filter "label=com.docker.swarm.service.name=$SERVICE" --format '{{.ID}}')
+}
+
 docker pull --quiet "$TRACKING_IMAGE" >/dev/null
 CANDIDATE=$(docker image inspect --format '{{range .RepoDigests}}{{println .}}{{end}}' "$TRACKING_IMAGE" \
   | grep -E "^${IMAGE_PREFIX}[0-9a-f]{64}$" \
@@ -27,26 +44,27 @@ CANDIDATE=$(docker image inspect --format '{{range .RepoDigests}}{{println .}}{{
 }
 
 CURRENT=$(docker service inspect --format '{{.Spec.TaskTemplate.ContainerSpec.Image}}' "$SERVICE")
-if [[ "$CURRENT" == "$CANDIDATE" ]]; then
-  exit 0
-fi
-
-logger -t socket23-deploy "starting service=$SERVICE old=$CURRENT new=$CANDIDATE"
-if ! docker service update \
-    --detach=false \
-    --image "$CANDIDATE" \
-    --update-order start-first \
-    --update-failure-action rollback \
-    "$SERVICE"; then
-  logger -t socket23-deploy "service update failed; rollback policy invoked"
-  exit 1
+CHANGED=false
+if [[ "$CURRENT" != "$CANDIDATE" ]]; then
+  CHANGED=true
+  logger -t socket23-deploy "starting service=$SERVICE old=$CURRENT new=$CANDIDATE"
+  if ! docker service update \
+      --detach=false \
+      --image "$CANDIDATE" \
+      --update-order start-first \
+      --update-failure-action rollback \
+      "$SERVICE"; then
+    logger -t socket23-deploy "service update failed; rollback policy invoked"
+    exit 1
+  fi
 fi
 
 EXPECTED=$(docker service inspect --format '{{.Spec.Mode.Replicated.Replicas}}' "$SERVICE")
 for _ in $(seq 1 60); do
   RUNNING=$(docker service ps --filter desired-state=running --format '{{.CurrentState}}' "$SERVICE" \
     | grep -c '^Running' || true)
-  if [[ "$RUNNING" -eq "$EXPECTED" ]]; then
+  runtime_security_counts
+  if [[ "$RUNNING" -eq "$EXPECTED" && "$ACTIVE" -eq "$EXPECTED" && "$SECURE" -eq "$EXPECTED" ]]; then
     break
   fi
   sleep 2
@@ -54,11 +72,15 @@ done
 
 RUNNING=$(docker service ps --filter desired-state=running --format '{{.CurrentState}}' "$SERVICE" \
   | grep -c '^Running' || true)
-if [[ "$RUNNING" -ne "$EXPECTED" ]] || ! curl --silent --show-error --fail --insecure \
+runtime_security_counts
+if [[ "$RUNNING" -ne "$EXPECTED" || "$ACTIVE" -ne "$EXPECTED" || "$SECURE" -ne "$EXPECTED" ]] || \
+    ! curl --silent --show-error --fail \
     --resolve socket23.com:443:127.0.0.1 \
     https://socket23.com/ | grep -q 'Socket23'; then
-  logger -t socket23-deploy "verification failed; rolling back to $CURRENT"
-  docker service rollback --detach=false "$SERVICE" || true
+  logger -t socket23-deploy "verification failed service=$SERVICE running=$RUNNING active=$ACTIVE secure=$SECURE"
+  if [[ "$CHANGED" == true ]]; then
+    docker service rollback --detach=false "$SERVICE" || true
+  fi
   exit 1
 fi
 

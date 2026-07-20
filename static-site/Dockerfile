@@ -4,7 +4,7 @@ LABEL org.opencontainers.image.source="https://github.com/socket1923/site-infras
       org.opencontainers.image.description="Socket23 static website" \
       org.opencontainers.image.licenses="MIT"
 
-COPY --chown=101:101 nginx.conf /etc/nginx/conf.d/default.conf
+COPY --chown=101:101 nginx.conf /etc/nginx/nginx.conf
 COPY --chown=101:101 site/ /usr/share/nginx/html/
 
 USER 101:101

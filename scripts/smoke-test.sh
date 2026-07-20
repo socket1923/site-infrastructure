@@ -28,8 +28,6 @@ CID=$(docker run -d --rm \
   --read-only \
   --cap-drop ALL \
   --security-opt no-new-privileges \
-  --tmpfs /tmp:rw,nosuid,nodev,noexec,size=16m,mode=1777 \
-  --tmpfs /var/cache/nginx:rw,nosuid,nodev,noexec,size=8m,uid=101,gid=101,mode=0750 \
   --mount "type=bind,src=$TMP/fullchain.pem,dst=/run/secrets/tls_fullchain.pem,readonly" \
   --mount "type=bind,src=$TMP/privkey.pem,dst=/run/secrets/tls_privkey.pem,readonly" \
   -p 127.0.0.1::8080 \

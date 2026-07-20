@@ -34,7 +34,7 @@ The service used one replica, host-mode port 443, `stop-first`, relative host bi
 
 The public repository had no Actions workflows and `master` was unprotected.
 
-**Fix:** add dependency-free site validation, Compose/Swarm validation, Gitleaks, non-root/read-only HTTPS smoke tests, Trivy image scanning, and ARMv7 multi-architecture build verification. The release workflow publishes digest-addressed images with SBOM and provenance. Production deployment is disabled by default and requires a dedicated restricted runner path.
+**Fix:** add dependency-free site validation, Compose/Swarm validation, Gitleaks, non-root/read-only HTTPS smoke tests, Trivy image scanning, and ARMv7 multi-architecture build verification. The release workflow publishes digest-addressed images with SBOM and provenance. Node11 uses a fixed outbound pull agent, so GitHub receives no production SSH key and no inbound deployment listener is exposed.
 
 ### Medium — TLS private key exposed as host bind mount
 
@@ -78,6 +78,12 @@ The prior configuration set `X-XSS-Protection: 1; mode=block`, which is obsolete
 
 **Fix:** explicitly disable the legacy filter with `X-XSS-Protection: 0`; CSP remains the primary XSS control.
 
+## Node11 staging verification
+
+The exact stack was deployed on isolated ports 8081/8444 using the ARMv7 artifact. Two replicas reached healthy state with UID/GID 101, read-only root filesystems, all capabilities dropped, TLS secret mode `0400`, and `no-new-privileges=true` verified on both runtime containers. The staged homepage hash matched the branch checkout. An intentional failed update reached `rollback_completed`, restored both healthy replicas, and retained valid HTTPS. A simultaneous corrected public probe completed 120/120 requests with zero failures.
+
+This exercise caught two engine-specific issues before production: node11 silently discards Compose tmpfs and `security_opt` settings during `docker stack deploy`. The image now keeps runtime state under Docker's built-in `/dev/shm`; a scoped service-API helper applies and verifies `NoNewPrivileges` after initial stack deployment.
+
 ## Remaining infrastructure verification
 
 Before enabling deployment:
@@ -87,5 +93,5 @@ Before enabling deployment:
 - confirm Sophos DNAT/load-balancer targets and logs for prior Cloudflare 522 windows;
 - verify Cloudflare SSL mode is Full (strict);
 - verify whether origin TCP/443 is limited to Cloudflare or another intentional proxy path;
-- run a controlled rolling update and rollback while continuously probing externally;
+- install and verify the fixed root-owned outbound pull timer after the initial migration;
 - enable branch protection only after the new CI check is registered and green.

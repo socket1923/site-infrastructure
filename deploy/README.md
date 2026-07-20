@@ -20,6 +20,8 @@ GitHub never receives a node11 SSH key and no inbound deployment listener is exp
 - Two replicas therefore provide process/update continuity, not node-level high availability.
 - Swarm ingress publishes TCP/80 and TCP/443 once while both replicas use internal ports 8080 and 8443.
 - The pull agent refuses to touch the legacy service until the stack has label `com.socket23.delivery=immutable-pull-v1`.
+- NGINX keeps its PID and temporary paths under Docker's built-in `/dev/shm`, so the root filesystem remains read-only without relying on Swarm tmpfs options unsupported by node11.
+- Because `docker stack deploy` on node11 ignores Compose `security_opt`, the migration applies Docker's supported `NoNewPrivileges` service field through a scoped API helper and verifies it on every active container.
 
 ## One-time migration
 
@@ -42,6 +44,7 @@ export IMAGE_REF="$(docker image inspect   --format '{{range .RepoDigests}}{{pri
 export TLS_FULLCHAIN_SECRET=socket23_tls_fullchain_YYYYMMDD
 export TLS_PRIVKEY_SECRET=socket23_tls_privkey_YYYYMMDD
 docker stack deploy --prune -c static-site/stack.yaml web
+deploy/set-service-no-new-privileges web_web
 ```
 
 7. Verify two healthy replicas, local HTTP redirect, local HTTPS, and the public Cloudflare route.
@@ -53,6 +56,7 @@ Install the root-owned fixed script and units:
 
 ```bash
 sudo install -o root -g root -m 0755 deploy/node11-pull-deploy /usr/local/sbin/socket23-pull-deploy
+sudo install -o root -g root -m 0755 deploy/set-service-no-new-privileges /usr/local/sbin/set-service-no-new-privileges
 sudo install -o root -g root -m 0644 deploy/socket23-pull-deploy.service /etc/systemd/system/socket23-pull-deploy.service
 sudo install -o root -g root -m 0644 deploy/socket23-pull-deploy.timer /etc/systemd/system/socket23-pull-deploy.timer
 sudo systemctl daemon-reload

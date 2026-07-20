@@ -1,0 +1,63 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+SERVICE=${1:?usage: set-service-no-new-privileges SERVICE}
+[[ "$SERVICE" =~ ^[A-Za-z0-9_.-]+$ ]] || {
+  echo "invalid service name" >&2
+  exit 64
+}
+
+umask 077
+TMP=$(mktemp -d)
+trap 'rm -rf -- "$TMP"' EXIT
+
+SERVICE_ID=$(docker service inspect --format '{{.ID}}' "$SERVICE")
+VERSION=$(docker service inspect --format '{{.Version.Index}}' "$SERVICE")
+API_VERSION=$(docker version --format '{{.Server.APIVersion}}')
+docker service inspect --format '{{json .Spec}}' "$SERVICE" >"$TMP/spec.json"
+
+python3 - "$TMP/spec.json" "$TMP/updated.json" <<'PY'
+import json
+import sys
+
+source, destination = sys.argv[1:]
+with open(source, encoding="utf-8") as handle:
+    spec = json.load(handle)
+container = spec["TaskTemplate"]["ContainerSpec"]
+privileges = container.setdefault("Privileges", {})
+privileges["NoNewPrivileges"] = True
+with open(destination, "w", encoding="utf-8") as handle:
+    json.dump(spec, handle, separators=(",", ":"))
+PY
+
+curl --silent --show-error --fail \
+  --unix-socket /var/run/docker.sock \
+  --request POST \
+  --header 'Content-Type: application/json' \
+  --data-binary "@$TMP/updated.json" \
+  "http://localhost/v${API_VERSION}/services/${SERVICE_ID}/update?version=${VERSION}" \
+  >/dev/null
+
+for _ in $(seq 1 90); do
+  EXPECTED=$(docker service inspect --format '{{.Spec.Mode.Replicated.Replicas}}' "$SERVICE")
+  RUNNING=$(docker service ps --filter desired-state=running --format '{{.CurrentState}}' "$SERVICE" \
+    | grep -c '^Running' || true)
+  ENABLED=$(docker service inspect --format '{{.Spec.TaskTemplate.ContainerSpec.Privileges.NoNewPrivileges}}' "$SERVICE")
+  ACTIVE=0
+  SECURE=0
+  while IFS= read -r CONTAINER; do
+    [[ -n "$CONTAINER" ]] || continue
+    ACTIVE=$((ACTIVE + 1))
+    OPTIONS=$(docker inspect --format '{{json .HostConfig.SecurityOpt}}' "$CONTAINER")
+    [[ "$OPTIONS" == *'no-new-privileges'* ]] && SECURE=$((SECURE + 1))
+  done < <(docker ps --filter "label=com.docker.swarm.service.name=$SERVICE" --format '{{.ID}}')
+  if [[ "$ENABLED" == "true" && "$RUNNING" -eq "$EXPECTED" && \
+        "$ACTIVE" -eq "$EXPECTED" && "$SECURE" -eq "$EXPECTED" ]]; then
+    printf 'no-new-privileges verified: service=%s replicas=%s\n' "$SERVICE" "$RUNNING"
+    exit 0
+  fi
+  sleep 2
+done
+
+echo "service failed to converge with no-new-privileges enabled" >&2
+exit 1
