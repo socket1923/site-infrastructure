@@ -3,312 +3,47 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Cybersecurity & Compliance Blog — Security Guides & Best Practices | Socket23</title>
-  <meta name="description" content="Expert guides on compliance frameworks, security best practices, threat intelligence, and cybersecurity implementation. Free resources for businesses seeking security guidance." />
-  <meta name="keywords" content="cybersecurity blog, compliance guides, security best practices, WISP requirements, threat intelligence, security implementation, compliance resources" />
-  <meta property="og:title" content="Cybersecurity & Compliance Blog — Security Guides & Best Practices" />
-  <meta property="og:description" content="Expert guides on compliance frameworks, security best practices, threat intelligence, and cybersecurity implementation." />
+  <title>Technical Notes on Infrastructure, Security & Local AI | Joseph Miller</title>
+  <meta name="description" content="Practical notes on infrastructure migrations, Microsoft systems, storage, networking, security monitoring, troubleshooting, and private AI infrastructure." />
+  <meta property="og:title" content="Technical Notes on Infrastructure, Security & Local AI | Joseph Miller" />
+  <meta property="og:description" content="Practical notes on infrastructure migrations, Microsoft systems, storage, networking, security monitoring, troubleshooting, and private AI infrastructure." />
   <meta property="og:type" content="website" />
-  <meta name="color-scheme" content="dark light">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%2300D1B2'/><text x='50' y='58' font-size='42' text-anchor='middle' fill='white'>S</text></svg>">
-  <link rel="stylesheet" href="/styles.css?v=20260720" />
-  <script src="/scripts.js?v=20260720" defer></script>
+  <meta name="color-scheme" content="dark light" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%2300D1B2'/><text x='50' y='58' font-size='42' text-anchor='middle' fill='white'>S</text></svg>" />
+  <link rel="stylesheet" href="/styles.css?v=20260720-brand1" />
+  <script src="/scripts.js?v=20260720-brand1" defer></script>
 </head>
 <body>
   <header class="nav">
     <div class="container nav-inner">
-      <a class="brand" href="/">Socket23</a>
-      <nav id="menu" class="menu" data-state="closed">
-        <a href="/">Home</a>
-        <a href="/services.html">Services</a>
-        <a href="/projects.html">Projects</a>
-        <a href="/testimonials.html">Testimonials</a>
-        <a href="/blog.html">Blog</a>
-        <a href="/community.html">Community</a>
+      <a class="brand" href="/">Joseph Miller <span>/ Socket23</span></a>
+      <nav id="menu" class="menu" data-state="closed" aria-label="Primary navigation">
+        <a href="/projects.html">Work</a>
+        <a href="/services.html">Capabilities</a>
+        <a href="/lab.html">Lab</a>
+        <a href="/blog.html">Notes</a>
         <a href="/about.html">About</a>
         <a href="/contact.html">Contact</a>
       </nav>
-      <button id="menuBtn" class="menu-btn" aria-expanded="false" aria-controls="menu">☰</button>
+      <button id="menuBtn" class="menu-btn" aria-expanded="false" aria-controls="menu" aria-label="Open navigation">&#9776;</button>
     </div>
   </header>
-
   <main>
-    <section class="hero">
-      <div class="container">
-        <h1>Blog</h1>
-        <p>Security guides, compliance best practices, and technical insights</p>
-      </div>
-    </section>
-
-    <section class="panel">
-      <div class="container">
-        <h2>Featured Insights</h2>
-        
-        <article class="card" style="margin-bottom:24px">
-          <h3>🤖 Leveraging AI for Threat Hunting: Lessons from ThreatGuard</h3>
-          <p style="color:var(--sub);margin-bottom:12px">Published: January 2025 | Category: AI/ML Security</p>
-          <p>Building ThreatGuard, a custom GPT for analyzing DShield honeypot data, revealed powerful insights about AI-assisted security operations. Here is what our team learned about combining human expertise with AI capabilities for effective threat hunting.</p>
-          <p style="margin-top:12px"><strong>Key Takeaways:</strong></p>
-          <ul style="margin:12px 0;padding-left:20px">
-            <li>AI excels at pattern recognition across large datasets but requires human context for accurate threat assessment</li>
-            <li>Structured output templates (like Attack Observation Template v3.0) dramatically improve AI consistency</li>
-            <li>Integration with SIEM platforms enables real-time threat correlation and enrichment</li>
-            <li>Local LLM deployment is viable for sensitive environments with proper GPU acceleration</li>
-            <li>Model Context Protocol (MCP) enables standardized AI-to-tool integration</li>
-          </ul>
-          <p style="margin-top:16px">
-            <a href="https://chatgpt.com/g/g-Ol5k3VALX-threatguard" target="_blank" rel="noopener noreferrer" class="btn ghost" style="display:inline-block">
-              Try ThreatGuard GPT →
-            </a>
-          </p>
-        </article>
-
-        <article class="card" style="margin-bottom:24px">
-          <h3>🔐 IRS Security Six: Mandatory Controls for Tax Professionals in 2025</h3>
-          <p style="color:var(--sub);margin-bottom:12px">Published: December 2024 | Category: Compliance</p>
-          <p>The IRS Security Six are mandatory cybersecurity requirements outlined in IRS Publication 4557 that all tax professionals must implement to protect taxpayer data. These six controls form the baseline security standards for legally handling tax information.</p>
-
-          <p style="margin-top:12px"><strong>The IRS Security Six (Mandatory):</strong></p>
-          <ul style="margin:12px 0;padding-left:20px">
-            <li><strong>1. Antivirus Software:</strong> Deploy and maintain current antivirus/anti-malware on all systems</li>
-            <li><strong>2. Firewalls:</strong> Enable firewalls on all devices and networks</li>
-            <li><strong>3. Multi-Factor Authentication (MFA):</strong> Require MFA for all tax software, email, and remote access</li>
-            <li><strong>4. Backup Services:</strong> Implement automated backups with offsite/cloud storage</li>
-            <li><strong>5. Drive Encryption:</strong> Enable full-disk encryption on all computers and mobile devices</li>
-            <li><strong>6. Virtual Private Network (VPN):</strong> Use VPN for all remote access and public Wi-Fi</li>
-          </ul>
-
-          <p style="margin-top:12px"><strong>Beyond the Security Six - Written Information Security Plan (WISP):</strong></p>
-          <ul style="margin:12px 0;padding-left:20px">
-            <li><strong>Document your security policies and procedures</strong></li>
-            <li><strong>Risk assessment:</strong> Identify threats to taxpayer data</li>
-            <li><strong>Access controls:</strong> Principle of least privilege</li>
-            <li><strong>Employee training:</strong> Annual security awareness training</li>
-            <li><strong>Incident response:</strong> Data breach notification procedures</li>
-            <li><strong>Vendor management:</strong> Third-party security requirements</li>
-            <li><strong>Annual review:</strong> Update plan yearly</li>
-          </ul>
-
-          <p style="margin-top:12px"><strong>Common Mistakes to Avoid:</strong></p>
-          <ul style="margin:12px 0;padding-left:20px">
-            <li>❌ Storing unencrypted tax returns on local drives or email</li>
-            <li>❌ Not implementing all six mandatory controls</li>
-            <li>❌ Sharing passwords or using weak authentication</li>
-            <li>❌ Failing to document security plan (WISP)</li>
-            <li>❌ Not testing backups regularly</li>
-            <li>❌ Using public Wi-Fi without VPN</li>
-            <li>❌ Not vetting cloud service providers for security compliance</li>
-          </ul>
-
-          <p style="margin-top:12px"><strong>Who Must Comply:</strong></p>
-          <ul style="margin:12px 0;padding-left:20px">
-            <li>CPA firms and accounting practices</li>
-            <li>Tax preparation services</li>
-            <li>Enrolled agents</li>
-            <li>Tax attorneys</li>
-            <li>Payroll service providers</li>
-            <li>Anyone with access to taxpayer information</li>
-          </ul>
-
-          <p style="margin-top:16px">
-            <a href="/services.html" class="btn ghost" style="display:inline-block">
-              IRS Security Six Implementation Services →
-            </a>
-          </p>
-        </article>
-
-        <article class="card" style="margin-bottom:24px">
-          <h3>🏦 FTC Safeguards Rule: What Financial Institutions Need to Know</h3>
-          <p style="color:var(--sub);margin-bottom:12px">Published: January 2025 | Category: Compliance</p>
-          <p>The FTC Safeguards Rule under the Gramm-Leach-Bliley Act (GLBA) requires financial institutions to develop, implement, and maintain a comprehensive Written Information Security Plan (WISP). Here is what you need to know.</p>
-
-          <p style="margin-top:12px"><strong>Who Must Comply:</strong></p>
-          <ul style="margin:12px 0;padding-left:20px">
-            <li>Financial advisors and investment firms</li>
-            <li>Mortgage brokers and lenders</li>
-            <li>Auto dealers offering financing</li>
-            <li>Payday lenders</li>
-            <li>Tax preparation services (also covered by IRS 4557)</li>
-            <li>Credit counseling services</li>
-            <li>Any business significantly engaged in financial activities</li>
-          </ul>
-
-          <p style="margin-top:12px"><strong>Key Requirements:</strong></p>
-          <ul style="margin:12px 0;padding-left:20px">
-            <li><strong>Qualified Individual:</strong> Designate someone to oversee security program</li>
-            <li><strong>Written Information Security Plan (WISP):</strong> Comprehensive documentation</li>
-            <li><strong>Risk Assessment:</strong> Identify and assess risks to customer information</li>
-            <li><strong>Access Controls:</strong> Limit access to customer information</li>
-            <li><strong>Multi-Factor Authentication:</strong> Required for all access to customer information</li>
-            <li><strong>Encryption:</strong> Protect customer information at rest and in transit</li>
-            <li><strong>Incident Response Plan:</strong> Procedures for security events</li>
-            <li><strong>Vendor Management:</strong> Oversee service providers</li>
-            <li><strong>Annual Testing:</strong> Penetration testing and vulnerability assessments</li>
-            <li><strong>Security Awareness Training:</strong> Regular employee training</li>
-            <li><strong>Board Reporting:</strong> Annual report to board or senior management</li>
-          </ul>
-
-          <p style="margin-top:12px"><strong>Penalties for Non-Compliance:</strong></p>
-          <ul style="margin:12px 0;padding-left:20px">
-            <li>Civil penalties up to $46,517 per violation</li>
-            <li>Potential criminal penalties for willful violations</li>
-            <li>Reputational damage and loss of customer trust</li>
-            <li>Increased regulatory scrutiny</li>
-          </ul>
-
-          <p style="margin-top:16px">
-            <a href="/services.html" class="btn ghost" style="display:inline-block">
-              FTC Safeguards Rule Compliance Services →
-            </a>
-          </p>
-        </article>
-
-        <article class="card" style="margin-bottom:24px">
-          <h3>☁️ Cloud Security Automation: Beyond Manual Configuration Reviews</h3>
-          <p style="color:var(--sub);margin-bottom:12px">Published: November 2024 | Category: Cloud Security</p>
-          <p>Manual cloud security reviews do not scale. Here is how to implement automated security controls and compliance monitoring in AWS and Azure using infrastructure-as-code and policy-as-code approaches.</p>
-          <p style="margin-top:12px"><strong>Automation Strategies:</strong></p>
-          <ul style="margin:12px 0;padding-left:20px">
-            <li><strong>Infrastructure-as-Code Security:</strong> Scan Terraform/CloudFormation for misconfigurations before deployment</li>
-            <li><strong>Policy-as-Code:</strong> Use AWS Config Rules, Azure Policy, or OPA for continuous compliance</li>
-            <li><strong>Automated Remediation:</strong> Lambda/Azure Functions to auto-fix common security issues</li>
-            <li><strong>Security Baselines:</strong> CIS Benchmarks automated with AWS Security Hub or Azure Security Center</li>
-            <li><strong>Cost Optimization:</strong> Security automation often reduces cloud costs by 15-30%</li>
-          </ul>
-          <p style="margin-top:12px"><strong>Tools & Frameworks:</strong></p>
-          <ul style="margin:12px 0;padding-left:20px">
-            <li>Checkov, tfsec, Terrascan for IaC scanning</li>
-            <li>AWS Config, Azure Policy for runtime compliance</li>
-            <li>ScoutSuite, Prowler for multi-cloud security assessment</li>
-            <li>Open Policy Agent (OPA) for custom policy enforcement</li>
-          </ul>
-        </article>
-
-        <article class="card" style="margin-bottom:24px">
-          <h3>🚨 Incident Response: The First 60 Minutes Matter Most</h3>
-          <p style="color:var(--sub);margin-bottom:12px">Published: October 2024 | Category: Incident Response</p>
-          <p>Based on real-world incident response engagements, here is what to do in the critical first hour of a security incident to minimize damage and preserve evidence.</p>
-          <p style="margin-top:12px"><strong>The First 60 Minutes Checklist:</strong></p>
-          <ul style="margin:12px 0;padding-left:20px">
-            <li><strong>0-10 min:</strong> Activate incident response team, establish communication channel</li>
-            <li><strong>10-20 min:</strong> Initial triage - identify affected systems, scope of compromise</li>
-            <li><strong>20-30 min:</strong> Containment decisions - isolate vs. monitor, preserve evidence</li>
-            <li><strong>30-45 min:</strong> Evidence collection - memory dumps, disk images, network captures</li>
-            <li><strong>45-60 min:</strong> Stakeholder notification - legal, insurance, management</li>
-          </ul>
-          <p style="margin-top:12px"><strong>Critical Mistakes to Avoid:</strong></p>
-          <ul style="margin:12px 0;padding-left:20px">
-            <li>❌ Shutting down systems before collecting volatile memory</li>
-            <li>❌ Alerting attackers by changing passwords or blocking IPs prematurely</li>
-            <li>❌ Failing to preserve logs and evidence</li>
-            <li>❌ Not engaging legal counsel early (especially for ransomware)</li>
-          </ul>
-          <p style="margin-top:16px">
-            <a href="/services.html#incident-response" class="btn ghost" style="display:inline-block">
-              Incident Response Services →
-            </a>
-          </p>
-        </article>
-
-        <article class="card" style="margin-bottom:24px">
-          <h3>🔍 SIEM Detection Engineering: Writing Rules That Actually Work</h3>
-          <p style="color:var(--sub);margin-bottom:12px">Published: September 2024 | Category: Threat Detection</p>
-          <p>From our team's experience with the SANS Internet Storm Center and enterprise SIEM deployments, here is how to write detection rules that catch real threats without drowning your SOC in false positives.</p>
-          <p style="margin-top:12px"><strong>Detection Rule Best Practices:</strong></p>
-          <ul style="margin:12px 0;padding-left:20px">
-            <li><strong>Start with MITRE ATT&CK:</strong> Map detections to specific tactics and techniques</li>
-            <li><strong>Tune for Your Environment:</strong> Generic rules generate noise - customize for your baseline</li>
-            <li><strong>Use Threat Intelligence:</strong> Enrich with IOCs from trusted sources</li>
-            <li><strong>Test Before Deploying:</strong> Run rules against historical data to measure false positive rate</li>
-            <li><strong>Document Everything:</strong> Future you will thank present you</li>
-          </ul>
-          <p style="margin-top:12px"><strong>Common Detection Gaps:</strong></p>
-          <ul style="margin:12px 0;padding-left:20px">
-            <li>Living-off-the-land techniques (PowerShell, WMI, legitimate admin tools)</li>
-            <li>Cloud API abuse (AWS/Azure credential misuse)</li>
-            <li>Lateral movement via legitimate protocols (RDP, SMB, WinRM)</li>
-            <li>Data exfiltration via approved channels (cloud storage, email)</li>
-          </ul>
-          <p style="margin-top:16px">
-            <a href="/services.html#siem" class="btn ghost" style="display:inline-block">
-              SIEM Monitoring Services →
-            </a>
-          </p>
-        </article>
-      </div>
-    </section>
-
-    <section class="panel alt">
-      <div class="container">
-        <h2>Threat Intelligence Resources</h2>
-        
-        <div class="grid-2">
-          <article class="card">
-            <h3>🛡️ SANS Internet Storm Center</h3>
-            <p>Members of the Socket23 team have served as Apprentice Threat Handlers, contributing to the SANS ISC mission of providing free cybersecurity threat analysis to the community.</p>
-            <p style="margin-top:12px">
-              <a href="https://isc.sans.edu/" target="_blank" rel="noopener noreferrer" class="btn ghost" style="display:inline-block">
-                Visit SANS ISC →
-              </a>
-            </p>
-          </article>
-
-          <article class="card">
-            <h3>🎯 ThreatGuard Custom GPT</h3>
-            <p>My custom GPT for threat hunting analyzes DShield honeypot data and generates detailed threat reports following standardized templates.</p>
-            <p style="margin-top:12px">
-              <a href="https://chatgpt.com/g/g-Ol5k3VALX-threatguard" target="_blank" rel="noopener noreferrer" class="btn ghost" style="display:inline-block">
-                Try ThreatGuard →
-              </a>
-            </p>
-          </article>
-
-          <article class="card">
-            <h3>📊 MITRE ATT&CK Framework</h3>
-            <p>Essential resource for threat modeling, detection engineering, and understanding adversary tactics and techniques.</p>
-            <p style="margin-top:12px">
-              <a href="https://attack.mitre.org/" target="_blank" rel="noopener noreferrer" class="btn ghost" style="display:inline-block">
-                Explore ATT&CK →
-              </a>
-            </p>
-          </article>
-
-          <article class="card">
-            <h3>🔐 NIST Cybersecurity Framework</h3>
-            <p>Comprehensive framework for managing cybersecurity risk, widely adopted across industries and compliance standards.</p>
-            <p style="margin-top:12px">
-              <a href="https://www.nist.gov/cyberframework" target="_blank" rel="noopener noreferrer" class="btn ghost" style="display:inline-block">
-                NIST CSF →
-              </a>
-            </p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="panel alt">
-      <div class="container" style="text-align:center">
-        <h2>Stay Updated</h2>
-        <p style="max-width:700px;margin:0 auto 24px">Interested in discussing threat intelligence, security challenges, or emerging technologies? Let us connect.</p>
-        <div class="actions" style="justify-content:center;margin-top:24px">
-          <a class="btn primary" href="/contact.html">Get in Touch</a>
-          <a class="btn ghost" href="/projects.html">View Projects</a>
-        </div>
-      </div>
-    </section>
+    <section class="hero"><div class="container hero-copy"><p class="eyebrow">Notes</p><h1>Field notes from difficult systems</h1><p class="lead">Infrastructure, security, troubleshooting, migrations, and applied AI—focused on evidence, constraints, and validation.</p><p>I use this section to document the parts of technical work that are usually compressed into a ticket closure: which assumption failed, how risk shaped the sequence, what evidence changed the diagnosis, and how the result was verified.</p></div></section>
+    <section class="panel"><div class="container"><p class="section-kicker">Editorial queue</p><h2>What I am documenting next</h2><div class="grid-3"><article class="card note-card"><p class="status">Virtualization · Migration</p><h3>A migration is not a disk conversion</h3><p>Why VMware-to-Hyper-V planning must include storage ownership, identity, DNS, applications, backup state, rollback, and business validation.</p><span>Planned</span></article><article class="card note-card"><p class="status">Discovery · Operations</p><h3>Verify the environment before trusting the diagram</h3><p>A practical discovery sequence for inherited or partially documented infrastructure.</p><span>Planned</span></article><article class="card note-card"><p class="status">Backup · Recovery</p><h3>Backup success is not recovery proof</h3><p>What to validate beyond a green job: boot, application state, identity, data access, dependencies, and time to recover.</p><span>Planned</span></article><article class="card note-card"><p class="status">Azure · Identity</p><h3>AVD troubleshooting by failure domain</h3><p>Separating control-plane, network, identity, host, profile, token, and application problems.</p><span>Planned</span></article><article class="card note-card"><p class="status">Networking · TLS</p><h3>Reading the full path of a published service</h3><p>A method for tracing public DNS, firewall policy, NAT, TLS, proxy, container health, and application response.</p><span>Planned</span></article><article class="card note-card"><p class="status">Private AI · Operations</p><h3>Local LLM deployment as systems engineering</h3><p>GPU memory, model formats, APIs, concurrency, storage, authentication, telemetry, upgrades, and failure recovery.</p><span>Planned</span></article></div></div></section>
+    <section class="panel alt"><div class="container split-callout"><div><p class="section-kicker">Publishing standard</p><h2>Context before conclusions</h2><p>Each note will separate observed symptoms, constraints, evidence, working theory, action, validation, and what remains uncertain. Technical guidance that can age will include an original publication date and a last-reviewed date.</p></div><div class="card"><h3>Topics</h3><p>Infrastructure modernization · Microsoft cloud and identity · Virtualization and storage · Networking and firewalls · Backup and recovery · Security monitoring · Private AI · Agent safety</p></div></div></section>
+    <section class="panel"><div class="container centered narrow"><h2>Prefer the current work?</h2><p>The Work and Lab pages contain the first evidence-backed summaries while longer notes are prepared.</p><div class="actions centered-actions"><a class="btn primary" href="/projects.html">View selected work</a><a class="btn ghost" href="/lab.html">Explore the lab</a></div></div></section>
   </main>
-
   <footer class="footer">
     <div class="container">
-      <p>© <span id="year"></span> Socket23. All rights reserved. | Sandy, Oregon</p>
-      <p style="margin-top:12px">
-        <a href="https://github.com/socket23" target="_blank" rel="noopener noreferrer" style="color:var(--accent);text-decoration:none;margin-right:16px">GitHub</a>
-        <a href="https://www.linkedin.com/in/joseph-miller-cybersecurity" target="_blank" rel="noopener noreferrer" style="color:var(--accent);text-decoration:none;margin-right:16px">LinkedIn</a>
-        <a href="/collaboration.html" style="color:var(--accent);text-decoration:none">Engineer Collaboration</a>
+      <p><strong>Joseph Miller</strong> · Socket23 · Sandy, Oregon</p>
+      <p class="footer-links">
+        <a href="https://github.com/socket23" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://www.linkedin.com/in/joseph-miller-cybersecurity" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://www.credly.com/users/josephamiller" target="_blank" rel="noopener noreferrer">Credly</a>
+        <a href="/contact.html">Contact</a>
       </p>
-      <p style="margin-top:16px;font-size:12px;color:var(--sub)">
-        Built with <a href="https://www.augmentcode.com/" target="_blank" rel="noopener noreferrer" style="color:var(--sub);text-decoration:none;border-bottom:1px dotted var(--sub)">Augment</a>
-      </p>
+      <p class="fine-print">© <span id="year"></span> Joseph Miller. Socket23 is my technical lab and publishing identity.</p>
     </div>
   </footer>
 </body>

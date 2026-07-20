@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Socket23 Lab | Infrastructure, Security Monitoring & Local AI</title>
+  <meta name="description" content="Joseph Miller’s technical lab for infrastructure engineering, security monitoring, local AI inference, agent systems, and production-safe operational research." />
+  <meta property="og:title" content="Socket23 Lab | Infrastructure, Security Monitoring & Local AI" />
+  <meta property="og:description" content="Joseph Miller’s technical lab for infrastructure engineering, security monitoring, local AI inference, agent systems, and production-safe operational research." />
+  <meta property="og:type" content="website" />
+  <meta name="color-scheme" content="dark light" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%2300D1B2'/><text x='50' y='58' font-size='42' text-anchor='middle' fill='white'>S</text></svg>" />
+  <link rel="stylesheet" href="/styles.css?v=20260720-brand1" />
+  <script src="/scripts.js?v=20260720-brand1" defer></script>
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="/">Joseph Miller <span>/ Socket23</span></a>
+      <nav id="menu" class="menu" data-state="closed" aria-label="Primary navigation">
+        <a href="/projects.html">Work</a>
+        <a href="/services.html">Capabilities</a>
+        <a href="/lab.html">Lab</a>
+        <a href="/blog.html">Notes</a>
+        <a href="/about.html">About</a>
+        <a href="/contact.html">Contact</a>
+      </nav>
+      <button id="menuBtn" class="menu-btn" aria-expanded="false" aria-controls="menu" aria-label="Open navigation">&#9776;</button>
+    </div>
+  </header>
+  <main>
+    <section class="hero"><div class="container hero-copy"><p class="eyebrow">Socket23 Lab</p><h1>Build, break, measure, document</h1><p class="lead">Socket23 is where I test infrastructure, security monitoring, local AI, and operational-agent ideas before turning the lessons into safer production work.</p><p>It is a controlled technical environment—not a substitute for production experience—and a place to study architecture, failure modes, recovery paths, integrations, and security boundaries directly.</p></div></section>
+    <section class="panel"><div class="container"><div class="grid-3"><article class="card"><p class="status">Infrastructure</p><h2>Systems and recovery</h2><p>Proxmox VE, Proxmox Backup Server, clustered ARM systems, Docker Swarm, Linux hardening, segmented networks, shared storage, and backup validation.</p></article><article class="card"><p class="status">Security monitoring</p><h2>Telemetry and threat research</h2><p>Security Onion, Zeek, Elastic Stack, IDS and SIEM workflows, DShield honeypot data, enrichment, and detection validation.</p></article><article class="card"><p class="status">Local AI</p><h2>Private inference and agents</h2><p>High-memory GPU systems, vLLM, llama.cpp, LM Studio, Ollama, Open WebUI, model APIs, local retrieval, and agent integrations.</p></article></div></div></section>
+    <section class="panel alt"><div class="container split-callout"><div><p class="section-kicker">Current research</p><h2>A persistent, read-only Network Assistant</h2><p>I am designing an assistant that helps explain infrastructure failures by correlating intended state, observed state, metrics, logs, runbooks, changes, and confirmed incident history.</p><p>The assistant can recommend actions and verify recovery through telemetry, but it does not hold production write credentials.</p></div><div class="card"><h3>Security boundary</h3><ul><li>Read-only production access</li><li>Write access only to its own observation and knowledge stores</li><li>Human approval and execution for production changes</li><li>Independent alerts if the AI layer fails</li><li>Evidence and confidence attached to recommendations</li></ul></div></div></section>
+    <section class="panel"><div class="container"><p class="section-kicker">What I publish</p><h2>Useful concepts without publishing the attack surface</h2><div class="grid-3"><article class="card"><h3>Architecture</h3><p>Sanitized diagrams, decision records, migration sequences, and boundary reviews.</p></article><article class="card"><h3>Operations</h3><p>Failure analysis, recovery procedures, validation checklists, and lessons learned.</p></article><article class="card"><h3>Evaluations</h3><p>Tool, model, API, and integration findings with methodology where measurements are shared.</p></article></div><p class="disclosure">Lab documentation intentionally omits credentials, internal addresses, administrative entry points, exploitable version detail, private datasets, live alert routes, and other information that would materially weaken the environment.</p></div></section>
+    <section class="panel alt"><div class="container centered narrow"><h2>Follow the work as it develops</h2><div class="actions centered-actions"><a class="btn primary" href="/blog.html">Read technical notes</a><a class="btn ghost" href="/projects.html">View selected work</a></div></div></section>
+  </main>
+  <footer class="footer">
+    <div class="container">
+      <p><strong>Joseph Miller</strong> · Socket23 · Sandy, Oregon</p>
+      <p class="footer-links">
+        <a href="https://github.com/socket23" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://www.linkedin.com/in/joseph-miller-cybersecurity" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://www.credly.com/users/josephamiller" target="_blank" rel="noopener noreferrer">Credly</a>
+        <a href="/contact.html">Contact</a>
+      </p>
+      <p class="fine-print">© <span id="year"></span> Joseph Miller. Socket23 is my technical lab and publishing identity.</p>
+    </div>
+  </footer>
+</body>
+</html>
