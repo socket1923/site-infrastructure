@@ -3,47 +3,42 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Technical Notes on Infrastructure, Security & Local AI | Joseph Miller</title>
-  <meta name="description" content="Practical notes on infrastructure migrations, Microsoft systems, storage, networking, security monitoring, troubleshooting, and private AI infrastructure." />
-  <meta property="og:title" content="Technical Notes on Infrastructure, Security & Local AI | Joseph Miller" />
-  <meta property="og:description" content="Practical notes on infrastructure migrations, Microsoft systems, storage, networking, security monitoring, troubleshooting, and private AI infrastructure." />
+  <title>Technical Notes | Joseph Miller</title>
+  <meta name="description" content="My notes on infrastructure migrations, Windows and identity, storage, networking, security monitoring, troubleshooting, recovery, and private AI." />
+  <meta property="og:title" content="Technical Notes | Joseph Miller" />
+  <meta property="og:description" content="My notes on infrastructure migrations, Windows and identity, storage, networking, security monitoring, troubleshooting, recovery, and private AI." />
   <meta property="og:type" content="website" />
   <meta name="color-scheme" content="dark light" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%2300D1B2'/><text x='50' y='58' font-size='42' text-anchor='middle' fill='white'>S</text></svg>" />
-  <link rel="stylesheet" href="/styles.css?v=20260720-brand1" />
-  <script src="/scripts.js?v=20260720-brand1" defer></script>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%2300D1B2'/><text x='50' y='58' font-size='42' text-anchor='middle' fill='white'>J</text></svg>" />
+  <link rel="stylesheet" href="/styles.css?v=20260720-person1" />
+  <script src="/scripts.js?v=20260720-person1" defer></script>
 </head>
 <body>
   <header class="nav">
     <div class="container nav-inner">
-      <a class="brand" href="/">Joseph Miller <span>/ Socket23</span></a>
+      <a class="brand" href="/">Joseph Miller <span>@socket23</span></a>
       <nav id="menu" class="menu" data-state="closed" aria-label="Primary navigation">
-        <a href="/projects.html">Work</a>
-        <a href="/services.html">Capabilities</a>
+        <a href="/projects.html">Projects</a>
+        <a href="/experience.html">Experience</a>
+        <a href="/about.html">About</a>
         <a href="/lab.html">Lab</a>
         <a href="/blog.html">Notes</a>
-        <a href="/about.html">About</a>
-        <a href="/contact.html">Contact</a>
+        <a href="/contact.html">Connect</a>
       </nav>
       <button id="menuBtn" class="menu-btn" aria-expanded="false" aria-controls="menu" aria-label="Open navigation">&#9776;</button>
     </div>
   </header>
   <main>
-    <section class="hero"><div class="container hero-copy"><p class="eyebrow">Notes</p><h1>Field notes from difficult systems</h1><p class="lead">Infrastructure, security, troubleshooting, migrations, and applied AI—focused on evidence, constraints, and validation.</p><p>I use this section to document the parts of technical work that are usually compressed into a ticket closure: which assumption failed, how risk shaped the sequence, what evidence changed the diagnosis, and how the result was verified.</p></div></section>
-    <section class="panel"><div class="container"><p class="section-kicker">Editorial queue</p><h2>What I am documenting next</h2><div class="grid-3"><article class="card note-card"><p class="status">Virtualization · Migration</p><h3>A migration is not a disk conversion</h3><p>Why VMware-to-Hyper-V planning must include storage ownership, identity, DNS, applications, backup state, rollback, and business validation.</p><span>Planned</span></article><article class="card note-card"><p class="status">Discovery · Operations</p><h3>Verify the environment before trusting the diagram</h3><p>A practical discovery sequence for inherited or partially documented infrastructure.</p><span>Planned</span></article><article class="card note-card"><p class="status">Backup · Recovery</p><h3>Backup success is not recovery proof</h3><p>What to validate beyond a green job: boot, application state, identity, data access, dependencies, and time to recover.</p><span>Planned</span></article><article class="card note-card"><p class="status">Azure · Identity</p><h3>AVD troubleshooting by failure domain</h3><p>Separating control-plane, network, identity, host, profile, token, and application problems.</p><span>Planned</span></article><article class="card note-card"><p class="status">Networking · TLS</p><h3>Reading the full path of a published service</h3><p>A method for tracing public DNS, firewall policy, NAT, TLS, proxy, container health, and application response.</p><span>Planned</span></article><article class="card note-card"><p class="status">Private AI · Operations</p><h3>Local LLM deployment as systems engineering</h3><p>GPU memory, model formats, APIs, concurrency, storage, authentication, telemetry, upgrades, and failure recovery.</p><span>Planned</span></article></div></div></section>
-    <section class="panel alt"><div class="container split-callout"><div><p class="section-kicker">Publishing standard</p><h2>Context before conclusions</h2><p>Each note will separate observed symptoms, constraints, evidence, working theory, action, validation, and what remains uncertain. Technical guidance that can age will include an original publication date and a last-reviewed date.</p></div><div class="card"><h3>Topics</h3><p>Infrastructure modernization · Microsoft cloud and identity · Virtualization and storage · Networking and firewalls · Backup and recovery · Security monitoring · Private AI · Agent safety</p></div></div></section>
-    <section class="panel"><div class="container centered narrow"><h2>Prefer the current work?</h2><p>The Work and Lab pages contain the first evidence-backed summaries while longer notes are prepared.</p><div class="actions centered-actions"><a class="btn primary" href="/projects.html">View selected work</a><a class="btn ghost" href="/lab.html">Explore the lab</a></div></div></section>
+    <section class="hero"><div class="container hero-copy"><p class="eyebrow">My notes</p><h1>The details I want to remember and share.</h1><p class="lead">I use this section for the parts of technical work that rarely fit in a short summary: the failed assumption, the evidence that changed the diagnosis, the risk that shaped the sequence, and the way I verified the result.</p><p>The first longer notes are in progress. These are the subjects I’m working through now.</p></div></section>
+    <section class="panel"><div class="container"><p class="section-kicker">Writing next</p><h2>Lessons from systems I’ve worked with</h2><div class="grid-3"><article class="card note-card"><p class="status">Virtualization · Migration</p><h3>A migration is not a disk conversion</h3><p>Storage ownership, identity, DNS, applications, backup state, rollback, and complete-system validation.</p><span>In progress</span></article><article class="card note-card"><p class="status">Discovery · Operations</p><h3>Verify the environment before trusting the diagram</h3><p>The discovery sequence I use when I inherit a system whose documentation cannot answer the important questions.</p><span>In progress</span></article><article class="card note-card"><p class="status">Backup · Recovery</p><h3>Backup success is not recovery proof</h3><p>Why I check boot, identity, data, applications, dependencies, and the actual function after a restore.</p><span>Planned</span></article><article class="card note-card"><p class="status">Azure · Identity</p><h3>AVD troubleshooting by failure domain</h3><p>Separating the control plane, network, identity, host, profile, token, audio, and application layers.</p><span>Planned</span></article><article class="card note-card"><p class="status">Networking · TLS</p><h3>Reading the complete path of a published service</h3><p>Public DNS, firewall policy, NAT, TLS, proxy behavior, container health, and the application response.</p><span>Planned</span></article><article class="card note-card"><p class="status">Private AI · Operations</p><h3>Local LLMs are systems work</h3><p>GPU memory, model formats, APIs, concurrency, storage, authentication, telemetry, upgrades, and failure recovery.</p><span>Planned</span></article></div></div></section>
+    <section class="panel alt"><div class="container split-callout"><div><p class="section-kicker">How I want to write</p><h2>Context before conclusions</h2><p>I want each note to separate what I observed, what constrained the solution, what I believed, what evidence changed that belief, what I did, and how I checked the outcome.</p><p>If something is still uncertain or comes only from my lab, I will say so.</p></div><div class="card"><h3>Topics I keep returning to</h3><p>Infrastructure modernization · Identity · Virtualization · Storage · Networking · Firewalls · Backup and recovery · Security monitoring · Private AI · Agent boundaries</p></div></div></section>
+    <section class="panel"><div class="container centered narrow"><h2>Until the longer notes are ready</h2><p>The Projects and Lab pages contain the best current examples of what I’ve built and learned.</p><div class="actions centered-actions"><a class="btn primary" href="/projects.html">See my projects</a><a class="btn ghost" href="/lab.html">Visit my lab</a></div></div></section>
   </main>
   <footer class="footer">
     <div class="container">
-      <p><strong>Joseph Miller</strong> · Socket23 · Sandy, Oregon</p>
-      <p class="footer-links">
-        <a href="https://github.com/socket23" target="_blank" rel="noopener noreferrer">GitHub</a>
-        <a href="https://www.linkedin.com/in/joseph-miller-cybersecurity" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-        <a href="https://www.credly.com/users/josephamiller" target="_blank" rel="noopener noreferrer">Credly</a>
-        <a href="/contact.html">Contact</a>
-      </p>
-      <p class="fine-print">© <span id="year"></span> Joseph Miller. Socket23 is my technical lab and publishing identity.</p>
+      <p><strong>Joseph Miller</strong> · Sandy, Oregon</p>
+      <p class="footer-links"><a href="https://github.com/socket23" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://www.linkedin.com/in/joseph-miller-cybersecurity" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://www.credly.com/users/josephamiller" target="_blank" rel="noopener noreferrer">Credly</a></p>
+      <p class="fine-print">© <span id="year"></span> Joseph Miller. Socket23 is my personal technical lab and publishing handle.</p>
     </div>
   </footer>
 </body>

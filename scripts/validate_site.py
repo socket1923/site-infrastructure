@@ -9,7 +9,6 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 SITE = ROOT / "static-site" / "site"
-ALLOWED_FORM_HOSTS = {"formspree.io"}
 SKIP_SCHEMES = {"mailto", "tel", "data"}
 
 
@@ -55,12 +54,7 @@ class PageParser(HTMLParser):
             self.links.append((where, value))
 
         if tag == "form":
-            action = attrs.get("action", "")
-            parsed = urlparse(action)
-            if parsed.scheme != "https" or parsed.hostname not in ALLOWED_FORM_HOSTS:
-                self.errors.append(f"{where}: form action is not an approved HTTPS endpoint: {action!r}")
-            if attrs.get("method", "").upper() != "POST":
-                self.errors.append(f"{where}: form method must be POST")
+            self.errors.append(f"{where}: public forms are not permitted on this personal static site")
 
     def handle_endtag(self, tag: str) -> None:
         if tag == "script" and self.inline_script_depth:
@@ -106,7 +100,7 @@ def main() -> int:
             print(f"- {error}", file=sys.stderr)
         return 1
 
-    print(f"Validated {len(html_files)} HTML files: links, forms, CSP compatibility, and tabnabbing checks passed")
+    print(f"Validated {len(html_files)} HTML files: links, form prohibition, CSP compatibility, and tabnabbing checks passed")
     return 0
 
 

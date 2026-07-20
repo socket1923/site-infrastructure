@@ -56,6 +56,11 @@ HEADERS=$(curl --silent --show-error --fail \
   -D - -o /dev/null \
   "https://socket23.com:$PORT/")
 grep -qi '^content-security-policy:' <<<"$HEADERS"
+grep -qi "^content-security-policy:.*form-action 'none'" <<<"$HEADERS"
+if grep -qi "^content-security-policy:.*unsafe-inline" <<<"$HEADERS"; then
+  echo "CSP still permits unsafe-inline" >&2
+  exit 1
+fi
 grep -qi '^strict-transport-security:' <<<"$HEADERS"
 grep -qi '^x-content-type-options: nosniff' <<<"$HEADERS"
 grep -qi '^cache-control: no-cache' <<<"$HEADERS"
@@ -75,6 +80,22 @@ CODE=$(curl --silent --show-error \
   "https://socket23.com:$PORT/definitely-not-present")
 [[ "$CODE" == "404" ]]
 
+while read -r OLD NEW; do
+  REDIRECT_HEADERS=$(curl --silent --show-error \
+    --cacert "$TMP/fullchain.pem" \
+    --resolve "socket23.com:$PORT:127.0.0.1" \
+    -D - -o /dev/null \
+    "https://socket23.com:$PORT$OLD")
+  grep -qE '^HTTP/[0-9.]+ 301' <<<"$REDIRECT_HEADERS"
+  grep -qi "^location: $NEW" <<<"$REDIRECT_HEADERS"
+done <<'REDIRECTS'
+/services.html /experience.html
+/testimonials.html /projects.html
+/collaboration.html /contact.html
+/community.html /lab.html
+/team/joseph-miller.html /about.html
+REDIRECTS
+
 HTTP_HEADERS=$(curl --silent --show-error \
   -D - -o /dev/null \
   -H 'Host: socket23.com' \
@@ -88,4 +109,4 @@ if docker exec "$CID" sh -c 'touch /usr/share/nginx/html/should-not-write' >/dev
   exit 1
 fi
 
-echo "Smoke test passed: image=$IMAGE redirect=ok https=ok headers=ok static-cache=ok 404=ok nonroot=ok readonly=ok"
+echo "Smoke test passed: image=$IMAGE redirect=ok https=ok headers=ok form-none=ok legacy-redirects=ok static-cache=ok 404=ok nonroot=ok readonly=ok"

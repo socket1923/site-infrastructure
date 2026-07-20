@@ -8,7 +8,7 @@ The public site is currently reachable through Cloudflare and the node11 HTTPS o
 
 No repository secrets were detected by Gitleaks. The live response has strong baseline security headers.
 
-A passive OWASP ZAP baseline crawled 27 live URLs and reported **0 failures**, 56 passes, and 11 warnings. The warnings were primarily missing inherited headers on static assets, long-lived cache behavior, `style-src 'unsafe-inline'`, Cloudflare-injected `/cdn-cgi/` assets, and a generic anti-CSRF warning on the third-party Formspree contact form. This branch fixes header inheritance and replaces one-year immutable caching on unversioned CSS/JS with five-minute revalidation. Eliminating `unsafe-inline` requires a separate HTML/CSS refactor.
+A passive OWASP ZAP baseline crawled 27 live URLs and reported **0 failures**, 56 passes, and 11 warnings. The warnings were primarily missing inherited headers on static assets, long-lived cache behavior, `style-src 'unsafe-inline'`, Cloudflare-injected `/cdn-cgi/` assets, and the public message form that existed during the review. Header inheritance and cache revalidation were fixed in the hardening release. The personal-portfolio release removes the form and its external processor, sets `form-action 'none'`, confirms the rewritten pages have no inline style attributes, and removes `unsafe-inline` from `style-src`.
 
 ## Findings addressed by this branch
 
@@ -70,7 +70,7 @@ Live NGINX logs contain requests whose TCP peers are neither Cloudflare nor inte
 
 Documentation described IPFire/HAProxy and port 8080 while the current origin listens only on 443. Manual recovery instructions included service removal and mutable images.
 
-**Status:** partially addressed by the new restricted deployment documentation. Rewrite the general architecture section after the live Sophos and Swarm inspection.
+**Fix:** remove the obsolete deployment and form guides, replace the top-level README with the current pull-based architecture, and keep the detailed migration and rollback design under `deploy/README.md`.
 
 ### Low — deprecated browser header
 
