@@ -1,0 +1,14 @@
+#!/bin/sh
+set -eu
+
+case "${SSH_ORIGINAL_COMMAND:-}" in
+  "deploy "*) image=${SSH_ORIGINAL_COMMAND#deploy } ;;
+  *) echo "Only digest-pinned deploy requests are permitted" >&2; exit 64 ;;
+esac
+
+printf '%s\n' "$image" | grep -Eq '^ghcr\.io/socket1923/site-infrastructure@sha256:[0-9a-f]{64}$' || {
+  echo "Rejected image reference" >&2
+  exit 64
+}
+
+exec sudo -n /usr/local/sbin/socket23-deploy "$image"

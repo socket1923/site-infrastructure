@@ -23,6 +23,8 @@ desktop.ini
 *.tmp
 *.bak
 *.cache
+__pycache__/
+*.py[cod]
 
 # SSL/TLS certificates and keys (if any local testing)
 *.pem
