@@ -1,4 +1,4 @@
-name: Build and deploy
+name: Build and publish
 
 on:
   push:
@@ -24,8 +24,6 @@ jobs:
   build:
     runs-on: ubuntu-24.04
     timeout-minutes: 30
-    outputs:
-      digest: ${{ steps.build.outputs.digest }}
     steps:
       - name: Checkout
         uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
@@ -65,18 +63,3 @@ jobs:
           sbom: true
           cache-from: type=gha
           cache-to: type=gha,mode=max
-
-  deploy:
-    needs: build
-    if: ${{ vars.ENABLE_PRODUCTION_DEPLOY == 'true' }}
-    runs-on: [self-hosted, linux, socket23-deploy]
-    environment: production
-    timeout-minutes: 10
-    permissions:
-      contents: read
-      packages: read
-    steps:
-      - name: Deploy verified digest through restricted node11 command
-        env:
-          IMAGE_REF: ${{ env.IMAGE_NAME }}@${{ needs.build.outputs.digest }}
-        run: /usr/local/bin/socket23-trigger-deploy "$IMAGE_REF"

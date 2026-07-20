@@ -1,8 +1,14 @@
 services:
   web:
     image: ${IMAGE_REF:-ghcr.io/socket1923/site-infrastructure:latest}
+    labels:
+      com.socket23.delivery: immutable-pull-v1
     user: "101:101"
     ports:
+      - target: 8080
+        published: 80
+        protocol: tcp
+        mode: ingress
       - target: 8443
         published: 443
         protocol: tcp
@@ -35,8 +41,6 @@ services:
     deploy:
       mode: replicated
       replicas: 2
-      placement:
-        max_replicas_per_node: 1
       restart_policy:
         condition: on-failure
         delay: 5s

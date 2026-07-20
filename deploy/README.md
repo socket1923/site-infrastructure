@@ -1,67 +1,85 @@
-# Restricted production deployment
+# Pull-based production deployment
 
-The release workflow builds a multi-architecture image on a GitHub-hosted runner, pushes an immutable digest to GHCR, and optionally invokes a dedicated self-hosted deployment runner. The runner does not hold a normal node11 shell key: node11 must restrict the key to `node11-ssh-dispatch`, which accepts only a digest under `ghcr.io/socket1923/site-infrastructure`.
+The safe delivery path is outbound-only:
 
-Production deployment remains disabled until all prerequisites are verified.
-
-## Prerequisites
-
-1. Inspect the six-node Swarm and confirm the routing mesh can publish TCP/443 on node11 while tasks run on at least two nodes.
-2. Confirm Sophos forwards the public origin flow to node11 TCP/443 and restricts origin access to intended sources.
-3. Create versioned Swarm secrets from the existing origin certificate and private key. Do not commit or upload certificate material.
-4. Perform the first stack migration manually with an immutable image digest and verify both replicas.
-5. Install the dispatch and deploy scripts on node11 as root-owned, non-writable files.
-6. Configure a dedicated deployment account, source-restricted key, disabled forwarding/PTY, and exact sudo rule.
-7. Register a dedicated, disposable self-hosted runner with labels `self-hosted`, `linux`, and `socket23-deploy`. Do not run pull-request jobs on it.
-8. Install `deploy/runner-trigger` as `/usr/local/bin/socket23-trigger-deploy` on the runner and configure its `node11-deploy` SSH alias with a pinned host key.
-9. Make the GHCR package publicly readable or configure a narrowly scoped read-only registry credential on the Swarm.
-10. Protect `master`, require the `CI / validate` check, and disallow force pushes.
-11. Set repository variable `ENABLE_PRODUCTION_DEPLOY=true` only after a rollback test passes.
-
-## Swarm secrets
-
-Use versioned names so certificate rotation is explicit:
-
-```bash
-docker secret create socket23_tls_fullchain_YYYYMMDD /path/to/fullchain.pem
-docker secret create socket23_tls_privkey_YYYYMMDD /path/to/privkey.pem
+```text
+protected master -> GitHub-hosted build -> public GHCR image
+                                             |
+                                             v
+                                   node11 pull timer
+                                             |
+                                             v
+                              digest-pinned Swarm update
 ```
 
-Deploy the initial stack with an immutable digest:
+GitHub never receives a node11 SSH key and no inbound deployment listener is exposed. The node timer pulls the public `latest` tag, resolves it to an immutable approved digest, compares it with the running service, updates one replica at a time, verifies replica health and local HTTPS, and rolls back on failure.
+
+## Verified environment assumptions
+
+- The live Swarm currently contains one ARMv7 manager node.
+- Two replicas therefore provide process/update continuity, not node-level high availability.
+- Swarm ingress publishes TCP/80 and TCP/443 once while both replicas use internal ports 8080 and 8443.
+- The pull agent refuses to touch the legacy service until the stack has label `com.socket23.delivery=immutable-pull-v1`.
+
+## One-time migration
+
+1. Merge only after CI is green.
+2. Let `Build and publish` create `ghcr.io/socket1923/site-infrastructure:latest` for AMD64 and ARMv7.
+3. Make the GHCR package publicly readable.
+4. Back up the current service spec and certificate metadata.
+5. Create versioned Swarm secrets without printing certificate material:
 
 ```bash
-export IMAGE_REF='ghcr.io/socket1923/site-infrastructure@sha256:<64-hex-digest>'
-export TLS_FULLCHAIN_SECRET='socket23_tls_fullchain_YYYYMMDD'
-export TLS_PRIVKEY_SECRET='socket23_tls_privkey_YYYYMMDD'
+docker secret create socket23_tls_fullchain_YYYYMMDD /etc/ssl/socket23/fullchain.pem
+docker secret create socket23_tls_privkey_YYYYMMDD /etc/ssl/socket23/privkey.pem
+```
+
+6. Resolve `latest` to an immutable digest on node11 and deploy the initial stack:
+
+```bash
+docker pull ghcr.io/socket1923/site-infrastructure:latest
+export IMAGE_REF="$(docker image inspect   --format '{{range .RepoDigests}}{{println .}}{{end}}'   ghcr.io/socket1923/site-infrastructure:latest   | grep '^ghcr.io/socket1923/site-infrastructure@sha256:'   | head -n 1)"
+export TLS_FULLCHAIN_SECRET=socket23_tls_fullchain_YYYYMMDD
+export TLS_PRIVKEY_SECRET=socket23_tls_privkey_YYYYMMDD
 docker stack deploy --prune -c static-site/stack.yaml web
 ```
 
-## Restricted node11 account
+7. Verify two healthy replicas, local HTTP redirect, local HTTPS, and the public Cloudflare route.
+8. Exercise one controlled bad-image rollback before enabling the timer.
 
-Install scripts:
+## Preferred timer installation
 
-```bash
-install -o root -g root -m 0755 deploy/node11-ssh-dispatch /usr/local/sbin/socket23-ssh-dispatch
-install -o root -g root -m 0755 deploy/node11-deploy /usr/local/sbin/socket23-deploy
-```
-
-The deployment account must not receive an unrestricted key. Its `authorized_keys` entry should use all of:
-
-```text
-from="<runner-IP>/32",restrict,command="/usr/local/sbin/socket23-ssh-dispatch" ssh-ed25519 <DEPLOY-PUBLIC-KEY> socket23-deploy
-```
-
-An sshd `Match User` block should disable passwords, keyboard-interactive auth, forwarding, and TTY allocation. The sudo rule should permit only `/usr/local/sbin/socket23-deploy` for this account. Validate with `sshd -t` and `sshd -T -C ...` before reloading.
-
-Runner trigger script:
+Install the root-owned fixed script and units:
 
 ```bash
-#!/usr/bin/env bash
-set -euo pipefail
-[[ "${1:-}" =~ ^ghcr\.io/socket1923/site-infrastructure@sha256:[0-9a-f]{64}$ ]]
-exec ssh -o BatchMode=yes -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes   node11-deploy "deploy $1"
+sudo install -o root -g root -m 0755 deploy/node11-pull-deploy /usr/local/sbin/socket23-pull-deploy
+sudo install -o root -g root -m 0644 deploy/socket23-pull-deploy.service /etc/systemd/system/socket23-pull-deploy.service
+sudo install -o root -g root -m 0644 deploy/socket23-pull-deploy.timer /etc/systemd/system/socket23-pull-deploy.timer
+sudo systemctl daemon-reload
+sudo systemctl enable --now socket23-pull-deploy.timer
 ```
+
+Validate:
+
+```bash
+sudo systemctl start socket23-pull-deploy.service
+sudo systemctl status socket23-pull-deploy.service --no-pager
+sudo journalctl -u socket23-pull-deploy.service --no-pager -n 100
+docker service ps web_web
+```
+
+The current `analyst` account is in the `docker` group, which is root-equivalent. After the root-owned pull timer is installed and verified, remove routine CI/CD dependence on unrestricted analyst SSH and consider replacing it with a narrower audit identity.
+
+## Firewall requirement
+
+Node11 logs show arbitrary Internet scanners reaching the origin directly. Sophos should restrict WAN-to-origin TCP/80 and TCP/443 to current Cloudflare source ranges, while retaining explicit internal-management access. Only trust `CF-Connecting-IP` after that source restriction is enforced and tested.
 
 ## Rollback
 
-The Swarm update policy uses automatic rollback. The restricted deploy script also rolls back if the expected replicas do not become healthy or the local HTTPS smoke test fails. Keep the previous digest available in GHCR and exercise rollback before enabling unattended production deployment.
+The stack update policy and pull script both invoke Swarm rollback. The previous digest remains available in GHCR. Manual rollback:
+
+```bash
+docker service rollback --detach=false web_web
+docker service ps web_web
+curl -k --resolve socket23.com:443:127.0.0.1 https://socket23.com/
+```

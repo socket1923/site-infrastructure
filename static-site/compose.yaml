@@ -5,6 +5,7 @@ services:
     image: socket23-site:local
     user: "101:101"
     ports:
+      - "127.0.0.1:8080:8080"
       - "127.0.0.1:8443:8443"
     read_only: true
     tmpfs:

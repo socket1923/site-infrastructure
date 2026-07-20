@@ -4,7 +4,7 @@ Review date: 2026-07-20
 
 ## Executive result
 
-The public site is currently reachable through Cloudflare and the node11 HTTPS origin returns the same content. The repository had no CI workflow, no branch protection, manual mutable-`latest` deployments, an ineffective Dockerfile, root container execution, host bind mounts, and a single-replica stop-first Swarm update policy. Those deployment weaknesses can create an origin gap long enough for Cloudflare to return 522 during image pulls, restarts, or node disruption.
+The public site is currently reachable through Cloudflare and the node11 HTTPS origin returns the same content. The repository had no CI workflow, no branch protection, manual mutable-`latest` deployments, an ineffective Dockerfile, root container execution, host bind mounts, and a single-replica stop-first Swarm update policy. Live inspection found that node11 had recently restarted after an unclean shutdown: the previous Swarm task exited 255 and systemd-journald replaced a corrupted journal. Because this is a one-node Swarm, that restart is the strongest available explanation for the Cloudflare 522 window.
 
 No repository secrets were detected by Gitleaks. The live response has strong baseline security headers.
 
@@ -28,7 +28,7 @@ Trivy reported `DS-0002`: no non-root `USER`. Both the base and production servi
 
 The service used one replica, host-mode port 443, `stop-first`, relative host bind mounts, and manual `latest` updates. A task reschedule could fail when files were absent on another node, while an update intentionally removed the only origin before starting its replacement.
 
-**Fix:** prepare a two-replica routing-mesh stack, immutable image digests, start-first updates, health monitoring, automatic rollback, and no site/config bind mounts. This stack must not be applied until the live Swarm and Sophos path are inspected.
+**Fix:** prepare two same-node replicas behind Swarm ingress, immutable image digests, start-first updates, health monitoring, automatic rollback, and no site/config bind mounts. This prevents update-time gaps but does not provide node-level high availability; a second Swarm node or independent failover origin remains future work.
 
 ### High — no CI/CD controls
 
@@ -60,6 +60,12 @@ The NGINX rate key is the TCP peer. Behind Cloudflare/Sophos this can group many
 
 **Status:** open. First verify Sophos permits origin traffic only from intended proxies, then configure and maintain trusted proxy ranges before changing the rate key.
 
+### High — origin exposed directly to arbitrary Internet clients
+
+Live NGINX logs contain requests whose TCP peers are neither Cloudflare nor internal management addresses, including generic Internet scanners. Sophos is therefore forwarding the origin without a Cloudflare-only source restriction. This permits bypass of Cloudflare controls and makes `CF-Connecting-IP` unsafe to trust globally.
+
+**Status:** open at the firewall. Restrict WAN-to-node11 TCP/80 and TCP/443 to current Cloudflare address ranges, retain a separate explicit internal-management rule, then verify both allowed Cloudflare traffic and denied direct-origin traffic.
+
 ### Medium — stale and contradictory operations documentation
 
 Documentation described IPFire/HAProxy and port 8080 while the current origin listens only on 443. Manual recovery instructions included service removal and mutable images.
@@ -76,8 +82,8 @@ The prior configuration set `X-XSS-Protection: 1; mode=block`, which is obsolete
 
 Before enabling deployment:
 
-- inspect all Swarm nodes, managers, labels, availability, and Docker versions;
-- verify node11 SSH authorization and install a forced-command deployment identity;
+- add true node-level redundancy if availability beyond rolling updates is required;
+- replace unrestricted deployment access with the fixed outbound pull timer;
 - confirm Sophos DNAT/load-balancer targets and logs for prior Cloudflare 522 windows;
 - verify Cloudflare SSL mode is Full (strict);
 - verify whether origin TCP/443 is limited to Cloudflare or another intentional proxy path;

@@ -1,0 +1,12 @@
+[Unit]
+Description=Check GHCR for a new Socket23 website image
+
+[Timer]
+OnBootSec=2min
+OnUnitActiveSec=2min
+RandomizedDelaySec=15s
+Persistent=true
+Unit=socket23-pull-deploy.service
+
+[Install]
+WantedBy=timers.target

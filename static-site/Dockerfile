@@ -8,7 +8,7 @@ COPY --chown=101:101 nginx.conf /etc/nginx/conf.d/default.conf
 COPY --chown=101:101 site/ /usr/share/nginx/html/
 
 USER 101:101
-EXPOSE 8443
+EXPOSE 8080 8443
 
 HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
   CMD wget -qO- --no-check-certificate https://127.0.0.1:8443/ >/dev/null || exit 1
