@@ -3,242 +3,54 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Projects — ThreatGuard GPT, MCP Servers, DShield Honeypot | Socket23</title>
-  <meta name="description" content="Advanced cybersecurity projects: ThreatGuard custom GPT for threat hunting, Model Context Protocol (MCP) servers, SANS DShield honeypot, hardened Docker infrastructure. Real-world security implementations." />
-  <meta name="keywords" content="ThreatGuard GPT, threat hunting AI, Model Context Protocol, MCP server, DShield honeypot, Docker security, hardened infrastructure, cybersecurity projects, security automation" />
-  <meta property="og:title" content="Projects — ThreatGuard GPT, MCP Servers, DShield Honeypot" />
-  <meta property="og:description" content="Advanced cybersecurity projects: ThreatGuard GPT, MCP servers, DShield honeypot, hardened Docker infrastructure." />
+  <title>Selected Infrastructure, Security & AI Systems Work | Joseph Miller</title>
+  <meta name="description" content="Anonymized case studies covering infrastructure modernization, virtualization migration, security engineering, recovery, container delivery, and private AI systems." />
+  <meta property="og:title" content="Selected Infrastructure, Security & AI Systems Work | Joseph Miller" />
+  <meta property="og:description" content="Anonymized case studies covering infrastructure modernization, virtualization migration, security engineering, recovery, container delivery, and private AI systems." />
   <meta property="og:type" content="website" />
-  <meta name="color-scheme" content="dark light">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%2300D1B2'/><text x='50' y='58' font-size='42' text-anchor='middle' fill='white'>S</text></svg>">
-  <link rel="stylesheet" href="/styles.css?v=20260720" />
-  <script src="/scripts.js?v=20260720" defer></script>
+  <meta name="color-scheme" content="dark light" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%2300D1B2'/><text x='50' y='58' font-size='42' text-anchor='middle' fill='white'>S</text></svg>" />
+  <link rel="stylesheet" href="/styles.css?v=20260720-brand1" />
+  <script src="/scripts.js?v=20260720-brand1" defer></script>
 </head>
 <body>
   <header class="nav">
     <div class="container nav-inner">
-      <a class="brand" href="/">Socket23</a>
-      <nav id="menu" class="menu" data-state="closed">
-        <a href="/">Home</a>
-  <a href="/services.html">Services</a>
-  <a href="/projects.html">Projects</a>
-  <a href="/testimonials.html">Testimonials</a>
-  <a href="/blog.html">Blog</a>
-  <a href="/community.html">Community</a>
-  <a href="/about.html">About</a>
-  <a href="/contact.html">Contact</a>
+      <a class="brand" href="/">Joseph Miller <span>/ Socket23</span></a>
+      <nav id="menu" class="menu" data-state="closed" aria-label="Primary navigation">
+        <a href="/projects.html">Work</a>
+        <a href="/services.html">Capabilities</a>
+        <a href="/lab.html">Lab</a>
+        <a href="/blog.html">Notes</a>
+        <a href="/about.html">About</a>
+        <a href="/contact.html">Contact</a>
       </nav>
-      <button id="menuBtn" class="menu-btn" aria-expanded="false" aria-controls="menu">☰</button>
+      <button id="menuBtn" class="menu-btn" aria-expanded="false" aria-controls="menu" aria-label="Open navigation">&#9776;</button>
     </div>
   </header>
-
   <main>
-    <section class="hero">
-      <div class="container">
-        <h1>Projects</h1>
-        <p>Practical implementations, research, and open-source contributions</p>
-      </div>
-    </section>
+    <section class="hero"><div class="container hero-copy"><p class="eyebrow">Selected work</p><h1>Constraints, risk, execution, and validation</h1><p class="lead">These case summaries focus on complicated technical environments and the decisions used to reach a safe outcome.</p><p>Client-identifying information is removed. Where implementation details cannot be shared, I describe the constraint, my role, and the validation process without exposing the organization or its systems.</p></div></section>
 
-    <section class="panel">
-      <div class="container">
-        <h2>Featured Projects</h2>
-        
-        <article class="card" style="margin-bottom:24px">
-          <h3>Hardened Docker Infrastructure</h3>
-          <p style="color:var(--sub);margin-bottom:12px">Production-ready static site deployment with security hardening</p>
-          <p>This very website serves as a demonstration of security-first infrastructure design. Built with Docker Swarm on ARMv7 hardware, it showcases defense-in-depth principles including:</p>
-          <ul style="margin:12px 0;padding-left:20px">
-            <li>Read-only container filesystems with tmpfs mounts</li>
-            <li>Unprivileged NGINX running as non-root user</li>
-            <li>All Linux capabilities dropped (cap_drop: ALL)</li>
-            <li>Strict Content Security Policy headers</li>
-            <li>Multi-architecture image builds (amd64, arm64, armv7)</li>
-            <li>HAProxy TLS termination with Let's Encrypt</li>
-            <li>IPFire firewall integration</li>
-          </ul>
-          <p style="margin-top:12px">
-            <strong>Technologies:</strong> Docker Swarm, NGINX, HAProxy, IPFire, GitHub Container Registry, Multi-arch builds
-          </p>
-          <p style="margin-top:12px">
-            <a href="https://github.com/socket23/site-infrastructure" target="_blank" rel="noopener noreferrer" class="btn ghost" style="display:inline-block;margin-top:8px">
-              View on GitHub →
-            </a>
-          </p>
-        </article>
+    <section id="migration" class="panel"><div class="container case-study"><div class="case-heading"><p class="status">Virtualization · Storage · Business continuity</p><h2>VMware to Hyper-V without risking shared SAN data</h2></div><div class="case-grid"><div><h3>Situation</h3><p>Production workloads had to move from VMware ESXi to Microsoft Hyper-V. The environment included business-critical virtual machines and SAN-presented storage, so the migration had to protect existing data and preserve a recoverable source state.</p><h3>Risk</h3><p>A successful disk conversion would still be a failed migration if it altered a source-owned volume, broke identity or DNS dependencies, prevented an application from starting, or removed the ability to fall back.</p></div><div><h3>Approach</h3><ul><li>Inventoried hosts, virtual machines, datastores, LUNs, networks, and backup state.</li><li>Mapped ERP, Active Directory, DNS, file-service, and recovery dependencies.</li><li>Separated source preservation from target preparation.</li><li>Validated boot, storage, networking, authentication, application behavior, and backup visibility on the target.</li></ul><h3>Outcome</h3><p>Business-critical workloads were moved and validated while the source SAN data and recovery path remained controlled.</p></div></div></div></section>
 
-        <article class="card" style="margin-bottom:24px">
-          <h3>ThreatGuard - Custom GPT for Threat Hunting</h3>
-          <p style="color:var(--sub);margin-bottom:12px">AI-powered threat hunting assistant analyzing DShield honeypot data</p>
-          <p>Custom GPT built for threat hunting operations, analyzing DShield honeypot data via ELK SIEM. ThreatGuard identifies threats, correlates attacker information, and generates detailed reports following the "Attack Observation Template v3.0" standard.</p>
-          <ul style="margin:12px 0;padding-left:20px">
-            <li>Automated threat analysis from honeypot data</li>
-            <li>CVE correlation and vulnerability assessment</li>
-            <li>Attacker infrastructure mapping and correlation</li>
-            <li>Standardized threat reporting with external data enrichment</li>
-            <li>Integration with ELK SIEM for real-time analysis</li>
-          </ul>
-          <p style="margin-top:12px">
-            <strong>Technologies:</strong> ChatGPT Custom GPT, ELK Stack, DShield API, Threat Intelligence Feeds
-          </p>
-          <p style="margin-top:12px">
-            <a href="https://chatgpt.com/g/g-Ol5k3VALX-threatguard" target="_blank" rel="noopener noreferrer" class="btn ghost" style="display:inline-block;margin-top:8px">
-              Try ThreatGuard GPT →
-            </a>
-          </p>
-        </article>
+    <section id="legacy" class="panel alt"><div class="container case-study"><div class="case-heading"><p class="status">Windows · Identity · Modernization</p><h2>Making a legacy Windows environment understandable</h2></div><div class="case-grid"><div><h3>Situation</h3><p>An aging Windows environment had accumulated domain controllers, file shares, print services, backup systems, application dependencies, and incomplete documentation.</p><h3>Risk</h3><p>Hidden DNS settings, service accounts, authentication paths, application integrations, and untested recovery assumptions made broad changes unsafe.</p></div><div><h3>Approach</h3><ul><li>Established observed state for identity, DNS, time, policy, files, applications, and backups.</li><li>Separated immediate stabilization from longer-term modernization.</li><li>Identified unsupported components and operational single points of failure.</li><li>Sequenced remediation around dependencies, compatibility, rollback, and validation.</li></ul><h3>Outcome</h3><p>The environment became supportable enough for immediate recovery work and a staged modernization plan.</p></div></div></div></section>
 
-        <article class="card" style="margin-bottom:24px">
-          <h3>Model Context Protocol (MCP) Server Implementations</h3>
-          <p style="color:var(--sub);margin-bottom:12px">Building AI agent infrastructure with Model Context Protocol</p>
-          <p>Hands-on experience implementing Model Context Protocol servers to enable AI agents to interact with security tools, databases, and infrastructure. This emerging technology allows LLMs to access external context and tools in a standardized way.</p>
-          <ul style="margin:12px 0;padding-left:20px">
-            <li>MCP server development for security tool integration</li>
-            <li>Agentic framework implementations for automated workflows</li>
-            <li>Integration with Open-WebUI for enhanced AI capabilities</li>
-            <li>Custom tool development for security automation</li>
-            <li>Secure API design for AI-to-infrastructure communication</li>
-          </ul>
-          <p style="margin-top:12px">
-            <strong>Focus Areas:</strong> AI agent orchestration, security tool automation, context-aware AI systems
-          </p>
-        </article>
+    <section id="delivery" class="panel"><div class="container case-study"><div class="case-heading"><p class="status">Public project · Containers · CI/CD · Security</p><h2>Hardening Socket23’s delivery path</h2></div><div class="case-grid"><div><h3>Situation</h3><p>The site’s production path used a mutable image, host bind mounts, root container execution, and a single-replica stop-first update policy. Code changes were not represented by a reliable immutable artifact.</p><h3>Risk</h3><p>An image pull or restart could remove the only origin, while configuration drift and bind mounts made repository changes difficult to verify in production.</p></div><div><h3>Approach</h3><ul><li>Built a digest-pinned, non-root, multi-architecture image.</li><li>Added protected pull-request validation, secret scanning, image scanning, and runtime smoke tests.</li><li>Changed deployment to two same-node replicas with start-first updates, health checks, and rollback.</li><li>Kept deployment outbound-only so GitHub does not receive production SSH access.</li></ul><h3>Outcome</h3><p>The repository now produces a validated immutable image and the node can adopt approved digests through a bounded pull workflow.</p><p><a href="https://github.com/socket1923/site-infrastructure" target="_blank" rel="noopener noreferrer">View the repository →</a></p></div></div></div></section>
 
-        <article class="card" style="margin-bottom:24px">
-          <h3>Advanced Lab Infrastructure</h3>
-          <p style="color:var(--sub);margin-bottom:12px">Production-grade security research and testing environment</p>
-          <p>Comprehensive lab demonstrating enterprise-level infrastructure and security capabilities:</p>
-          <ul style="margin:12px 0;padding-left:20px">
-            <li><strong>8-Node Docker Swarm:</strong> Orchestrated via Portainer CE, deploying OWASP Juice Shop, Open-WebUI, MCP services, and agentic frameworks</li>
-            <li><strong>Proxmox Server:</strong> ZFS RAIDZ1 storage, Security Onion for IDS/NSM, CAPEv2 for malware analysis</li>
-            <li><strong>Local LLM Deployment:</strong> Qwen 3 models (30B, 235B, Coder 480B) using Ollama and LM Studio with RTX GPU acceleration</li>
-            <li><strong>Security Monitoring:</strong> Full packet capture, IDS/IPS, malware sandboxing, threat intelligence correlation</li>
-            <li><strong>Redundancy & Backup:</strong> Shared storage, automated backups, data integrity verification</li>
-          </ul>
-          <p style="margin-top:12px">
-            <strong>Technologies:</strong> Docker Swarm, Proxmox, ZFS, Security Onion, CAPEv2, Ollama, LM Studio, OWASP, Open-WebUI
-          </p>
-        </article>
+    <section id="ai-lab" class="panel alt"><div class="container case-study"><div class="case-heading"><p class="status">Applied AI · GPU systems · APIs · Operations</p><h2>Private GPU-backed AI infrastructure</h2></div><div class="case-grid"><div><h3>Situation</h3><p>Local AI work required high-memory GPU hardware, several inference frameworks, model-serving APIs, user interfaces, agent integrations, and security-focused workflows.</p><h3>Engineering questions</h3><p>Model compatibility was only one concern. GPU memory, context length, concurrency, storage, authentication, API behavior, observability, and failure recovery also shaped the environment.</p></div><div><h3>Approach</h3><ul><li>Evaluated vLLM, llama.cpp, LM Studio, and Ollama against hardware and API requirements.</li><li>Integrated model endpoints with Open WebUI and agent workflows.</li><li>Used containers where they improved repeatability and isolation.</li><li>Treated access scope, logs, data boundaries, and recovery as infrastructure concerns.</li></ul><h3>Outcome</h3><p>A working local environment supports private experimentation, model-serving integrations, and security-focused agent research.</p><p><a href="/lab.html">Explore the lab →</a></p></div></div></div></section>
 
-        <article class="card" style="margin-bottom:24px">
-          <h3>SANS ISC DShield Honeypot Project</h3>
-          <p style="color:var(--sub);margin-bottom:12px">Contributing to global threat intelligence through honeypot deployment</p>
-          <p>Active participant in the SANS Internet Storm Center's DShield honeypot project, collecting and analyzing real-world attack data to contribute to global threat intelligence.</p>
-          <p style="margin-top:12px"><strong>Deployment Details:</strong></p>
-          <ul style="margin:12px 0;padding-left:20px">
-            <li><strong>Platform:</strong> Raspberry Pi running DShield honeypot software</li>
-            <li><strong>Data Collection:</strong> SSH, Telnet, HTTP attack attempts and malware samples</li>
-            <li><strong>Threat Intelligence:</strong> Daily submission of attack data to SANS ISC</li>
-            <li><strong>Analysis:</strong> Custom scripts for analyzing attack patterns and trends</li>
-            <li><strong>Integration:</strong> Feeds data into ThreatGuard GPT for enhanced threat hunting</li>
-          </ul>
-          <p style="margin-top:12px"><strong>Contributions:</strong></p>
-          <ul style="margin:12px 0;padding-left:20px">
-            <li>Real-time attack data shared with global security community</li>
-            <li>Malware samples submitted for analysis</li>
-            <li>Attack pattern identification and reporting</li>
-            <li>Hands-on experience with attacker tactics and techniques</li>
-          </ul>
-          <p style="margin-top:16px">
-            <a href="https://github.com/DShield-ISC/dshield" target="_blank" rel="noopener noreferrer" class="btn ghost">
-              View DShield Project →
-            </a>
-          </p>
-        </article>
-      </div>
-    </section>
-
-    <section class="panel alt">
-      <div class="container">
-        <h2>Areas of Focus</h2>
-        <div class="grid-3">
-          <article class="card">
-            <h3>Container Security</h3>
-            <p>Hardening Docker and Kubernetes deployments with security best practices, minimal attack surfaces, and defense-in-depth strategies.</p>
-          </article>
-          <article class="card">
-            <h3>Infrastructure as Code</h3>
-            <p>Automated, reproducible infrastructure deployments using modern DevOps practices and security-first design principles.</p>
-          </article>
-          <article class="card">
-            <h3>Network Security</h3>
-            <p>Firewall configuration, network segmentation, and secure routing architectures for both on-premise and cloud environments.</p>
-          </article>
-          <article class="card">
-            <h3>Linux Hardening</h3>
-            <p>System-level security configurations, kernel hardening, and secure service deployment on Linux platforms.</p>
-          </article>
-          <article class="card">
-            <h3>Security Automation</h3>
-            <p>Scripting and automation for security operations, compliance checking, and continuous security monitoring.</p>
-          </article>
-          <article class="card">
-            <h3>Emerging Technologies</h3>
-            <p>Research and practical application of new technologies including AI/ML for security, zero-trust architectures, and modern authentication systems.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="panel">
-      <div class="container">
-        <h2>Open Source Contributions</h2>
-
-        <div class="grid-2">
-          <div class="card">
-            <h3>GitHub Activity</h3>
-            <p>We believe in contributing back to the open-source community that has enabled so much of modern infrastructure. Our repositories showcase practical implementations of security and infrastructure concepts.</p>
-            <p style="margin-top:16px">
-              <a href="https://github.com/socket23?tab=repositories" target="_blank" rel="noopener noreferrer" class="btn ghost" style="display:inline-block">
-                View GitHub Profile →
-              </a>
-            </p>
-          </div>
-
-          <div class="card">
-            <h3>Featured Repositories</h3>
-            <ul style="margin:12px 0;padding-left:20px">
-              <li><strong>site-infrastructure</strong> - Hardened Docker Swarm deployment with security-first design</li>
-              <li><strong>Security automation scripts</strong> - Python tools for security operations</li>
-              <li><strong>MCP server implementations</strong> - Model Context Protocol integrations</li>
-              <li><strong>SIEM detection rules</strong> - Custom detection content for ELK/Splunk</li>
-            </ul>
-            <p style="margin-top:16px;font-size:13px;color:var(--sub)">
-              ⭐ Star repositories you find useful | 🍴 Fork and contribute
-            </p>
-          </div>
-        </div>
-
-        <div style="margin-top:32px;text-align:center">
-          <p style="color:var(--sub);margin-bottom:12px">View current repositories, contributions, and project activity directly on GitHub.</p>
-          <a class="btn ghost" href="https://github.com/socket23" target="_blank" rel="noopener noreferrer">View GitHub Profile</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="panel alt">
-      <div class="container" style="text-align:center">
-        <h2>Interested in Collaboration?</h2>
-        <p>We are always interested in discussing security challenges, infrastructure projects, and potential collaborations.</p>
-        <div class="actions" style="justify-content:center;margin-top:24px">
-          <a class="btn primary" href="/contact.html">Get in Touch</a>
-          <a class="btn ghost" href="/">View Services</a>
-        </div>
-      </div>
-    </section>
+    <section class="panel"><div class="container centered narrow"><h2>Evidence before adjectives</h2><p>I publish architecture, constraints, decisions, and validation where security and confidentiality permit. Lab work, client work, active research, and public releases are labeled separately.</p><a class="btn primary" href="/contact.html">Start a conversation</a></div></section>
   </main>
-
   <footer class="footer">
     <div class="container">
-      <p>© <span id="year"></span> Socket23. All rights reserved. | Sandy, Oregon</p>
-      <p style="margin-top:12px">
-        <a href="https://github.com/socket23" target="_blank" rel="noopener noreferrer" style="color:var(--accent);text-decoration:none;margin-right:16px">GitHub</a>
-        <a href="https://www.linkedin.com/in/joseph-miller-cybersecurity" target="_blank" rel="noopener noreferrer" style="color:var(--accent);text-decoration:none;margin-right:16px">LinkedIn</a>
-        <a href="/collaboration.html" style="color:var(--accent);text-decoration:none">Engineer Collaboration</a>
+      <p><strong>Joseph Miller</strong> · Socket23 · Sandy, Oregon</p>
+      <p class="footer-links">
+        <a href="https://github.com/socket23" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://www.linkedin.com/in/joseph-miller-cybersecurity" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://www.credly.com/users/josephamiller" target="_blank" rel="noopener noreferrer">Credly</a>
+        <a href="/contact.html">Contact</a>
       </p>
-      <p style="margin-top:16px;font-size:12px;color:var(--sub)">
-        Built with <a href="https://www.augmentcode.com/" target="_blank" rel="noopener noreferrer" style="color:var(--sub);text-decoration:none;border-bottom:1px dotted var(--sub)">Augment</a>
-      </p>
+      <p class="fine-print">© <span id="year"></span> Joseph Miller. Socket23 is my technical lab and publishing identity.</p>
     </div>
   </footer>
 </body>
