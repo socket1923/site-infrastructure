@@ -2,7 +2,7 @@
 
 This repository contains the static site and secure delivery path for [socket23.com](https://socket23.com), Joseph Miller’s personal technical portfolio.
 
-Socket23 is a lab and publishing handle, not a company or agency. The site is organized around Joseph’s experience, successful projects, lab work, and technical notes.
+Socket23 is Joseph’s personal lab and publishing handle. The site is organized around his experience, successful projects, lab work, and technical notes.
 
 ## Site map
 
@@ -13,6 +13,8 @@ Socket23 is a lab and publishing handle, not a company or agency. The site is or
 - `/lab.html` — infrastructure, security, and private-AI lab
 - `/blog.html` — technical notes and writing queue
 - `/contact.html` — links to LinkedIn, GitHub, and Credly
+- `/work/*.html` — eight detailed, first-person case studies
+- `/sitemap.xml` and `/robots.txt` — public discovery metadata
 
 The former services, testimonials, collaboration, community, and team routes return permanent redirects into the personal portfolio.
 
@@ -78,6 +80,7 @@ Inline JavaScript and inline event handlers are rejected by the static validator
 ├── .github/workflows/       # protected validation and release workflows
 ├── deploy/                  # pull deployment, migration, and rollback helpers
 ├── scripts/                 # static validation and runtime smoke tests
+├── PROJECT_INVENTORY.md     # confirmed, privacy-safe source material for portfolio content
 ├── static-site/
 │   ├── Dockerfile           # digest-pinned unprivileged NGINX image
 │   ├── nginx.conf           # TLS, headers, limits, redirects, and static routing
@@ -100,12 +103,14 @@ cd ..
 scripts/smoke-test.sh socket23-site:local
 ```
 
-The validator checks local links, insecure URLs, inline scripts, inline event handlers, form prohibition, CSP compatibility, and tabnabbing controls.
+The validator checks local links, canonical URLs, the sitemap, case-study structure, person-first identity rules, insecure URLs, inline scripts, inline event handlers, form prohibition, CSP compatibility, and tabnabbing controls.
 
 The smoke test builds and runs the same hardened container shape used by production and verifies:
 
 - HTTP-to-HTTPS redirect
 - HTTPS response
+- personal homepage and detailed case-study markers
+- sitemap and robots discovery files
 - security headers
 - static-asset cache policy
 - custom 404 response

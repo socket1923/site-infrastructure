@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://socket23.com/sitemap.xml

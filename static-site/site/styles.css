@@ -65,8 +65,9 @@ h1,h2,h3{line-height:1.2}
 .card p:last-child{margin-bottom:0}
 .card ul{margin:10px 0 0;padding-left:21px}
 .card li{margin-bottom:7px}
-.work-card,.note-card{display:flex;flex-direction:column}
-.work-card a{margin-top:auto;padding-top:12px}
+.work-card,.project-card,.note-card{display:flex;flex-direction:column}
+.work-card a,.project-card>a{margin-top:auto;padding-top:12px}
+.project-card h3{font-size:24px}
 .note-card span{margin-top:auto;color:var(--sub);font-size:13px}
 .status{margin:0 0 9px!important}
 
@@ -87,6 +88,16 @@ h1,h2,h3{line-height:1.2}
 .case-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:42px}
 .case-grid h3{margin:18px 0 8px}
 .case-grid h3:first-child{margin-top:0}
+.case-hero{padding-bottom:62px}
+.breadcrumbs{font-size:14px;margin-bottom:24px!important}
+.breadcrumbs a{color:var(--accent)}
+.project-meta{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.project-meta .card p:last-child{color:var(--text)}
+.check-list{padding-left:22px}
+.check-list li{margin-bottom:10px}
+.tech-list{display:flex;flex-wrap:wrap;gap:9px}
+.tech-list span{display:inline-block;padding:7px 10px;border:1px solid var(--line);border-radius:999px;color:var(--text);background:var(--bg);font-size:13px}
+.inventory-grid .card{box-shadow:none}
 .disclosure{margin-top:26px}
 .profile-card{display:flex;flex-direction:column}
 .profile-card .btn{margin-top:auto}
@@ -99,7 +110,7 @@ h1,h2,h3{line-height:1.2}
 @media (max-width:920px){
   .grid-3{grid-template-columns:1fr 1fr}
   .process-grid{grid-template-columns:repeat(3,1fr)}
-  .feature,.case-grid,.split-callout{grid-template-columns:1fr}
+  .feature,.case-grid,.split-callout,.project-meta{grid-template-columns:1fr}
 }
 @media (max-width:720px){
   .hero{padding:72px 0 58px}

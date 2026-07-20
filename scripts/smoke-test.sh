@@ -49,6 +49,30 @@ for _ in $(seq 1 30); do
 done
 
 grep -q 'Socket23' "$TMP/index.html"
+grep -q 'I make difficult systems work.' "$TMP/index.html"
+grep -q 'Selected successful work' "$TMP/index.html"
+
+curl --silent --show-error --fail \
+  --cacert "$TMP/fullchain.pem" \
+  --resolve "socket23.com:$PORT:127.0.0.1" \
+  "https://socket23.com:$PORT/work/vmware-hyper-v-san-migration.html" \
+  -o "$TMP/case-study.html"
+grep -q 'How I validated it' "$TMP/case-study.html"
+grep -q 'My role' "$TMP/case-study.html"
+
+curl --silent --show-error --fail \
+  --cacert "$TMP/fullchain.pem" \
+  --resolve "socket23.com:$PORT:127.0.0.1" \
+  "https://socket23.com:$PORT/sitemap.xml" \
+  -o "$TMP/sitemap.xml"
+grep -q 'work/local-ai-agent-platform.html' "$TMP/sitemap.xml"
+
+curl --silent --show-error --fail \
+  --cacert "$TMP/fullchain.pem" \
+  --resolve "socket23.com:$PORT:127.0.0.1" \
+  "https://socket23.com:$PORT/robots.txt" \
+  -o "$TMP/robots.txt"
+grep -q 'Sitemap: https://socket23.com/sitemap.xml' "$TMP/robots.txt"
 
 HEADERS=$(curl --silent --show-error --fail \
   --cacert "$TMP/fullchain.pem" \
@@ -109,4 +133,4 @@ if docker exec "$CID" sh -c 'touch /usr/share/nginx/html/should-not-write' >/dev
   exit 1
 fi
 
-echo "Smoke test passed: image=$IMAGE redirect=ok https=ok headers=ok form-none=ok legacy-redirects=ok static-cache=ok 404=ok nonroot=ok readonly=ok"
+echo "Smoke test passed: image=$IMAGE personal-home=ok case-study=ok discovery=ok redirect=ok https=ok headers=ok form-none=ok legacy-redirects=ok static-cache=ok 404=ok nonroot=ok readonly=ok"
