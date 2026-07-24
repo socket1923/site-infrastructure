@@ -1,30 +1,356 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Socket23 Lab | Joseph Miller</title>
-  <meta name="description" content="Joseph Miller’s personal lab for Proxmox, security monitoring, network forensics, private AI inference, agents, recovery, and hands-on systems research." />
-  <meta property="og:title" content="Socket23 Lab | Joseph Miller" />
-  <meta property="og:description" content="Joseph Miller’s personal lab for Proxmox, security monitoring, network forensics, private AI inference, agents, recovery, and hands-on systems research." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://socket23.com/lab.html" />
-  <link rel="canonical" href="https://socket23.com/lab.html" />
-  <meta name="color-scheme" content="dark light" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%2300D1B2'/><text x='50' y='58' font-size='42' text-anchor='middle' fill='white'>J</text></svg>" />
-  <link rel="stylesheet" href="/styles.css?v=20260720-projects1" />
-  <script src="/scripts.js?v=20260720-projects1" defer></script>
-</head>
-<body>
-  <header class="nav"><div class="container nav-inner"><a class="brand" href="/">Joseph Miller <span>@socket23</span></a><nav id="menu" class="menu" data-state="closed" aria-label="Primary navigation"><a href="/projects.html">Projects</a><a href="/experience.html">Experience</a><a href="/about.html">About</a><a href="/lab.html">Lab</a><a href="/blog.html">Notes</a><a href="/contact.html">Connect</a></nav><button id="menuBtn" class="menu-btn" aria-expanded="false" aria-controls="menu" aria-label="Open navigation">&#9776;</button></div></header>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>
+   Socket23 Lab | Joseph Miller
+  </title>
+  <meta content="Joseph Miller’s personal lab for Proxmox, security monitoring, network forensics, private AI inference, agents, recovery, and hands-on systems research." name="description"/>
+  <meta content="Socket23 Lab | Joseph Miller" property="og:title"/>
+  <meta content="Joseph Miller’s personal lab for Proxmox, security monitoring, network forensics, private AI inference, agents, recovery, and hands-on systems research." property="og:description"/>
+  <meta content="website" property="og:type"/>
+  <meta content="https://socket23.com/lab.html" property="og:url"/>
+  <link href="https://socket23.com/lab.html" rel="canonical"/>
+  <meta content="dark light" name="color-scheme"/>
+  <link href="/assets/favicon.svg" rel="icon"/>
+  <script src="/theme-init.js?v=20260724-polish4">
+  </script>
+  <link href="/styles.css?v=20260724-polish4" rel="stylesheet"/>
+  <script defer="" src="/scripts.js?v=20260724-polish4">
+  </script>
+  <meta content="https://socket23.com/assets/og/socket23-portfolio.png" property="og:image"/>
+  <meta content="1200" property="og:image:width"/>
+  <meta content="630" property="og:image:height"/>
+  <meta content="Joseph Miller — infrastructure, cybersecurity, and private AI portfolio" property="og:image:alt"/>
+  <meta content="summary_large_image" name="twitter:card"/>
+ </head>
+ <body>
+  <header class="nav">
+   <div class="container nav-inner">
+    <a class="brand" href="/">
+     Joseph Miller
+     <span>
+      @socket23
+     </span>
+    </a>
+    <nav aria-label="Primary navigation" class="menu" data-state="closed" id="menu">
+     <a href="/projects.html">
+      Projects
+     </a>
+     <a href="/experience.html">
+      Experience
+     </a>
+     <a href="/about.html">
+      About
+     </a>
+     <a href="/lab.html">
+      Lab
+     </a>
+     <a href="/blog.html">
+      Notes
+     </a>
+     <a href="/contact.html">
+      Connect
+     </a>
+    </nav>
+    <div class="nav-actions">
+     <button aria-label="Theme: system. Activate to use dark." class="theme-btn" id="themeBtn" title="Theme: system" type="button">
+      <span aria-hidden="true" class="theme-symbol">
+       ◐
+      </span>
+      <span class="theme-label" id="themeLabel">
+       System
+      </span>
+     </button>
+     <button aria-controls="menu" aria-expanded="false" aria-label="Open navigation" class="menu-btn" id="menuBtn">
+      ☰
+     </button>
+    </div>
+   </div>
+  </header>
   <main>
-<section class="hero"><div class="container hero-copy"><p class="eyebrow">My lab</p><h1>Socket23 is where I learn by building.</h1><p class="lead">I use the lab to operate infrastructure, investigate security telemetry, rehearse recovery, serve local models, and test bounded agent systems myself.</p><p>It gives me room to observe failure modes, compare approaches, rebuild safely, and turn useful lessons into projects and notes.</p></div></section>
-<section class="panel"><div class="container"><p class="section-kicker">Hybrid infrastructure lab</p><h2>A small environment with a wide surface area</h2><div class="grid-3"><article class="card"><p class="status">Core systems</p><h3>Virtualization and recovery</h3><p>Multi-node Proxmox, ZFS, Windows Server, Active Directory, Linux containers, virtual machines, network bridges, Docker Swarm, Proxmox Backup Server, and restore testing.</p></article><article class="card"><p class="status">Network security</p><h3>Detection and forensics</h3><p>Security Onion, Zeek, Elastic, DShield telemetry, SiLK flows, Wireshark, IDS correlation, PCAP exercises, and CVE research.</p></article><article class="card"><p class="status">Private AI</p><h3>Inference and agents</h3><p>RTX A6000 hardware, vLLM, llama.cpp, LM Studio, Ollama, OpenAI-compatible APIs, OpenClaw, Hermes, model routing, retrieval, and memory.</p></article></div></div></section>
-<section class="panel alt"><div class="container split-callout"><div><p class="section-kicker">Security research</p><h2>Following one event through several evidence sources</h2><p>I use the monitoring lab to move between packet capture, Zeek metadata, IDS alerts, network flows, endpoint context, honeypot activity, and CVE research.</p><p>The goal is not to collect more dashboards. It is to build a repeatable way to ask what happened, whether it matters, and what evidence supports the answer.</p><p><a href="/work/network-threat-monitoring-lab.html">Read the monitoring case study →</a></p></div><div class="card"><h3>Tools I work with</h3><ul><li>Security Onion and Elastic</li><li>Zeek and zeek-cut</li><li>Wireshark and PCAPs</li><li>SiLK flow analysis</li><li>DShield honeypot data</li><li>IDS and threat intelligence</li></ul></div></div></section>
-<section class="panel"><div class="container split-callout"><div><p class="section-kicker">Local AI engineering</p><h2>Models are only one part of the system</h2><p>I use local AI to study GPU capacity, model behavior, context, quantization, inference engines, API compatibility, authentication, agent integration, and remote access.</p><p>The lab lets me compare vLLM, llama.cpp, LM Studio, and Ollama while connecting real clients and agent platforms through controlled LAN and Tailscale paths.</p><p><a href="/work/local-ai-agent-platform.html">Read the local AI case study →</a></p></div><div class="card"><h3>What I validate</h3><ul><li>VRAM and context constraints</li><li>API and client compatibility</li><li>Authentication and network scope</li><li>Model-specific task behavior</li><li>Service startup and recovery</li><li>Logs, storage, and operational boundaries</li></ul></div></div></section>
-<section class="panel alt"><div class="container split-callout"><div><p class="section-kicker">Current build</p><h2>A persistent Network Assistant</h2><p>I want an assistant that can hold a source-of-truth view of infrastructure, correlate telemetry and prior incidents, explain likely failure paths, recommend fixes with evidence, and verify recovery.</p><p>I’m building it around read-only infrastructure access, durable observations, source-backed knowledge, and human-controlled remediation.</p></div><div class="card"><h3>The boundary I care about</h3><ul><li>Read-only access to production systems</li><li>Write access only to its own observations and knowledge</li><li>No production credentials capable of remediation</li><li>Evidence and confidence attached to recommendations</li><li>Independent detection when the AI layer fails</li></ul></div></div></section>
-<section class="panel"><div class="container"><p class="section-kicker">How I use the lab</p><h2>Experiment, verify, keep the lesson</h2><div class="grid-3"><article class="card"><h3>Build enough of the real system</h3><p>I assemble the components needed to test integration, behavior, and recovery directly.</p></article><article class="card"><h3>Break the assumption</h3><p>I look for weak boundaries, failure behavior, recovery gaps, and the parts that are harder to operate than the diagram suggests.</p></article><article class="card"><h3>Keep an honest record</h3><p>I document the decision, evidence, limits, and next experiment so the work can compound.</p></article></div><p class="disclosure">I intentionally leave credentials, internal addresses, administrative entry points, private data, and sensitive operational details out of public lab material.</p></div></section>
-</main>
-  <footer class="footer"><div class="container"><p><strong>Joseph Miller</strong> · Sandy, Oregon</p><p class="footer-links"><a href="https://github.com/socket23" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://www.linkedin.com/in/joseph-miller-cybersecurity" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://www.credly.com/users/josephamiller" target="_blank" rel="noopener noreferrer">Credly</a></p><p class="fine-print">© <span id="year"></span> Joseph Miller. Socket23 is my personal technical lab and publishing handle.</p></div></footer>
-</body>
+   <section class="hero">
+    <div class="container hero-copy">
+     <p class="eyebrow">
+      My lab
+     </p>
+     <h1>
+      Socket23 is where I learn by building.
+     </h1>
+     <p class="lead">
+      I use the lab to operate infrastructure, investigate security telemetry, rehearse recovery, serve local models, and test bounded agent systems myself.
+     </p>
+     <p>
+      It gives me room to observe failure modes, compare approaches, rebuild safely, and turn useful lessons into projects and notes.
+     </p>
+    </div>
+   </section>
+   <section class="panel">
+    <div class="container">
+     <p class="section-kicker">
+      Hybrid infrastructure lab
+     </p>
+     <h2>
+      A small environment with a wide surface area
+     </h2>
+     <div class="grid-3">
+      <article class="card">
+       <div aria-hidden="true" class="project-icon-wrap">
+        <svg class="project-icon" focusable="false" viewBox="0 0 24 24">
+         <use href="/assets/icons.svg#virtualization">
+         </use>
+        </svg>
+       </div>
+       <p class="status">
+        Core systems
+       </p>
+       <h3>
+        Virtualization and recovery
+       </h3>
+       <p>
+        Multi-node Proxmox, ZFS, Windows Server, Active Directory, Linux containers, virtual machines, network bridges, Docker Swarm, Proxmox Backup Server, and restore testing.
+       </p>
+      </article>
+      <article class="card">
+       <div aria-hidden="true" class="project-icon-wrap">
+        <svg class="project-icon" focusable="false" viewBox="0 0 24 24">
+         <use href="/assets/icons.svg#security">
+         </use>
+        </svg>
+       </div>
+       <p class="status">
+        Network security
+       </p>
+       <h3>
+        Detection and forensics
+       </h3>
+       <p>
+        Security Onion, Zeek, Elastic, DShield telemetry, SiLK flows, Wireshark, IDS correlation, PCAP exercises, and CVE research.
+       </p>
+      </article>
+      <article class="card">
+       <div aria-hidden="true" class="project-icon-wrap">
+        <svg class="project-icon" focusable="false" viewBox="0 0 24 24">
+         <use href="/assets/icons.svg#ai">
+         </use>
+        </svg>
+       </div>
+       <p class="status">
+        Private AI
+       </p>
+       <h3>
+        Inference and agents
+       </h3>
+       <p>
+        high-memory NVIDIA GPU hardware, vLLM, llama.cpp, LM Studio, Ollama, OpenAI-compatible APIs, OpenClaw, Hermes, model routing, retrieval, and memory.
+       </p>
+      </article>
+     </div>
+    </div>
+   </section>
+   <section class="panel alt">
+    <div class="container split-callout">
+     <div>
+      <p class="section-kicker">
+       Security research
+      </p>
+      <h2>
+       Following one event through several evidence sources
+      </h2>
+      <p>
+       I use the monitoring lab to move between packet capture, Zeek metadata, IDS alerts, network flows, endpoint context, honeypot activity, and CVE research.
+      </p>
+      <p>
+       The goal is not to collect more dashboards. It is to build a repeatable way to ask what happened, whether it matters, and what evidence supports the answer.
+      </p>
+      <p>
+       <a href="/work/network-threat-monitoring-lab.html">
+        Read the monitoring case study →
+       </a>
+      </p>
+     </div>
+     <div class="card">
+      <h3>
+       Tools I work with
+      </h3>
+      <ul>
+       <li>
+        Security Onion and Elastic
+       </li>
+       <li>
+        Zeek and zeek-cut
+       </li>
+       <li>
+        Wireshark and PCAPs
+       </li>
+       <li>
+        SiLK flow analysis
+       </li>
+       <li>
+        DShield honeypot data
+       </li>
+       <li>
+        IDS and threat intelligence
+       </li>
+      </ul>
+     </div>
+    </div>
+   </section>
+   <section class="panel">
+    <div class="container split-callout">
+     <div>
+      <p class="section-kicker">
+       Local AI engineering
+      </p>
+      <h2>
+       Models are only one part of the system
+      </h2>
+      <p>
+       I use local AI to study GPU capacity, model behavior, context, quantization, inference engines, API compatibility, authentication, agent integration, and remote access.
+      </p>
+      <p>
+       The lab lets me compare vLLM, llama.cpp, LM Studio, and Ollama while connecting real clients and agent platforms through controlled LAN and Tailscale paths.
+      </p>
+      <p>
+       <a href="/work/local-ai-agent-platform.html">
+        Read the local AI case study →
+       </a>
+      </p>
+     </div>
+     <div class="card">
+      <h3>
+       What I validate
+      </h3>
+      <ul>
+       <li>
+        VRAM and context constraints
+       </li>
+       <li>
+        API and client compatibility
+       </li>
+       <li>
+        Authentication and network scope
+       </li>
+       <li>
+        Model-specific task behavior
+       </li>
+       <li>
+        Service startup and recovery
+       </li>
+       <li>
+        Logs, storage, and operational boundaries
+       </li>
+      </ul>
+     </div>
+    </div>
+   </section>
+   <section class="panel alt">
+    <div class="container split-callout">
+     <div>
+      <p class="section-kicker">
+       Current build
+      </p>
+      <h2>
+       A read-only Network Assistant architecture
+      </h2>
+      <p>
+       I want an assistant that can hold a source-of-truth view of infrastructure, correlate telemetry and prior incidents, explain likely failure paths, recommend fixes with evidence, and verify recovery.
+      </p>
+      <p>
+       I’m designing it around read-only source access, bounded observations, source-backed knowledge, and human-controlled remediation. This public portfolio has no connection to the assistant or its data.
+      </p>
+     </div>
+     <div class="card">
+      <h3>
+       The boundary I care about
+      </h3>
+      <ul>
+       <li>
+        Read-only access to production systems
+       </li>
+       <li>
+        Write access only to its own observations and knowledge
+       </li>
+       <li>
+        No production credentials capable of remediation
+       </li>
+       <li>
+        Evidence and confidence attached to recommendations
+       </li>
+       <li>
+        Independent detection when the AI layer fails
+       </li>
+      </ul>
+     </div>
+    </div>
+   </section>
+   <section class="panel">
+    <div class="container">
+     <p class="section-kicker">
+      How I use the lab
+     </p>
+     <h2>
+      Experiment, verify, keep the lesson
+     </h2>
+     <div class="grid-3">
+      <article class="card">
+       <h3>
+        Build enough of the real system
+       </h3>
+       <p>
+        I assemble the components needed to test integration, behavior, and recovery directly.
+       </p>
+      </article>
+      <article class="card">
+       <h3>
+        Break the assumption
+       </h3>
+       <p>
+        I look for weak boundaries, failure behavior, recovery gaps, and the parts that are harder to operate than the diagram suggests.
+       </p>
+      </article>
+      <article class="card">
+       <h3>
+        Keep an honest record
+       </h3>
+       <p>
+        I document the decision, evidence, limits, and next experiment so the work can compound.
+       </p>
+      </article>
+     </div>
+     <p class="disclosure">
+      I intentionally leave credentials, internal addresses, administrative entry points, private data, and sensitive operational details out of public lab material.
+     </p>
+    </div>
+   </section>
+  </main>
+  <footer class="footer">
+   <div class="container">
+    <p>
+     <strong>
+      Joseph Miller
+     </strong>
+     · Oregon
+    </p>
+    <p class="footer-links">
+     <a href="https://github.com/socket23" rel="noopener noreferrer" target="_blank">
+      GitHub
+     </a>
+     <a href="https://www.linkedin.com/in/joseph-miller-cybersecurity" rel="noopener noreferrer" target="_blank">
+      LinkedIn
+     </a>
+     <a href="https://www.credly.com/users/josephamiller" rel="noopener noreferrer" target="_blank">
+      Credly
+     </a>
+    </p>
+    <p class="fine-print">
+     ©
+     <span id="year">
+     </span>
+     Joseph Miller. Socket23 is my personal technical lab and publishing handle.
+    </p>
+   </div>
+  </footer>
+ </body>
 </html>

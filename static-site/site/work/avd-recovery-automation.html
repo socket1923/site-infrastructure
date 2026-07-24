@@ -1,30 +1,309 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Azure Virtual Desktop recovery automation | Joseph Miller</title>
-  <meta name="description" content="How Joseph Miller deployed and repaired Azure Virtual Desktop session hosts and converted the recovery sequence into staged Azure PowerShell automation." />
-  <meta property="og:title" content="Azure Virtual Desktop recovery automation | Joseph Miller" />
-  <meta property="og:description" content="How Joseph Miller deployed and repaired Azure Virtual Desktop session hosts and converted the recovery sequence into staged Azure PowerShell automation." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://socket23.com/work/avd-recovery-automation.html" />
-  <link rel="canonical" href="https://socket23.com/work/avd-recovery-automation.html" />
-  <meta name="color-scheme" content="dark light" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%2300D1B2'/><text x='50' y='58' font-size='42' text-anchor='middle' fill='white'>J</text></svg>" />
-  <link rel="stylesheet" href="/styles.css?v=20260720-projects1" />
-  <script src="/scripts.js?v=20260720-projects1" defer></script>
-</head>
-<body>
-  <header class="nav"><div class="container nav-inner"><a class="brand" href="/">Joseph Miller <span>@socket23</span></a><nav id="menu" class="menu" data-state="closed" aria-label="Primary navigation"><a href="/projects.html">Projects</a><a href="/experience.html">Experience</a><a href="/about.html">About</a><a href="/lab.html">Lab</a><a href="/blog.html">Notes</a><a href="/contact.html">Connect</a></nav><button id="menuBtn" class="menu-btn" aria-expanded="false" aria-controls="menu" aria-label="Open navigation">&#9776;</button></div></header>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>
+   Azure Virtual Desktop recovery automation | Joseph Miller
+  </title>
+  <meta content="How Joseph Miller deployed and repaired Azure Virtual Desktop session hosts and converted the recovery sequence into staged Azure PowerShell automation." name="description"/>
+  <meta content="Azure Virtual Desktop recovery automation | Joseph Miller" property="og:title"/>
+  <meta content="How Joseph Miller deployed and repaired Azure Virtual Desktop session hosts and converted the recovery sequence into staged Azure PowerShell automation." property="og:description"/>
+  <meta content="website" property="og:type"/>
+  <meta content="https://socket23.com/work/avd-recovery-automation.html" property="og:url"/>
+  <link href="https://socket23.com/work/avd-recovery-automation.html" rel="canonical"/>
+  <meta content="dark light" name="color-scheme"/>
+  <link href="/assets/favicon.svg" rel="icon"/>
+  <script src="/theme-init.js?v=20260724-polish4">
+  </script>
+  <link href="/styles.css?v=20260724-polish4" rel="stylesheet"/>
+  <script defer="" src="/scripts.js?v=20260724-polish4">
+  </script>
+  <meta content="https://socket23.com/assets/og/socket23-portfolio.png" property="og:image"/>
+  <meta content="1200" property="og:image:width"/>
+  <meta content="630" property="og:image:height"/>
+  <meta content="Joseph Miller — infrastructure, cybersecurity, and private AI portfolio" property="og:image:alt"/>
+  <meta content="summary_large_image" name="twitter:card"/>
+ </head>
+ <body>
+  <header class="nav">
+   <div class="container nav-inner">
+    <a class="brand" href="/">
+     Joseph Miller
+     <span>
+      @socket23
+     </span>
+    </a>
+    <nav aria-label="Primary navigation" class="menu" data-state="closed" id="menu">
+     <a href="/projects.html">
+      Projects
+     </a>
+     <a href="/experience.html">
+      Experience
+     </a>
+     <a href="/about.html">
+      About
+     </a>
+     <a href="/lab.html">
+      Lab
+     </a>
+     <a href="/blog.html">
+      Notes
+     </a>
+     <a href="/contact.html">
+      Connect
+     </a>
+    </nav>
+    <div class="nav-actions">
+     <button aria-label="Theme: system. Activate to use dark." class="theme-btn" id="themeBtn" title="Theme: system" type="button">
+      <span aria-hidden="true" class="theme-symbol">
+       ◐
+      </span>
+      <span class="theme-label" id="themeLabel">
+       System
+      </span>
+     </button>
+     <button aria-controls="menu" aria-expanded="false" aria-label="Open navigation" class="menu-btn" id="menuBtn">
+      ☰
+     </button>
+    </div>
+   </div>
+  </header>
   <main>
-<section class="hero case-hero"><div class="container hero-copy"><p class="breadcrumbs"><a href="/projects.html">Projects</a> / Azure Virtual Desktop recovery automation</p><p class="eyebrow">Microsoft cloud work · Azure · PowerShell · Identity</p><h1>Azure Virtual Desktop recovery automation</h1><p class="lead">I deployed and repaired Azure Virtual Desktop session hosts, then turned the repeated recovery steps into staged automation with discovery, deployment tracking, registration, and validation logs.</p></div></section>
-<section class="panel"><div class="container"><div class="project-meta"><article class="card"><p class="status">Context</p><p>AVD failures crossed Azure resources, virtual machines, domain join, host-pool registration, agents, audio redirection, profiles, and user-session behavior.</p></article><article class="card"><p class="status">My role</p><p>I diagnosed the session-host problems, performed the repairs, and built PowerShell workflows to make the sequence more repeatable and observable.</p></article><article class="card"><p class="status">Result</p><p>Session hosts could be deployed or recovered through explicit stages with resource discovery, status tracking, registration, and evidence for the final validation.</p></article></div></div></section>
-<section class="panel alt"><div class="container case-grid"><div><p class="section-kicker">The problem</p><h2>Why the work needed more than one tool</h2><p>A session host can exist as a virtual machine and still fail as an AVD host. Domain identity, registration tokens, agents, host-pool state, profiles, audio settings, applications, and user-session behavior all have to align.</p></div><div><h3>What could go wrong</h3><ul><li>Re-running a deployment against the wrong resource state</li><li>Treating VM power state as AVD health</li><li>Losing the registration or domain-join sequence</li><li>Changing profile or redirection settings without a validation record</li><li>Making scripts impossible to resume after a partial failure</li></ul></div></div></section>
-<section class="panel"><div class="container case-grid"><div><p class="section-kicker">What I did</p><h2>The working sequence</h2><ul class="check-list"><li>Diagnosed domain-join failures, registration issues, agent health, audio redirection, and profile problems</li><li>Used Azure PowerShell and deployment scripts for repair and recovery</li><li>Added resource discovery rather than relying only on hard-coded assumptions</li><li>Separated deployment into staged execution modes</li><li>Tracked VM deployment and session-host registration state</li><li>Recorded validation output so a later run could identify what completed and what still failed</li></ul></div><div><p class="section-kicker">How I validated it</p><h2>Evidence before completion</h2><ul class="check-list"><li>Confirmed Azure VM deployment state</li><li>Verified domain membership and required identity behavior</li><li>Checked host-pool registration and agent health</li><li>Tested audio redirection and profile behavior where they were part of the failure</li><li>Used logs to distinguish completed stages from work that needed to be resumed</li></ul></div></div></section>
-<section class="panel alt"><div class="container split-callout"><div><p class="section-kicker">What this demonstrates</p><h2>The skill behind the tools</h2><p>This project demonstrates how I turn one-off cloud troubleshooting into a safer operational workflow without hiding the real state behind a single script exit code.</p><p class="disclosure">Production details are intentionally anonymized. I do not publish organization names, internal addresses, credentials, private topology, or sensitive recovery information.</p></div><div class="card"><h3>Platforms and tools</h3><div class="tech-list"><span>Azure Virtual Desktop</span><span>Azure PowerShell</span><span>Windows</span><span>Active Directory</span><span>Host pools</span><span>AVD agents</span><span>Profile management</span><span>Validation logs</span></div></div></div></section>
-<section class="panel"><div class="container centered narrow"><h2>Continue through the project inventory</h2><div class="actions centered-actions"><a class="btn primary" href="/projects.html">All projects</a><a class="btn ghost" href="/experience.html">Experience</a></div></div></section>
-</main>
-  <footer class="footer"><div class="container"><p><strong>Joseph Miller</strong> · Sandy, Oregon</p><p class="footer-links"><a href="https://github.com/socket23" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://www.linkedin.com/in/joseph-miller-cybersecurity" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://www.credly.com/users/josephamiller" target="_blank" rel="noopener noreferrer">Credly</a></p><p class="fine-print">© <span id="year"></span> Joseph Miller. Socket23 is my personal technical lab and publishing handle.</p></div></footer>
-</body>
+   <section class="hero case-hero">
+    <div class="container hero-copy">
+     <p class="breadcrumbs">
+      <a href="/projects.html">
+       Projects
+      </a>
+      / Azure Virtual Desktop recovery automation
+     </p>
+     <p class="eyebrow">
+      Microsoft cloud work · Azure · PowerShell · Identity
+     </p>
+     <h1>
+      Azure Virtual Desktop recovery automation
+     </h1>
+     <p class="lead">
+      I deployed and repaired Azure Virtual Desktop session hosts, then turned the repeated recovery steps into staged automation with discovery, deployment tracking, registration, and validation logs.
+     </p>
+    </div>
+   </section>
+   <section class="panel">
+    <div class="container">
+     <div class="project-meta">
+      <article class="card">
+       <p class="status">
+        Context
+       </p>
+       <p>
+        AVD failures crossed Azure resources, virtual machines, domain join, host-pool registration, agents, audio redirection, profiles, and user-session behavior.
+       </p>
+      </article>
+      <article class="card">
+       <p class="status">
+        My role
+       </p>
+       <p>
+        I diagnosed the session-host problems, performed the repairs, and built PowerShell workflows to make the sequence more repeatable and observable.
+       </p>
+      </article>
+      <article class="card">
+       <p class="status">
+        Result
+       </p>
+       <p>
+        Session hosts could be deployed or recovered through explicit stages with resource discovery, status tracking, registration, and evidence for the final validation.
+       </p>
+      </article>
+     </div>
+    </div>
+   </section>
+   <section class="panel alt">
+    <div class="container case-grid">
+     <div>
+      <p class="section-kicker">
+       The problem
+      </p>
+      <h2>
+       Why the work needed more than one tool
+      </h2>
+      <p>
+       A session host can exist as a virtual machine and still fail as an AVD host. Domain identity, registration tokens, agents, host-pool state, profiles, audio settings, applications, and user-session behavior all have to align.
+      </p>
+     </div>
+     <div>
+      <h3>
+       What could go wrong
+      </h3>
+      <ul>
+       <li>
+        Re-running a deployment against the wrong resource state
+       </li>
+       <li>
+        Treating VM power state as AVD health
+       </li>
+       <li>
+        Losing the registration or domain-join sequence
+       </li>
+       <li>
+        Changing profile or redirection settings without a validation record
+       </li>
+       <li>
+        Making scripts impossible to resume after a partial failure
+       </li>
+      </ul>
+     </div>
+    </div>
+   </section>
+   <section class="panel">
+    <div class="container case-grid">
+     <div>
+      <p class="section-kicker">
+       What I did
+      </p>
+      <h2>
+       The working sequence
+      </h2>
+      <ul class="check-list">
+       <li>
+        Diagnosed domain-join failures, registration issues, agent health, audio redirection, and profile problems
+       </li>
+       <li>
+        Used Azure PowerShell and deployment scripts for repair and recovery
+       </li>
+       <li>
+        Added resource discovery rather than relying only on hard-coded assumptions
+       </li>
+       <li>
+        Separated deployment into staged execution modes
+       </li>
+       <li>
+        Tracked VM deployment and session-host registration state
+       </li>
+       <li>
+        Recorded validation output so a later run could identify what completed and what still failed
+       </li>
+      </ul>
+     </div>
+     <div>
+      <p class="section-kicker">
+       How I validated it
+      </p>
+      <h2>
+       Evidence before completion
+      </h2>
+      <ul class="check-list">
+       <li>
+        Confirmed Azure VM deployment state
+       </li>
+       <li>
+        Verified domain membership and required identity behavior
+       </li>
+       <li>
+        Checked host-pool registration and agent health
+       </li>
+       <li>
+        Tested audio redirection and profile behavior where they were part of the failure
+       </li>
+       <li>
+        Used logs to distinguish completed stages from work that needed to be resumed
+       </li>
+      </ul>
+     </div>
+    </div>
+   </section>
+   <section class="panel alt">
+    <div class="container split-callout">
+     <div>
+      <p class="section-kicker">
+       What this demonstrates
+      </p>
+      <h2>
+       The skill behind the tools
+      </h2>
+      <p>
+       This project demonstrates how I turn one-off cloud troubleshooting into a safer operational workflow without hiding the real state behind a single script exit code.
+      </p>
+      <p class="disclosure">
+       Production details are intentionally anonymized. I do not publish organization names, internal addresses, credentials, private topology, or sensitive recovery information.
+      </p>
+     </div>
+     <div class="card">
+      <h3>
+       Platforms and tools
+      </h3>
+      <div class="tech-list">
+       <span>
+        Azure Virtual Desktop
+       </span>
+       <span>
+        Azure PowerShell
+       </span>
+       <span>
+        Windows
+       </span>
+       <span>
+        Active Directory
+       </span>
+       <span>
+        Host pools
+       </span>
+       <span>
+        AVD agents
+       </span>
+       <span>
+        Profile management
+       </span>
+       <span>
+        Validation logs
+       </span>
+      </div>
+     </div>
+    </div>
+   </section>
+   <section class="panel">
+    <div class="container centered narrow">
+     <h2>
+      Continue through the project inventory
+     </h2>
+     <div class="actions centered-actions">
+      <a class="btn primary" href="/projects.html">
+       All projects
+      </a>
+      <a class="btn ghost" href="/experience.html">
+       Experience
+      </a>
+     </div>
+    </div>
+   </section>
+  </main>
+  <footer class="footer">
+   <div class="container">
+    <p>
+     <strong>
+      Joseph Miller
+     </strong>
+     · Oregon
+    </p>
+    <p class="footer-links">
+     <a href="https://github.com/socket23" rel="noopener noreferrer" target="_blank">
+      GitHub
+     </a>
+     <a href="https://www.linkedin.com/in/joseph-miller-cybersecurity" rel="noopener noreferrer" target="_blank">
+      LinkedIn
+     </a>
+     <a href="https://www.credly.com/users/josephamiller" rel="noopener noreferrer" target="_blank">
+      Credly
+     </a>
+    </p>
+    <p class="fine-print">
+     ©
+     <span id="year">
+     </span>
+     Joseph Miller. Socket23 is my personal technical lab and publishing handle.
+    </p>
+   </div>
+  </footer>
+ </body>
 </html>

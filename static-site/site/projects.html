@@ -1,35 +1,535 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Projects and Successful Work | Joseph Miller</title>
-  <meta name="description" content="Detailed projects from Joseph Miller across virtualization, SAN storage, recovery, security monitoring, Microsoft cloud, networking, automation, and local AI." />
-  <meta property="og:title" content="Projects and Successful Work | Joseph Miller" />
-  <meta property="og:description" content="Detailed projects from Joseph Miller across virtualization, SAN storage, recovery, security monitoring, Microsoft cloud, networking, automation, and local AI." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://socket23.com/projects.html" />
-  <link rel="canonical" href="https://socket23.com/projects.html" />
-  <meta name="color-scheme" content="dark light" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%2300D1B2'/><text x='50' y='58' font-size='42' text-anchor='middle' fill='white'>J</text></svg>" />
-  <link rel="stylesheet" href="/styles.css?v=20260720-projects1" />
-  <script src="/scripts.js?v=20260720-projects1" defer></script>
-</head>
-<body>
-  <header class="nav"><div class="container nav-inner"><a class="brand" href="/">Joseph Miller <span>@socket23</span></a><nav id="menu" class="menu" data-state="closed" aria-label="Primary navigation"><a href="/projects.html">Projects</a><a href="/experience.html">Experience</a><a href="/about.html">About</a><a href="/lab.html">Lab</a><a href="/blog.html">Notes</a><a href="/contact.html">Connect</a></nav><button id="menuBtn" class="menu-btn" aria-expanded="false" aria-controls="menu" aria-label="Open navigation">&#9776;</button></div></header>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>
+   Projects and Successful Work | Joseph Miller
+  </title>
+  <meta content="Detailed projects from Joseph Miller across virtualization, SAN storage, recovery, security monitoring, Microsoft cloud, networking, automation, and local AI." name="description"/>
+  <meta content="Projects and Successful Work | Joseph Miller" property="og:title"/>
+  <meta content="Detailed projects from Joseph Miller across virtualization, SAN storage, recovery, security monitoring, Microsoft cloud, networking, automation, and local AI." property="og:description"/>
+  <meta content="website" property="og:type"/>
+  <meta content="https://socket23.com/projects.html" property="og:url"/>
+  <link href="https://socket23.com/projects.html" rel="canonical"/>
+  <meta content="dark light" name="color-scheme"/>
+  <link href="/assets/favicon.svg" rel="icon"/>
+  <script src="/theme-init.js?v=20260724-polish4">
+  </script>
+  <link href="/styles.css?v=20260724-polish4" rel="stylesheet"/>
+  <script defer="" src="/scripts.js?v=20260724-polish4">
+  </script>
+  <meta content="https://socket23.com/assets/og/socket23-portfolio.png" property="og:image"/>
+  <meta content="1200" property="og:image:width"/>
+  <meta content="630" property="og:image:height"/>
+  <meta content="Joseph Miller — infrastructure, cybersecurity, and private AI portfolio" property="og:image:alt"/>
+  <meta content="summary_large_image" name="twitter:card"/>
+ </head>
+ <body>
+  <header class="nav">
+   <div class="container nav-inner">
+    <a class="brand" href="/">
+     Joseph Miller
+     <span>
+      @socket23
+     </span>
+    </a>
+    <nav aria-label="Primary navigation" class="menu" data-state="closed" id="menu">
+     <a href="/projects.html">
+      Projects
+     </a>
+     <a href="/experience.html">
+      Experience
+     </a>
+     <a href="/about.html">
+      About
+     </a>
+     <a href="/lab.html">
+      Lab
+     </a>
+     <a href="/blog.html">
+      Notes
+     </a>
+     <a href="/contact.html">
+      Connect
+     </a>
+    </nav>
+    <div class="nav-actions">
+     <button aria-label="Theme: system. Activate to use dark." class="theme-btn" id="themeBtn" title="Theme: system" type="button">
+      <span aria-hidden="true" class="theme-symbol">
+       ◐
+      </span>
+      <span class="theme-label" id="themeLabel">
+       System
+      </span>
+     </button>
+     <button aria-controls="menu" aria-expanded="false" aria-label="Open navigation" class="menu-btn" id="menuBtn">
+      ☰
+     </button>
+    </div>
+   </div>
+  </header>
   <main>
-<section class="hero"><div class="container hero-copy"><p class="eyebrow">Projects</p><h1>Things I’ve built, fixed, recovered, and moved safely.</h1><p class="lead">These projects show the work behind my experience. I have kept production environments anonymous while preserving the technical problem, my role, the constraints, the validation, and what the result demonstrates.</p></div></section>
-<section class="panel"><div class="container"><p class="section-kicker">Flagship work</p><h2>Detailed case studies</h2><div class="grid-2"><article class="card project-card"><p class="status">Production infrastructure</p><h3>Enterprise VMware-to-Hyper-V migration</h3><p>ESXi, Windows Server 2025 Hyper-V, Dell ME4024 SAN, Veeam Direct SAN recovery, isolated boot testing, and Active Directory validation.</p><a href="/work/vmware-hyper-v-san-migration.html">Read the case study →</a></article><article class="card project-card"><p class="status">Personal engineering lab</p><h3>Local AI agent platform</h3><p>RTX A6000 inference, LM Studio, Ollama, llama.cpp, vLLM, OpenAI-compatible APIs, OpenClaw, Hermes, Tailscale, and model routing.</p><a href="/work/local-ai-agent-platform.html">Read the case study →</a></article><article class="card project-card"><p class="status">Security research lab</p><h3>Network threat monitoring and forensics</h3><p>Security Onion, DShield, Zeek, SiLK, IDS alert correlation, PCAP analysis, CVE enrichment, and repeatable investigation workflows.</p><a href="/work/network-threat-monitoring-lab.html">Read the case study →</a></article><article class="card project-card"><p class="status">Public personal project</p><h3>Self-hosting and secure delivery for socket23.com</h3><p>Cloudflare, Sophos, Docker Swarm, NGINX, automated TLS, protected CI, immutable images, non-root runtime, health checks, and rollback.</p><a href="/work/socket23-hosting-platform.html">Read the case study →</a></article><article class="card project-card"><p class="status">Microsoft cloud work</p><h3>Azure Virtual Desktop recovery automation</h3><p>Session-host deployment and repair across domain join, registration, agent health, audio, profiles, Azure discovery, and validation logging.</p><a href="/work/avd-recovery-automation.html">Read the case study →</a></article><article class="card project-card"><p class="status">Data recovery work</p><h3>Legacy Apple HFS+ recovery</h3><p>Raw PowerPC-era disk images, HFS partition discovery, journal repair, encrypted sparse images, and rsync to modern storage.</p><a href="/work/legacy-hfs-data-recovery.html">Read the case study →</a></article><article class="card project-card"><p class="status">Networking and security work</p><h3>Network segmentation and firewall troubleshooting</h3><p>Juniper and Meraki discovery, VLAN cutover planning, Sophos routing and NAT, Cloudflare publishing, Tailscale, and private management paths.</p><a href="/work/network-segmentation.html">Read the case study →</a></article><article class="card project-card"><p class="status">Production infrastructure work</p><h3>Production-safe SAN handling</h3><p>OfflineAll policy, disabled automount, serial-number verification, source VMFS protection, ReFS target design, and isolated restore validation.</p><a href="/work/production-safe-san-handling.html">Read the case study →</a></article></div></div></section>
-<section class="panel alt"><div class="container"><p class="section-kicker">More work across the stack</p><h2>A broader project inventory</h2><div class="grid-2 inventory-grid">
-<article class="card"><h3>Infrastructure, storage, and recovery</h3><ul><li>Multi-node Proxmox with ZFS, containers, virtual machines, bridges, scheduled backups, and Proxmox Backup Server</li><li>VMware-to-Proxmox and VMware-to-Hyper-V conversion testing across boot, disk, network, and virtual hardware</li><li>Multi-terabyte file server migration planning across storage, SMB, applications, permissions, and domain services</li><li>ReFS design with 64 KB allocation units for Hyper-V and Veeam workloads</li><li>Private and routed Hyper-V networks for isolated recovery testing</li><li>Active Directory health and migration validation with repadmin, dcdiag, netdom, nltest, DNS, and service checks</li></ul></article>
-<article class="card"><h3>Networking and security</h3><ul><li>Sophos XGS DNAT, SNAT, firewall policy, DNS forwarding, VPN routing, and service publishing</li><li>Cloudflare DNS migration, stale-record troubleshooting, proxy behavior, NAT, and public-path validation</li><li>Tailscale management paths for Linux, Macs, agents, and security appliances</li><li>Authorized Wi-Fi Pineapple remote lab access and passive collection research</li><li>IDS, packet, flow, endpoint, and threat-intelligence correlation</li><li>Exploit research mapped to CVEs, affected services, and likely objectives</li></ul></article>
-<article class="card"><h3>Microsoft 365 and Azure</h3><ul><li>Exchange Online mail-flow connectors for printers and scan-to-email</li><li>Archive provisioning, folder statistics, retention, capacity, and visibility troubleshooting</li><li>Teams application access policies for an approved HubSpot integration</li><li>Conditional Access location and grant-control troubleshooting</li><li>OneAuth, AAD Broker Plugin, OneDrive, Outlook, tenant mapping, and token-state repair</li><li>Azure PowerShell deployment, discovery, tracking, and recovery workflows</li></ul></article>
-<article class="card"><h3>Automation and systems administration</h3><ul><li>Repeatable PowerShell diagnostics for AD, Hyper-V, Exchange Online, Azure, networking, storage, and event logs</li><li>Structured output and CSV evidence for technical findings</li><li>Windows bugcheck, kernel-power, memory-dump, thermal-sensor, and device-health analysis</li><li>Ubuntu, Debian, Proxmox, Docker, systemd, SSH, mounts, packages, repositories, and interfaces</li><li>Wildcard certificate automation with Dehydrated and Cloudflare DNS-01</li><li>SSH keys, tunnels, allowlists, and loopback-bound management services</li></ul></article>
-<article class="card"><h3>AI systems and agents</h3><ul><li>Local model serving across vLLM, llama.cpp, LM Studio, and Ollama</li><li>OpenAI-compatible APIs for controlled LAN and Tailscale access</li><li>OpenClaw and Hermes connected to local and hosted models</li><li>Task-based routing between general and coding models</li><li>Memory, context, quantization, and inference-engine comparisons</li><li>AI-assisted alert triage, attacker correlation, CVE enrichment, and reporting design</li></ul></article>
-<article class="card"><h3>Hybrid personal lab</h3><ul><li>Proxmox, Windows Server, Active Directory, Security Onion, Docker, SAN storage, local AI, and segmented zones</li><li>Production-style validation and recovery rehearsals</li><li>Repeatable PCAP and network-forensics exercises</li><li>CAPEv2 malware-analysis planning for Proxmox</li><li>Security monitoring and private AI integration experiments</li><li>Public notes that omit credentials, internal addresses, and sensitive operational detail</li></ul></article>
-</div></div></section>
-<section class="panel"><div class="container centered narrow"><h2>What the inventory says about me</h2><p>I am most useful when a problem crosses systems, the starting state is unclear, and the work needs both hands-on execution and a safe recovery path.</p><a class="btn primary" href="/experience.html">See how the experience connects</a></div></section>
-</main>
-  <footer class="footer"><div class="container"><p><strong>Joseph Miller</strong> · Sandy, Oregon</p><p class="footer-links"><a href="https://github.com/socket23" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://www.linkedin.com/in/joseph-miller-cybersecurity" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://www.credly.com/users/josephamiller" target="_blank" rel="noopener noreferrer">Credly</a></p><p class="fine-print">© <span id="year"></span> Joseph Miller. Socket23 is my personal technical lab and publishing handle.</p></div></footer>
-</body>
+   <section class="hero">
+    <div class="container hero-copy">
+     <p class="eyebrow">
+      Projects
+     </p>
+     <h1>
+      Things I’ve built, fixed, recovered, and moved safely.
+     </h1>
+     <p class="lead">
+      These projects show the work behind my experience. I have kept production environments anonymous while preserving the technical problem, my role, the constraints, the validation, and what the result demonstrates.
+     </p>
+    </div>
+   </section>
+   <section class="panel">
+    <div class="container">
+     <p class="section-kicker">
+      Flagship work
+     </p>
+     <h2>
+      Detailed case studies
+     </h2>
+     <div class="filter-toolbar">
+      <div aria-label="Filter projects" class="filter-buttons" role="group">
+       <button aria-pressed="true" class="filter-btn" data-project-filter="all" type="button">
+        All
+       </button>
+       <button aria-pressed="false" class="filter-btn" data-project-filter="infra" type="button">
+        Infrastructure
+       </button>
+       <button aria-pressed="false" class="filter-btn" data-project-filter="security" type="button">
+        Security
+       </button>
+       <button aria-pressed="false" class="filter-btn" data-project-filter="cloud" type="button">
+        Cloud
+       </button>
+       <button aria-pressed="false" class="filter-btn" data-project-filter="ai" type="button">
+        AI
+       </button>
+       <button aria-pressed="false" class="filter-btn" data-project-filter="recovery" type="button">
+        Recovery
+       </button>
+      </div>
+      <p aria-live="polite" class="filter-status" id="filterStatus">
+       8 projects shown
+      </p>
+     </div>
+     <div class="grid-2">
+      <article class="card project-card" data-project-category="infra recovery">
+       <div aria-hidden="true" class="project-icon-wrap">
+        <svg class="project-icon" focusable="false" viewBox="0 0 24 24">
+         <use href="/assets/icons.svg#virtualization">
+         </use>
+        </svg>
+       </div>
+       <p class="status">
+        Production infrastructure
+       </p>
+       <h3>
+        Enterprise VMware-to-Hyper-V migration
+       </h3>
+       <p>
+        Moved production workloads to Hyper-V while preserving identity, networking, application function, source-data safety, and a recovery path.
+       </p>
+       <p class="project-proof">
+        <strong>
+         Evidence:
+        </strong>
+        Validated isolated boot, storage, identity, networking, and applications
+       </p>
+       <a href="/work/vmware-hyper-v-san-migration.html">
+        Read the case study →
+       </a>
+      </article>
+      <article class="card project-card" data-project-category="ai automation">
+       <div aria-hidden="true" class="project-icon-wrap">
+        <svg class="project-icon" focusable="false" viewBox="0 0 24 24">
+         <use href="/assets/icons.svg#ai">
+         </use>
+        </svg>
+       </div>
+       <p class="status">
+        Personal engineering lab
+       </p>
+       <h3>
+        Local AI agent platform
+       </h3>
+       <p>
+        Built a private model-serving and agent environment with authenticated APIs, task routing, controlled access, and repeatable performance testing.
+       </p>
+       <p class="project-proof">
+        <strong>
+         Evidence:
+        </strong>
+        Validated model loading, authenticated API responses, routing, and access boundaries
+       </p>
+       <a href="/work/local-ai-agent-platform.html">
+        Read the case study →
+       </a>
+      </article>
+      <article class="card project-card" data-project-category="security">
+       <div aria-hidden="true" class="project-icon-wrap">
+        <svg class="project-icon" focusable="false" viewBox="0 0 24 24">
+         <use href="/assets/icons.svg#security">
+         </use>
+        </svg>
+       </div>
+       <p class="status">
+        Security research lab
+       </p>
+       <h3>
+        Network threat monitoring and forensics
+       </h3>
+       <p>
+        Built repeatable workflows that correlate packet, flow, log, honeypot, IDS, and threat-research evidence.
+       </p>
+       <p class="project-proof">
+        <strong>
+         Evidence:
+        </strong>
+        Validated findings across more than one evidence source
+       </p>
+       <a href="/work/network-threat-monitoring-lab.html">
+        Read the case study →
+       </a>
+      </article>
+      <article class="card project-card" data-project-category="infra automation">
+       <div aria-hidden="true" class="project-icon-wrap">
+        <svg class="project-icon" focusable="false" viewBox="0 0 24 24">
+         <use href="/assets/icons.svg#automation">
+         </use>
+        </svg>
+       </div>
+       <p class="status">
+        Public personal project
+       </p>
+       <h3>
+        Self-hosting and secure delivery for socket23.com
+       </h3>
+       <p>
+        Rebuilt this site around protected changes, immutable images, least-privilege containers, health checks, verification, and rollback.
+       </p>
+       <p class="project-proof">
+        <strong>
+         Evidence:
+        </strong>
+        Validated CI, image integrity, runtime controls, rollback, and public delivery
+       </p>
+       <a href="/work/socket23-hosting-platform.html">
+        Read the case study →
+       </a>
+      </article>
+      <article class="card project-card" data-project-category="cloud automation recovery">
+       <div aria-hidden="true" class="project-icon-wrap">
+        <svg class="project-icon" focusable="false" viewBox="0 0 24 24">
+         <use href="/assets/icons.svg#cloud">
+         </use>
+        </svg>
+       </div>
+       <p class="status">
+        Microsoft cloud work
+       </p>
+       <h3>
+        Azure Virtual Desktop recovery automation
+       </h3>
+       <p>
+        Deployed and repaired AVD session hosts, then turned the recovery sequence into staged, discoverable, validated automation.
+       </p>
+       <p class="project-proof">
+        <strong>
+         Evidence:
+        </strong>
+        Validated registration, agent health, profiles, sessions, and deployment logs
+       </p>
+       <a href="/work/avd-recovery-automation.html">
+        Read the case study →
+       </a>
+      </article>
+      <article class="card project-card" data-project-category="recovery">
+       <div aria-hidden="true" class="project-icon-wrap">
+        <svg class="project-icon" focusable="false" viewBox="0 0 24 24">
+         <use href="/assets/icons.svg#recovery">
+         </use>
+        </svg>
+       </div>
+       <p class="status">
+        Data recovery work
+       </p>
+       <h3>
+        Legacy Apple HFS+ recovery
+       </h3>
+       <p>
+        Recovered user data from legacy HFS+ and encrypted sparse images while protecting the authoritative source.
+       </p>
+       <p class="project-proof">
+        <strong>
+         Evidence:
+        </strong>
+        Validated repair, mount, decryption, and recovered file access
+       </p>
+       <a href="/work/legacy-hfs-data-recovery.html">
+        Read the case study →
+       </a>
+      </article>
+      <article class="card project-card" data-project-category="network security">
+       <div aria-hidden="true" class="project-icon-wrap">
+        <svg class="project-icon" focusable="false" viewBox="0 0 24 24">
+         <use href="/assets/icons.svg#network">
+         </use>
+        </svg>
+       </div>
+       <p class="status">
+        Networking and security work
+       </p>
+       <h3>
+        Network segmentation and firewall troubleshooting
+       </h3>
+       <p>
+        Mapped a flat network and produced a dependency-aware, recoverable VLAN cutover plan alongside firewall troubleshooting.
+       </p>
+       <p class="project-proof">
+        <strong>
+         Evidence:
+        </strong>
+        Validated dependencies, management recovery, routing, DNS, and firewall behavior
+       </p>
+       <a href="/work/network-segmentation.html">
+        Read the case study →
+       </a>
+      </article>
+      <article class="card project-card" data-project-category="infra recovery">
+       <div aria-hidden="true" class="project-icon-wrap">
+        <svg class="project-icon" focusable="false" viewBox="0 0 24 24">
+         <use href="/assets/icons.svg#storage">
+         </use>
+        </svg>
+       </div>
+       <p class="status">
+        Production infrastructure work
+       </p>
+       <h3>
+        Production-safe SAN handling
+       </h3>
+       <p>
+        Created a deliberate discovery workflow that kept unknown source storage offline and read-only until identity was proven.
+       </p>
+       <p class="project-proof">
+        <strong>
+         Evidence:
+        </strong>
+        Validated serial identity, offline state, mappings, and target-only initialization
+       </p>
+       <a href="/work/production-safe-san-handling.html">
+        Read the case study →
+       </a>
+      </article>
+     </div>
+    </div>
+   </section>
+   <section class="panel alt">
+    <div class="container">
+     <p class="section-kicker">
+      More work across the stack
+     </p>
+     <h2>
+      A broader project inventory
+     </h2>
+     <div class="grid-2 inventory-grid">
+      <article class="card">
+       <h3>
+        Infrastructure, storage, and recovery
+       </h3>
+       <ul>
+        <li>
+         Multi-node Proxmox with ZFS, containers, virtual machines, bridges, scheduled backups, and Proxmox Backup Server
+        </li>
+        <li>
+         VMware-to-Proxmox and VMware-to-Hyper-V conversion testing across boot, disk, network, and virtual hardware
+        </li>
+        <li>
+         Multi-terabyte file server migration planning across storage, SMB, applications, permissions, and domain services
+        </li>
+        <li>
+         ReFS design with 64 KB allocation units for Hyper-V and Veeam workloads
+        </li>
+        <li>
+         Private and routed Hyper-V networks for isolated recovery testing
+        </li>
+        <li>
+         Active Directory health and migration validation with repadmin, dcdiag, netdom, nltest, DNS, and service checks
+        </li>
+       </ul>
+      </article>
+      <article class="card">
+       <h3>
+        Networking and security
+       </h3>
+       <ul>
+        <li>
+         Sophos XGS DNAT, SNAT, firewall policy, DNS forwarding, VPN routing, and service publishing
+        </li>
+        <li>
+         Cloudflare DNS migration, stale-record troubleshooting, proxy behavior, NAT, and public-path validation
+        </li>
+        <li>
+         Tailscale management paths for Linux, Macs, agents, and security appliances
+        </li>
+        <li>
+         Authorized Wi-Fi Pineapple remote lab access and passive collection research
+        </li>
+        <li>
+         IDS, packet, flow, endpoint, and threat-intelligence correlation
+        </li>
+        <li>
+         Exploit research mapped to CVEs, affected services, and likely objectives
+        </li>
+       </ul>
+      </article>
+      <article class="card">
+       <h3>
+        Microsoft 365 and Azure
+       </h3>
+       <ul>
+        <li>
+         Exchange Online mail-flow connectors for printers and scan-to-email
+        </li>
+        <li>
+         Archive provisioning, folder statistics, retention, capacity, and visibility troubleshooting
+        </li>
+        <li>
+         Teams application access policies for an approved HubSpot integration
+        </li>
+        <li>
+         Conditional Access location and grant-control troubleshooting
+        </li>
+        <li>
+         OneAuth, AAD Broker Plugin, OneDrive, Outlook, tenant mapping, and token-state repair
+        </li>
+        <li>
+         Azure PowerShell deployment, discovery, tracking, and recovery workflows
+        </li>
+       </ul>
+      </article>
+      <article class="card">
+       <h3>
+        Automation and systems administration
+       </h3>
+       <ul>
+        <li>
+         Repeatable PowerShell diagnostics for AD, Hyper-V, Exchange Online, Azure, networking, storage, and event logs
+        </li>
+        <li>
+         Structured output and CSV evidence for technical findings
+        </li>
+        <li>
+         Windows bugcheck, kernel-power, memory-dump, thermal-sensor, and device-health analysis
+        </li>
+        <li>
+         Ubuntu, Debian, Proxmox, Docker, systemd, SSH, mounts, packages, repositories, and interfaces
+        </li>
+        <li>
+         Wildcard certificate automation with Dehydrated and Cloudflare DNS-01
+        </li>
+        <li>
+         SSH keys, tunnels, allowlists, and loopback-bound management services
+        </li>
+       </ul>
+      </article>
+      <article class="card">
+       <h3>
+        AI systems and agents
+       </h3>
+       <ul>
+        <li>
+         Local model serving across vLLM, llama.cpp, LM Studio, and Ollama
+        </li>
+        <li>
+         OpenAI-compatible APIs for controlled LAN and Tailscale access
+        </li>
+        <li>
+         OpenClaw and Hermes connected to local and hosted models
+        </li>
+        <li>
+         Task-based routing between general and coding models
+        </li>
+        <li>
+         Memory, context, quantization, and inference-engine comparisons
+        </li>
+        <li>
+         AI-assisted alert triage, attacker correlation, CVE enrichment, and reporting design
+        </li>
+       </ul>
+      </article>
+      <article class="card">
+       <h3>
+        Hybrid personal lab
+       </h3>
+       <ul>
+        <li>
+         Proxmox, Windows Server, Active Directory, Security Onion, Docker, SAN storage, local AI, and segmented zones
+        </li>
+        <li>
+         Production-style validation and recovery rehearsals
+        </li>
+        <li>
+         Repeatable PCAP and network-forensics exercises
+        </li>
+        <li>
+         CAPEv2 malware-analysis planning for Proxmox
+        </li>
+        <li>
+         Security monitoring and private AI integration experiments
+        </li>
+        <li>
+         Public notes that omit credentials, internal addresses, and sensitive operational detail
+        </li>
+       </ul>
+      </article>
+     </div>
+    </div>
+   </section>
+   <section class="panel">
+    <div class="container centered narrow">
+     <h2>
+      What the inventory says about me
+     </h2>
+     <p>
+      I am most useful when a problem crosses systems, the starting state is unclear, and the work needs both hands-on execution and a safe recovery path.
+     </p>
+     <a class="btn primary" href="/experience.html">
+      See how the experience connects
+     </a>
+    </div>
+   </section>
+  </main>
+  <footer class="footer">
+   <div class="container">
+    <p>
+     <strong>
+      Joseph Miller
+     </strong>
+     · Oregon
+    </p>
+    <p class="footer-links">
+     <a href="https://github.com/socket23" rel="noopener noreferrer" target="_blank">
+      GitHub
+     </a>
+     <a href="https://www.linkedin.com/in/joseph-miller-cybersecurity" rel="noopener noreferrer" target="_blank">
+      LinkedIn
+     </a>
+     <a href="https://www.credly.com/users/josephamiller" rel="noopener noreferrer" target="_blank">
+      Credly
+     </a>
+    </p>
+    <p class="fine-print">
+     ©
+     <span id="year">
+     </span>
+     Joseph Miller. Socket23 is my personal technical lab and publishing handle.
+    </p>
+   </div>
+  </footer>
+ </body>
 </html>

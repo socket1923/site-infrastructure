@@ -1,12 +1,20 @@
 # Security review
 
-Review date: 2026-07-20
+Review dates: 2026-07-20; portfolio privacy update 2026-07-24
 
 ## Executive result
 
 The public site is currently reachable through Cloudflare and the node11 HTTPS origin returns the same content. The repository had no CI workflow, no branch protection, manual mutable-`latest` deployments, an ineffective Dockerfile, root container execution, host bind mounts, and a single-replica stop-first Swarm update policy. Live inspection found that node11 had recently restarted after an unclean shutdown: the previous Swarm task exited 255 and systemd-journald replaced a corrupted journal. Because this is a one-node Swarm, that restart is the strongest available explanation for the Cloudflare 522 window.
 
 No repository secrets were detected by Gitleaks. The live response has strong baseline security headers.
+
+### 2026-07-24 portfolio privacy and visual update
+
+The visual refresh remains fully static and same-origin. Project icons, the social preview, theme initialization, and the abstract dependency/process visuals are stored in the repository; no icon CDN, remote font, third-party widget, analytics client, embedded frame, live infrastructure API, or telemetry feed was added. The theme control stores only `system`, `dark`, or `light` locally in the visitor's browser.
+
+The public content no longer includes a city-level location or unnecessary active-lab hardware model details. Network Assistant copy explicitly states that this public portfolio has no connection to the assistant or its data. The abstract system and process visuals were created for publication and do not reproduce a real topology, asset count, address, hostname, or current operational state.
+
+Static validation now rejects private IPv4 addresses, MAC addresses, reviewed active-hardware identifiers, remotely hosted active/media assets, remote styles, network-capable browser clients, active SVG content, and missing privacy-safe presentation markers. CSP image loading was tightened from `'self' data:` to `'self'`.
 
 A passive OWASP ZAP baseline crawled 27 live URLs and reported **0 failures**, 56 passes, and 11 warnings. The warnings were primarily missing inherited headers on static assets, long-lived cache behavior, `style-src 'unsafe-inline'`, Cloudflare-injected `/cdn-cgi/` assets, and the public message form that existed during the review. Header inheritance and cache revalidation were fixed in the hardening release. The personal-portfolio release removes the form and its external processor, sets `form-action 'none'`, confirms the rewritten pages have no inline style attributes, and removes `unsafe-inline` from `style-src`.
 

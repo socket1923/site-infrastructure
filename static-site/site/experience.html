@@ -1,35 +1,408 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Experience | Joseph Miller</title>
-  <meta name="description" content="Hands-on experience from Joseph Miller across infrastructure, storage, recovery, Microsoft cloud, networking, cybersecurity, automation, and private AI." />
-  <meta property="og:title" content="Experience | Joseph Miller" />
-  <meta property="og:description" content="Hands-on experience from Joseph Miller across infrastructure, storage, recovery, Microsoft cloud, networking, cybersecurity, automation, and private AI." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://socket23.com/experience.html" />
-  <link rel="canonical" href="https://socket23.com/experience.html" />
-  <meta name="color-scheme" content="dark light" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%2300D1B2'/><text x='50' y='58' font-size='42' text-anchor='middle' fill='white'>J</text></svg>" />
-  <link rel="stylesheet" href="/styles.css?v=20260720-projects1" />
-  <script src="/scripts.js?v=20260720-projects1" defer></script>
-</head>
-<body>
-  <header class="nav"><div class="container nav-inner"><a class="brand" href="/">Joseph Miller <span>@socket23</span></a><nav id="menu" class="menu" data-state="closed" aria-label="Primary navigation"><a href="/projects.html">Projects</a><a href="/experience.html">Experience</a><a href="/about.html">About</a><a href="/lab.html">Lab</a><a href="/blog.html">Notes</a><a href="/contact.html">Connect</a></nav><button id="menuBtn" class="menu-btn" aria-expanded="false" aria-controls="menu" aria-label="Open navigation">&#9776;</button></div></header>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>
+   Experience | Joseph Miller
+  </title>
+  <meta content="Hands-on experience from Joseph Miller across infrastructure, storage, recovery, Microsoft cloud, networking, cybersecurity, automation, and private AI." name="description"/>
+  <meta content="Experience | Joseph Miller" property="og:title"/>
+  <meta content="Hands-on experience from Joseph Miller across infrastructure, storage, recovery, Microsoft cloud, networking, cybersecurity, automation, and private AI." property="og:description"/>
+  <meta content="website" property="og:type"/>
+  <meta content="https://socket23.com/experience.html" property="og:url"/>
+  <link href="https://socket23.com/experience.html" rel="canonical"/>
+  <meta content="dark light" name="color-scheme"/>
+  <link href="/assets/favicon.svg" rel="icon"/>
+  <script src="/theme-init.js?v=20260724-polish4">
+  </script>
+  <link href="/styles.css?v=20260724-polish4" rel="stylesheet"/>
+  <script defer="" src="/scripts.js?v=20260724-polish4">
+  </script>
+  <meta content="https://socket23.com/assets/og/socket23-portfolio.png" property="og:image"/>
+  <meta content="1200" property="og:image:width"/>
+  <meta content="630" property="og:image:height"/>
+  <meta content="Joseph Miller — infrastructure, cybersecurity, and private AI portfolio" property="og:image:alt"/>
+  <meta content="summary_large_image" name="twitter:card"/>
+ </head>
+ <body>
+  <header class="nav">
+   <div class="container nav-inner">
+    <a class="brand" href="/">
+     Joseph Miller
+     <span>
+      @socket23
+     </span>
+    </a>
+    <nav aria-label="Primary navigation" class="menu" data-state="closed" id="menu">
+     <a href="/projects.html">
+      Projects
+     </a>
+     <a href="/experience.html">
+      Experience
+     </a>
+     <a href="/about.html">
+      About
+     </a>
+     <a href="/lab.html">
+      Lab
+     </a>
+     <a href="/blog.html">
+      Notes
+     </a>
+     <a href="/contact.html">
+      Connect
+     </a>
+    </nav>
+    <div class="nav-actions">
+     <button aria-label="Theme: system. Activate to use dark." class="theme-btn" id="themeBtn" title="Theme: system" type="button">
+      <span aria-hidden="true" class="theme-symbol">
+       ◐
+      </span>
+      <span class="theme-label" id="themeLabel">
+       System
+      </span>
+     </button>
+     <button aria-controls="menu" aria-expanded="false" aria-label="Open navigation" class="menu-btn" id="menuBtn">
+      ☰
+     </button>
+    </div>
+   </div>
+  </header>
   <main>
-<section class="hero"><div class="container hero-copy"><p class="eyebrow">Experience</p><h1>I learned by following problems across the stack.</h1><p class="lead">My experience comes from migrations, recoveries, troubleshooting, lab research, and operating the systems myself. I am comfortable moving between the architectural view and the low-level evidence.</p></div></section>
-<section class="panel"><div class="container capability-list">
-<article class="card feature"><div><p class="status">Infrastructure and virtualization</p><h2>I understand the full migration path</h2><p>I have moved, restored, and tested workloads across VMware, Hyper-V, and Proxmox while accounting for boot mode, virtual hardware, storage ownership, networking, identity, applications, and rollback.</p><p><a href="/work/vmware-hyper-v-san-migration.html">Enterprise migration case study →</a></p></div><ul><li>VMware ESXi and vCenter</li><li>Windows Server 2025 Hyper-V</li><li>Proxmox VE and Proxmox Backup Server</li><li>Dell PowerEdge and PowerVault SAN environments</li><li>Veeam Direct SAN recovery</li></ul></article>
-<article class="card feature"><div><p class="status">Storage, backup, and recovery</p><h2>I treat source protection as part of the job</h2><p>I have worked with SAS, iSCSI, LUN mappings, MPIO, VMFS, ReFS, ZFS, VHDX, backups, and isolated restores. I want proof that data stayed protected and the restored system performs its real function.</p><p><a href="/work/production-safe-san-handling.html">SAN safety case study →</a></p></div><ul><li>OfflineAll and disabled automount</li><li>Read-only source LUN handling</li><li>64 KB ReFS target volumes</li><li>Restore-point and disk-count validation</li><li>Application and network recovery checks</li></ul></article>
-<article class="card feature"><div><p class="status">Microsoft cloud and identity</p><h2>I follow identity beyond the sign-in screen</h2><p>I have worked through Azure Virtual Desktop, Active Directory, Microsoft 365, Exchange Online, Conditional Access, Teams integrations, OneDrive, Outlook, profiles, tokens, and application registration.</p><p><a href="/work/avd-recovery-automation.html">AVD automation case study →</a></p></div><ul><li>Session-host deployment and registration</li><li>DNS, SYSVOL, NETLOGON, FSMO, and replication</li><li>Mail flow and archive troubleshooting</li><li>OneAuth and AAD Broker Plugin repair</li><li>PowerShell-based validation</li></ul></article>
-<article class="card feature"><div><p class="status">Networking and firewalls</p><h2>I trace the complete path</h2><p>I have mapped and diagnosed VLANs, switch ports, routes, NAT, DNS, TLS, VPN paths, private management access, Cloudflare proxying, and the service behind the firewall rule.</p><p><a href="/work/network-segmentation.html">Network segmentation case study →</a></p></div><ul><li>Sophos XGS</li><li>Juniper and Meraki switching</li><li>DNAT, SNAT, routing, and DNS forwarding</li><li>Tailscale and SSH tunnels</li><li>dig, curl, OpenSSL, logs, and port tests</li></ul></article>
-<article class="card feature"><div><p class="status">Cybersecurity and monitoring</p><h2>I correlate evidence before deciding what an alert means</h2><p>I use packets, Zeek logs, flows, IDS alerts, endpoint context, honeypot activity, and threat intelligence to separate noise from activity that deserves investigation.</p><p><a href="/work/network-threat-monitoring-lab.html">Threat-monitoring lab case study →</a></p></div><ul><li>Security Onion and Elastic</li><li>Zeek and Wireshark</li><li>DShield honeypot data</li><li>SiLK network flows</li><li>CVE and exploit research</li></ul></article>
-<article class="card feature"><div><p class="status">Automation and administration</p><h2>I use code and evidence to make repeated work safer</h2><p>I build diagnostics and staged scripts with PowerShell, Linux shell tools, APIs, logs, registry data, structured output, and explicit validation checkpoints.</p></div><ul><li>AD, Hyper-V, Exchange Online, and Azure diagnostics</li><li>Resource discovery and deployment tracking</li><li>CSV exports and validation logs</li><li>Linux, Docker, systemd, packages, and storage</li><li>Certificate and DNS automation</li></ul></article>
-<article class="card feature"><div><p class="status">Private AI systems</p><h2>I approach AI as infrastructure</h2><p>I have built GPU-backed inference, APIs, interfaces, local model routing, and agent platforms while treating authentication, remote access, capacity, logs, storage, upgrades, and recovery as part of the design.</p><p><a href="/work/local-ai-agent-platform.html">Local AI platform case study →</a></p></div><ul><li>NVIDIA RTX A6000 48 GB</li><li>vLLM, llama.cpp, LM Studio, and Ollama</li><li>OpenClaw and Hermes</li><li>OpenAI-compatible APIs</li><li>Tailscale-controlled access</li></ul></article>
-</div></section>
-<section class="panel alt"><div class="container centered narrow"><h2>Where this experience is strongest</h2><p>I do my best work when several systems are involved, the documentation is incomplete, the risk is real, and the next step needs to be based on evidence instead of guesswork.</p><a class="btn primary" href="/projects.html">See the work behind it</a></div></section>
-</main>
-  <footer class="footer"><div class="container"><p><strong>Joseph Miller</strong> · Sandy, Oregon</p><p class="footer-links"><a href="https://github.com/socket23" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://www.linkedin.com/in/joseph-miller-cybersecurity" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://www.credly.com/users/josephamiller" target="_blank" rel="noopener noreferrer">Credly</a></p><p class="fine-print">© <span id="year"></span> Joseph Miller. Socket23 is my personal technical lab and publishing handle.</p></div></footer>
-</body>
+   <section class="hero">
+    <div class="container hero-copy">
+     <p class="eyebrow">
+      Experience
+     </p>
+     <h1>
+      I learned by following problems across the stack.
+     </h1>
+     <p class="lead">
+      My experience comes from migrations, recoveries, troubleshooting, lab research, and operating the systems myself. I am comfortable moving between the architectural view and the low-level evidence.
+     </p>
+    </div>
+   </section>
+   <section class="panel">
+    <div class="container capability-list">
+     <article class="card feature">
+      <div>
+       <div aria-hidden="true" class="project-icon-wrap">
+        <svg class="project-icon" focusable="false" viewBox="0 0 24 24">
+         <use href="/assets/icons.svg#virtualization">
+         </use>
+        </svg>
+       </div>
+       <p class="status">
+        Infrastructure and virtualization
+       </p>
+       <h2>
+        I understand the full migration path
+       </h2>
+       <p>
+        I have moved, restored, and tested workloads across VMware, Hyper-V, and Proxmox while accounting for boot mode, virtual hardware, storage ownership, networking, identity, applications, and rollback.
+       </p>
+       <p>
+        <a href="/work/vmware-hyper-v-san-migration.html">
+         Enterprise migration case study →
+        </a>
+       </p>
+      </div>
+      <ul>
+       <li>
+        VMware ESXi and vCenter
+       </li>
+       <li>
+        Windows Server 2025 Hyper-V
+       </li>
+       <li>
+        Proxmox VE and Proxmox Backup Server
+       </li>
+       <li>
+        Dell PowerEdge and PowerVault SAN environments
+       </li>
+       <li>
+        Veeam Direct SAN recovery
+       </li>
+      </ul>
+     </article>
+     <article class="card feature">
+      <div>
+       <div aria-hidden="true" class="project-icon-wrap">
+        <svg class="project-icon" focusable="false" viewBox="0 0 24 24">
+         <use href="/assets/icons.svg#storage">
+         </use>
+        </svg>
+       </div>
+       <p class="status">
+        Storage, backup, and recovery
+       </p>
+       <h2>
+        I treat source protection as part of the job
+       </h2>
+       <p>
+        I have worked with SAS, iSCSI, LUN mappings, MPIO, VMFS, ReFS, ZFS, VHDX, backups, and isolated restores. I want proof that data stayed protected and the restored system performs its real function.
+       </p>
+       <p>
+        <a href="/work/production-safe-san-handling.html">
+         SAN safety case study →
+        </a>
+       </p>
+      </div>
+      <ul>
+       <li>
+        OfflineAll and disabled automount
+       </li>
+       <li>
+        Read-only source LUN handling
+       </li>
+       <li>
+        64 KB ReFS target volumes
+       </li>
+       <li>
+        Restore-point and disk-count validation
+       </li>
+       <li>
+        Application and network recovery checks
+       </li>
+      </ul>
+     </article>
+     <article class="card feature">
+      <div>
+       <div aria-hidden="true" class="project-icon-wrap">
+        <svg class="project-icon" focusable="false" viewBox="0 0 24 24">
+         <use href="/assets/icons.svg#network">
+         </use>
+        </svg>
+       </div>
+       <p class="status">
+        Microsoft cloud and identity
+       </p>
+       <h2>
+        I follow identity beyond the sign-in screen
+       </h2>
+       <p>
+        I have worked through Azure Virtual Desktop, Active Directory, Microsoft 365, Exchange Online, Conditional Access, Teams integrations, OneDrive, Outlook, profiles, tokens, and application registration.
+       </p>
+       <p>
+        <a href="/work/avd-recovery-automation.html">
+         AVD automation case study →
+        </a>
+       </p>
+      </div>
+      <ul>
+       <li>
+        Session-host deployment and registration
+       </li>
+       <li>
+        DNS, SYSVOL, NETLOGON, FSMO, and replication
+       </li>
+       <li>
+        Mail flow and archive troubleshooting
+       </li>
+       <li>
+        OneAuth and AAD Broker Plugin repair
+       </li>
+       <li>
+        PowerShell-based validation
+       </li>
+      </ul>
+     </article>
+     <article class="card feature">
+      <div>
+       <div aria-hidden="true" class="project-icon-wrap">
+        <svg class="project-icon" focusable="false" viewBox="0 0 24 24">
+         <use href="/assets/icons.svg#cloud">
+         </use>
+        </svg>
+       </div>
+       <p class="status">
+        Networking and firewalls
+       </p>
+       <h2>
+        I trace the complete path
+       </h2>
+       <p>
+        I have mapped and diagnosed VLANs, switch ports, routes, NAT, DNS, TLS, VPN paths, private management access, Cloudflare proxying, and the service behind the firewall rule.
+       </p>
+       <p>
+        <a href="/work/network-segmentation.html">
+         Network segmentation case study →
+        </a>
+       </p>
+      </div>
+      <ul>
+       <li>
+        Sophos XGS
+       </li>
+       <li>
+        Juniper and Meraki switching
+       </li>
+       <li>
+        DNAT, SNAT, routing, and DNS forwarding
+       </li>
+       <li>
+        Tailscale and SSH tunnels
+       </li>
+       <li>
+        dig, curl, OpenSSL, logs, and port tests
+       </li>
+      </ul>
+     </article>
+     <article class="card feature">
+      <div>
+       <div aria-hidden="true" class="project-icon-wrap">
+        <svg class="project-icon" focusable="false" viewBox="0 0 24 24">
+         <use href="/assets/icons.svg#automation">
+         </use>
+        </svg>
+       </div>
+       <p class="status">
+        Cybersecurity and monitoring
+       </p>
+       <h2>
+        I correlate evidence before deciding what an alert means
+       </h2>
+       <p>
+        I use packets, Zeek logs, flows, IDS alerts, endpoint context, honeypot activity, and threat intelligence to separate noise from activity that deserves investigation.
+       </p>
+       <p>
+        <a href="/work/network-threat-monitoring-lab.html">
+         Threat-monitoring lab case study →
+        </a>
+       </p>
+      </div>
+      <ul>
+       <li>
+        Security Onion and Elastic
+       </li>
+       <li>
+        Zeek and Wireshark
+       </li>
+       <li>
+        DShield honeypot data
+       </li>
+       <li>
+        SiLK network flows
+       </li>
+       <li>
+        CVE and exploit research
+       </li>
+      </ul>
+     </article>
+     <article class="card feature">
+      <div>
+       <div aria-hidden="true" class="project-icon-wrap">
+        <svg class="project-icon" focusable="false" viewBox="0 0 24 24">
+         <use href="/assets/icons.svg#ai">
+         </use>
+        </svg>
+       </div>
+       <p class="status">
+        Automation and administration
+       </p>
+       <h2>
+        I use code and evidence to make repeated work safer
+       </h2>
+       <p>
+        I build diagnostics and staged scripts with PowerShell, Linux shell tools, APIs, logs, registry data, structured output, and explicit validation checkpoints.
+       </p>
+      </div>
+      <ul>
+       <li>
+        AD, Hyper-V, Exchange Online, and Azure diagnostics
+       </li>
+       <li>
+        Resource discovery and deployment tracking
+       </li>
+       <li>
+        CSV exports and validation logs
+       </li>
+       <li>
+        Linux, Docker, systemd, packages, and storage
+       </li>
+       <li>
+        Certificate and DNS automation
+       </li>
+      </ul>
+     </article>
+     <article class="card feature">
+      <div>
+       <p class="status">
+        Private AI systems
+       </p>
+       <h2>
+        I approach AI as infrastructure
+       </h2>
+       <p>
+        I have built GPU-backed inference, APIs, interfaces, local model routing, and agent platforms while treating authentication, remote access, capacity, logs, storage, upgrades, and recovery as part of the design.
+       </p>
+       <p>
+        <a href="/work/local-ai-agent-platform.html">
+         Local AI platform case study →
+        </a>
+       </p>
+      </div>
+      <ul>
+       <li>
+        High-memory professional NVIDIA GPU
+       </li>
+       <li>
+        vLLM, llama.cpp, LM Studio, and Ollama
+       </li>
+       <li>
+        OpenClaw and Hermes
+       </li>
+       <li>
+        OpenAI-compatible APIs
+       </li>
+       <li>
+        Tailscale-controlled access
+       </li>
+      </ul>
+     </article>
+    </div>
+   </section>
+   <section class="panel alt">
+    <div class="container centered narrow">
+     <h2>
+      Where this experience is strongest
+     </h2>
+     <p>
+      I do my best work when several systems are involved, the documentation is incomplete, the risk is real, and the next step needs to be based on evidence instead of guesswork.
+     </p>
+     <a class="btn primary" href="/projects.html">
+      See the work behind it
+     </a>
+    </div>
+   </section>
+  </main>
+  <footer class="footer">
+   <div class="container">
+    <p>
+     <strong>
+      Joseph Miller
+     </strong>
+     · Oregon
+    </p>
+    <p class="footer-links">
+     <a href="https://github.com/socket23" rel="noopener noreferrer" target="_blank">
+      GitHub
+     </a>
+     <a href="https://www.linkedin.com/in/joseph-miller-cybersecurity" rel="noopener noreferrer" target="_blank">
+      LinkedIn
+     </a>
+     <a href="https://www.credly.com/users/josephamiller" rel="noopener noreferrer" target="_blank">
+      Credly
+     </a>
+    </p>
+    <p class="fine-print">
+     ©
+     <span id="year">
+     </span>
+     Joseph Miller. Socket23 is my personal technical lab and publishing handle.
+    </p>
+   </div>
+  </footer>
+ </body>
 </html>

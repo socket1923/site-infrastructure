@@ -17,10 +17,10 @@ This is the source inventory for project and experience content on socket23.com.
 **Type:** Production infrastructure work
 
 - Migrated production workloads from VMware ESXi to Windows Server 2025 Hyper-V.
-- Used a Dell PowerEdge R620 as a temporary conversion and validation host.
+- Used a temporary conversion host for staging and validation.
 - Preserved VM identity, MAC addresses, disk layout, networking, and application availability.
 - Performed isolated boot tests before controlled cutovers.
-- Designed temporary and permanent storage layouts around a Dell ME4024 SAN.
+- Designed temporary and permanent storage layouts around an enterprise SAN.
 - Configured SAS initiators, host groups, LUN mappings, MPIO, and read-only source access.
 - Kept source VMFS LUNs offline and read-only in Windows.
 - Used dedicated ReFS volumes for restored Hyper-V workloads.
@@ -33,7 +33,7 @@ This is the source inventory for project and experience content on socket23.com.
 
 **Type:** Personal lab and engineering work
 
-- Built a local AI workstation around an NVIDIA RTX A6000 with 48 GB VRAM.
+- Built a local AI workstation around a high-memory professional NVIDIA GPU.
 - Operated Ubuntu, NVIDIA drivers, CUDA, LM Studio, Ollama, llama.cpp, and vLLM.
 - Hosted OpenAI-compatible APIs for controlled LAN and Tailscale access.
 - Deployed OpenClaw Gateway in a Proxmox Ubuntu container and connected it to local models.
