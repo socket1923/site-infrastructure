@@ -1,27 +1,269 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Technical Notes | Joseph Miller</title>
-  <meta name="description" content="Technical writing from Joseph Miller about infrastructure migrations, SAN safety, recovery validation, network forensics, Azure Virtual Desktop, and local AI." />
-  <meta property="og:title" content="Technical Notes | Joseph Miller" />
-  <meta property="og:description" content="Technical writing from Joseph Miller about infrastructure migrations, SAN safety, recovery validation, network forensics, Azure Virtual Desktop, and local AI." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://socket23.com/blog.html" />
-  <link rel="canonical" href="https://socket23.com/blog.html" />
-  <meta name="color-scheme" content="dark light" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%2300D1B2'/><text x='50' y='58' font-size='42' text-anchor='middle' fill='white'>J</text></svg>" />
-  <link rel="stylesheet" href="/styles.css?v=20260720-projects1" />
-  <script src="/scripts.js?v=20260720-projects1" defer></script>
-</head>
-<body>
-  <header class="nav"><div class="container nav-inner"><a class="brand" href="/">Joseph Miller <span>@socket23</span></a><nav id="menu" class="menu" data-state="closed" aria-label="Primary navigation"><a href="/projects.html">Projects</a><a href="/experience.html">Experience</a><a href="/about.html">About</a><a href="/lab.html">Lab</a><a href="/blog.html">Notes</a><a href="/contact.html">Connect</a></nav><button id="menuBtn" class="menu-btn" aria-expanded="false" aria-controls="menu" aria-label="Open navigation">&#9776;</button></div></header>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>
+   Technical Notes | Joseph Miller
+  </title>
+  <meta content="Technical writing from Joseph Miller about infrastructure migrations, SAN safety, recovery validation, network forensics, Azure Virtual Desktop, and local AI." name="description"/>
+  <meta content="Technical Notes | Joseph Miller" property="og:title"/>
+  <meta content="Technical writing from Joseph Miller about infrastructure migrations, SAN safety, recovery validation, network forensics, Azure Virtual Desktop, and local AI." property="og:description"/>
+  <meta content="website" property="og:type"/>
+  <meta content="https://socket23.com/blog.html" property="og:url"/>
+  <link href="https://socket23.com/blog.html" rel="canonical"/>
+  <meta content="dark light" name="color-scheme"/>
+  <link href="/assets/favicon.svg" rel="icon"/>
+  <script src="/theme-init.js?v=20260724-polish4">
+  </script>
+  <link href="/styles.css?v=20260724-polish4" rel="stylesheet"/>
+  <script defer="" src="/scripts.js?v=20260724-polish4">
+  </script>
+  <meta content="https://socket23.com/assets/og/socket23-portfolio.png" property="og:image"/>
+  <meta content="1200" property="og:image:width"/>
+  <meta content="630" property="og:image:height"/>
+  <meta content="Joseph Miller — infrastructure, cybersecurity, and private AI portfolio" property="og:image:alt"/>
+  <meta content="summary_large_image" name="twitter:card"/>
+ </head>
+ <body>
+  <header class="nav">
+   <div class="container nav-inner">
+    <a class="brand" href="/">
+     Joseph Miller
+     <span>
+      @socket23
+     </span>
+    </a>
+    <nav aria-label="Primary navigation" class="menu" data-state="closed" id="menu">
+     <a href="/projects.html">
+      Projects
+     </a>
+     <a href="/experience.html">
+      Experience
+     </a>
+     <a href="/about.html">
+      About
+     </a>
+     <a href="/lab.html">
+      Lab
+     </a>
+     <a href="/blog.html">
+      Notes
+     </a>
+     <a href="/contact.html">
+      Connect
+     </a>
+    </nav>
+    <div class="nav-actions">
+     <button aria-label="Theme: system. Activate to use dark." class="theme-btn" id="themeBtn" title="Theme: system" type="button">
+      <span aria-hidden="true" class="theme-symbol">
+       ◐
+      </span>
+      <span class="theme-label" id="themeLabel">
+       System
+      </span>
+     </button>
+     <button aria-controls="menu" aria-expanded="false" aria-label="Open navigation" class="menu-btn" id="menuBtn">
+      ☰
+     </button>
+    </div>
+   </div>
+  </header>
   <main>
-<section class="hero"><div class="container hero-copy"><p class="eyebrow">Technical notes</p><h1>What I learned while doing the work.</h1><p class="lead">This is the writing queue behind the project inventory: sanitized build notes, decisions, failure modes, recovery checks, and technical explanations I can support.</p><p>I would rather publish a useful record than pretend every experiment was smooth or every system began with clean documentation.</p></div></section>
-<section class="panel"><div class="container"><p class="section-kicker">Case-study source material</p><h2>Notes I’m developing from completed work</h2><div class="grid-3"><article class="card note-card"><p class="status">Virtualization and SAN</p><h3>Keeping VMFS source LUNs safe during a Hyper-V migration</h3><p>OfflineAll, disabled automount, read-only source access, serial-number checks, target ReFS design, and the point where conversion becomes cutover.</p><span>Draft queue</span></article><article class="card note-card"><p class="status">Recovery validation</p><h3>A restored VM is not the same as a recovered service</h3><p>What I check after restore: disk count, boot, identity, DNS, networking, applications, dependencies, backup visibility, and final storage state.</p><span>Draft queue</span></article><article class="card note-card"><p class="status">Active Directory</p><h3>Testing a recovered domain controller without creating a duplicate</h3><p>Private Hyper-V networks, static identity, DNS, SYSVOL, NETLOGON, FSMO ownership, replication, and controlled production return.</p><span>Draft queue</span></article><article class="card note-card"><p class="status">Local AI</p><h3>Choosing between vLLM, llama.cpp, LM Studio, and Ollama</h3><p>How GPU memory, context, quantization, API behavior, experimentation, and stable serving change the answer.</p><span>Draft queue</span></article><article class="card note-card"><p class="status">Network forensics</p><h3>Following an alert through Zeek, SiLK, packet data, and CVE research</h3><p>A repeatable investigation path for separating false positives from activity that deserves deeper attention.</p><span>Draft queue</span></article><article class="card note-card"><p class="status">Data recovery</p><h3>Recovering a PowerPC-era HFS+ image on modern Linux</h3><p>Raw-image attachment, Apple partition discovery, journaled HFS+ repair, encrypted sparse images, and careful file transfer.</p><span>Draft queue</span></article><article class="card note-card"><p class="status">Azure Virtual Desktop</p><h3>Turning AVD session-host recovery into staged automation</h3><p>Discovery, deployment tracking, registration, agent health, profile behavior, validation logs, and safe reruns.</p><span>Draft queue</span></article><article class="card note-card"><p class="status">Public infrastructure</p><h3>What protected PR-to-production delivery looks like on a small Swarm</h3><p>Immutable digests, multi-architecture builds, non-root containers, health checks, start-first updates, runtime verification, and rollback.</p><span>Draft queue</span></article><article class="card note-card"><p class="status">Network segmentation</p><h3>Planning a VLAN cutover when the network starts flat</h3><p>Port maps, MAC evidence, trunks, DHCP, gateways, firewall policy, console access, and a sequence that keeps internet access intact.</p><span>Draft queue</span></article></div></div></section>
-<section class="panel alt"><div class="container centered narrow"><h2>The projects are available now</h2><p>The detailed project pages contain the confirmed context, my role, the work, and the validation. Notes will go deeper into the technical decisions without exposing private environments.</p><a class="btn primary" href="/projects.html">Browse the project inventory</a></div></section>
-</main>
-  <footer class="footer"><div class="container"><p><strong>Joseph Miller</strong> · Sandy, Oregon</p><p class="footer-links"><a href="https://github.com/socket23" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://www.linkedin.com/in/joseph-miller-cybersecurity" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://www.credly.com/users/josephamiller" target="_blank" rel="noopener noreferrer">Credly</a></p><p class="fine-print">© <span id="year"></span> Joseph Miller. Socket23 is my personal technical lab and publishing handle.</p></div></footer>
-</body>
+   <section class="hero">
+    <div class="container hero-copy">
+     <p class="eyebrow">
+      Technical notes
+     </p>
+     <h1>
+      What I learned while doing the work.
+     </h1>
+     <p class="lead">
+      This is the writing queue behind the project inventory: sanitized build notes, decisions, failure modes, recovery checks, and technical explanations I can support.
+     </p>
+     <p>
+      I would rather publish a useful record than pretend every experiment was smooth or every system began with clean documentation.
+     </p>
+    </div>
+   </section>
+   <section class="panel">
+    <div class="container">
+     <p class="section-kicker">
+      Case-study source material
+     </p>
+     <h2>
+      Notes I’m developing from completed work
+     </h2>
+     <div class="grid-3">
+      <article class="card note-card">
+       <p class="status">
+        Virtualization and SAN
+       </p>
+       <h3>
+        Keeping VMFS source LUNs safe during a Hyper-V migration
+       </h3>
+       <p>
+        OfflineAll, disabled automount, read-only source access, serial-number checks, target ReFS design, and the point where conversion becomes cutover.
+       </p>
+       <span>
+        Draft queue
+       </span>
+      </article>
+      <article class="card note-card">
+       <p class="status">
+        Recovery validation
+       </p>
+       <h3>
+        A restored VM is not the same as a recovered service
+       </h3>
+       <p>
+        What I check after restore: disk count, boot, identity, DNS, networking, applications, dependencies, backup visibility, and final storage state.
+       </p>
+       <span>
+        Draft queue
+       </span>
+      </article>
+      <article class="card note-card">
+       <p class="status">
+        Active Directory
+       </p>
+       <h3>
+        Testing a recovered domain controller without creating a duplicate
+       </h3>
+       <p>
+        Private Hyper-V networks, static identity, DNS, SYSVOL, NETLOGON, FSMO ownership, replication, and controlled production return.
+       </p>
+       <span>
+        Draft queue
+       </span>
+      </article>
+      <article class="card note-card">
+       <p class="status">
+        Local AI
+       </p>
+       <h3>
+        Choosing between vLLM, llama.cpp, LM Studio, and Ollama
+       </h3>
+       <p>
+        How GPU memory, context, quantization, API behavior, experimentation, and stable serving change the answer.
+       </p>
+       <span>
+        Draft queue
+       </span>
+      </article>
+      <article class="card note-card">
+       <p class="status">
+        Network forensics
+       </p>
+       <h3>
+        Following an alert through Zeek, SiLK, packet data, and CVE research
+       </h3>
+       <p>
+        A repeatable investigation path for separating false positives from activity that deserves deeper attention.
+       </p>
+       <span>
+        Draft queue
+       </span>
+      </article>
+      <article class="card note-card">
+       <p class="status">
+        Data recovery
+       </p>
+       <h3>
+        Recovering a PowerPC-era HFS+ image on modern Linux
+       </h3>
+       <p>
+        Raw-image attachment, Apple partition discovery, journaled HFS+ repair, encrypted sparse images, and careful file transfer.
+       </p>
+       <span>
+        Draft queue
+       </span>
+      </article>
+      <article class="card note-card">
+       <p class="status">
+        Azure Virtual Desktop
+       </p>
+       <h3>
+        Turning AVD session-host recovery into staged automation
+       </h3>
+       <p>
+        Discovery, deployment tracking, registration, agent health, profile behavior, validation logs, and safe reruns.
+       </p>
+       <span>
+        Draft queue
+       </span>
+      </article>
+      <article class="card note-card">
+       <p class="status">
+        Public infrastructure
+       </p>
+       <h3>
+        What protected PR-to-production delivery looks like on a small Swarm
+       </h3>
+       <p>
+        Immutable digests, multi-architecture builds, non-root containers, health checks, start-first updates, runtime verification, and rollback.
+       </p>
+       <span>
+        Draft queue
+       </span>
+      </article>
+      <article class="card note-card">
+       <p class="status">
+        Network segmentation
+       </p>
+       <h3>
+        Planning a VLAN cutover when the network starts flat
+       </h3>
+       <p>
+        Port maps, MAC evidence, trunks, DHCP, gateways, firewall policy, console access, and a sequence that keeps internet access intact.
+       </p>
+       <span>
+        Draft queue
+       </span>
+      </article>
+     </div>
+    </div>
+   </section>
+   <section class="panel alt">
+    <div class="container centered narrow">
+     <h2>
+      The projects are available now
+     </h2>
+     <p>
+      The detailed project pages contain the confirmed context, my role, the work, and the validation. Notes will go deeper into the technical decisions without exposing private environments.
+     </p>
+     <a class="btn primary" href="/projects.html">
+      Browse the project inventory
+     </a>
+    </div>
+   </section>
+  </main>
+  <footer class="footer">
+   <div class="container">
+    <p>
+     <strong>
+      Joseph Miller
+     </strong>
+     · Oregon
+    </p>
+    <p class="footer-links">
+     <a href="https://github.com/socket23" rel="noopener noreferrer" target="_blank">
+      GitHub
+     </a>
+     <a href="https://www.linkedin.com/in/joseph-miller-cybersecurity" rel="noopener noreferrer" target="_blank">
+      LinkedIn
+     </a>
+     <a href="https://www.credly.com/users/josephamiller" rel="noopener noreferrer" target="_blank">
+      Credly
+     </a>
+    </p>
+    <p class="fine-print">
+     ©
+     <span id="year">
+     </span>
+     Joseph Miller. Socket23 is my personal technical lab and publishing handle.
+    </p>
+   </div>
+  </footer>
+ </body>
 </html>

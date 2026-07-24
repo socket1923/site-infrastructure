@@ -56,7 +56,7 @@ GitHub does not hold a production SSH key. Production pulls the public image, re
 - Bounded CPU and memory
 - Rate limiting and request-size limits
 - Security headers on normal and error responses
-- No backend, database, account system, tracking, analytics, cookies, uploads, or public form
+- No backend, database, account system, tracking, analytics, cookies, uploads, public form, or live infrastructure feed
 
 Two replicas protect normal rolling updates and process failure. They do not provide node-level availability because the current Swarm has one active node.
 
@@ -65,6 +65,8 @@ Two replicas protect normal rolling updates and process failure. They do not pro
 The site uses a restrictive Content Security Policy:
 
 - scripts, styles, images, and connections are restricted to the site
+- SVG icons, the social preview, and all visual assets are served locally
+- theme preference is limited to `system`, `dark`, or `light` in browser-local storage
 - public form submission is prohibited with `form-action 'none'`
 - framing and plugins are blocked
 - mixed content is upgraded
@@ -86,7 +88,7 @@ Inline JavaScript and inline event handlers are rejected by the static validator
 │   ├── nginx.conf           # TLS, headers, limits, redirects, and static routing
 │   ├── compose.yaml         # local runtime definition
 │   ├── stack.yaml           # production Swarm definition
-│   └── site/                # HTML, CSS, and minimal navigation JavaScript
+│   └── site/                # HTML, CSS, local SVG assets, and progressive-enhancement JavaScript
 ├── SECURITY_REVIEW.md       # recorded security findings and verification
 └── README.md
 ```
@@ -103,13 +105,14 @@ cd ..
 scripts/smoke-test.sh socket23-site:local
 ```
 
-The validator checks local links, canonical URLs, the sitemap, case-study structure, person-first identity rules, insecure URLs, inline scripts, inline event handlers, form prohibition, CSP compatibility, and tabnabbing controls.
+The validator checks local links, canonical URLs, the sitemap, case-study structure, person-first identity rules, private-address and identifier patterns, remotely hosted active assets, network-capable browser code, unsafe SVG content, insecure URLs, inline scripts, inline event handlers, form prohibition, CSP compatibility, and tabnabbing controls.
 
 The smoke test builds and runs the same hardened container shape used by production and verifies:
 
 - HTTP-to-HTTPS redirect
 - HTTPS response
 - personal homepage and detailed case-study markers
+- local visual assets, project filters, and conceptual process diagrams
 - sitemap and robots discovery files
 - security headers
 - static-asset cache policy
@@ -151,7 +154,7 @@ The site intentionally does not publish a personal email address or phone number
 - [LinkedIn](https://www.linkedin.com/in/joseph-miller-cybersecurity)
 - [Credly](https://www.credly.com/users/josephamiller)
 
-Do not publish credentials, private keys, internal addresses, sensitive logs, diagnostic bundles, private infrastructure diagrams, or identifiable production details in this repository.
+Do not publish credentials, private keys, internal addresses, sensitive logs, diagnostic bundles, private infrastructure diagrams, live telemetry, or identifiable production details in this repository. Architecture visuals must be publication-specific abstractions rather than sanitized screenshots or copies of an operational diagram.
 
 ## License and reuse
 

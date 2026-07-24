@@ -1,30 +1,357 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Building a local AI agent platform | Joseph Miller</title>
-  <meta name="description" content="Joseph Miller’s RTX A6000 local AI platform using vLLM, llama.cpp, LM Studio, Ollama, OpenClaw, Hermes, OpenAI-compatible APIs, and Tailscale." />
-  <meta property="og:title" content="Building a local AI agent platform | Joseph Miller" />
-  <meta property="og:description" content="Joseph Miller’s RTX A6000 local AI platform using vLLM, llama.cpp, LM Studio, Ollama, OpenClaw, Hermes, OpenAI-compatible APIs, and Tailscale." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://socket23.com/work/local-ai-agent-platform.html" />
-  <link rel="canonical" href="https://socket23.com/work/local-ai-agent-platform.html" />
-  <meta name="color-scheme" content="dark light" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%2300D1B2'/><text x='50' y='58' font-size='42' text-anchor='middle' fill='white'>J</text></svg>" />
-  <link rel="stylesheet" href="/styles.css?v=20260720-projects1" />
-  <script src="/scripts.js?v=20260720-projects1" defer></script>
-</head>
-<body>
-  <header class="nav"><div class="container nav-inner"><a class="brand" href="/">Joseph Miller <span>@socket23</span></a><nav id="menu" class="menu" data-state="closed" aria-label="Primary navigation"><a href="/projects.html">Projects</a><a href="/experience.html">Experience</a><a href="/about.html">About</a><a href="/lab.html">Lab</a><a href="/blog.html">Notes</a><a href="/contact.html">Connect</a></nav><button id="menuBtn" class="menu-btn" aria-expanded="false" aria-controls="menu" aria-label="Open navigation">&#9776;</button></div></header>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>
+   Building a local AI agent platform | Joseph Miller
+  </title>
+  <meta content="Joseph Miller’s high-memory NVIDIA GPU local AI platform using vLLM, llama.cpp, LM Studio, Ollama, OpenClaw, Hermes, OpenAI-compatible APIs, and Tailscale." name="description"/>
+  <meta content="Building a local AI agent platform | Joseph Miller" property="og:title"/>
+  <meta content="Joseph Miller’s high-memory NVIDIA GPU local AI platform using vLLM, llama.cpp, LM Studio, Ollama, OpenClaw, Hermes, OpenAI-compatible APIs, and Tailscale." property="og:description"/>
+  <meta content="website" property="og:type"/>
+  <meta content="https://socket23.com/work/local-ai-agent-platform.html" property="og:url"/>
+  <link href="https://socket23.com/work/local-ai-agent-platform.html" rel="canonical"/>
+  <meta content="dark light" name="color-scheme"/>
+  <link href="/assets/favicon.svg" rel="icon"/>
+  <script src="/theme-init.js?v=20260724-polish4">
+  </script>
+  <link href="/styles.css?v=20260724-polish4" rel="stylesheet"/>
+  <script defer="" src="/scripts.js?v=20260724-polish4">
+  </script>
+  <meta content="https://socket23.com/assets/og/socket23-portfolio.png" property="og:image"/>
+  <meta content="1200" property="og:image:width"/>
+  <meta content="630" property="og:image:height"/>
+  <meta content="Joseph Miller — infrastructure, cybersecurity, and private AI portfolio" property="og:image:alt"/>
+  <meta content="summary_large_image" name="twitter:card"/>
+ </head>
+ <body>
+  <header class="nav">
+   <div class="container nav-inner">
+    <a class="brand" href="/">
+     Joseph Miller
+     <span>
+      @socket23
+     </span>
+    </a>
+    <nav aria-label="Primary navigation" class="menu" data-state="closed" id="menu">
+     <a href="/projects.html">
+      Projects
+     </a>
+     <a href="/experience.html">
+      Experience
+     </a>
+     <a href="/about.html">
+      About
+     </a>
+     <a href="/lab.html">
+      Lab
+     </a>
+     <a href="/blog.html">
+      Notes
+     </a>
+     <a href="/contact.html">
+      Connect
+     </a>
+    </nav>
+    <div class="nav-actions">
+     <button aria-label="Theme: system. Activate to use dark." class="theme-btn" id="themeBtn" title="Theme: system" type="button">
+      <span aria-hidden="true" class="theme-symbol">
+       ◐
+      </span>
+      <span class="theme-label" id="themeLabel">
+       System
+      </span>
+     </button>
+     <button aria-controls="menu" aria-expanded="false" aria-label="Open navigation" class="menu-btn" id="menuBtn">
+      ☰
+     </button>
+    </div>
+   </div>
+  </header>
   <main>
-<section class="hero case-hero"><div class="container hero-copy"><p class="breadcrumbs"><a href="/projects.html">Projects</a> / Building a local AI agent platform</p><p class="eyebrow">Personal engineering lab · Private AI · GPUs · Agents</p><h1>Building a local AI agent platform</h1><p class="lead">I built a local AI environment around an NVIDIA RTX A6000 with 48 GB of VRAM so I could operate model serving, APIs, gateways, and agent integrations myself.</p></div></section>
-<section class="panel"><div class="container"><div class="project-meta"><article class="card"><p class="status">Context</p><p>The environment combines Ubuntu, NVIDIA drivers, CUDA, several inference engines, OpenAI-compatible APIs, Proxmox-hosted components, Tailscale, OpenClaw, Hermes, and local and hosted model providers.</p></article><article class="card"><p class="status">My role</p><p>I built and operated the workstation, model servers, network access, agent gateways, service management, and model-routing experiments.</p></article><article class="card"><p class="status">Result</p><p>I created a private platform where local applications and agents can use controlled model endpoints and where I can compare models, runtimes, context, memory use, and task fit directly.</p></article></div></div></section>
-<section class="panel alt"><div class="container case-grid"><div><p class="section-kicker">The problem</p><h2>Why the work needed more than one tool</h2><p>Running a model is not the same as operating a dependable AI service. Model format, quantization, context length, VRAM, API behavior, authentication, network scope, startup, logs, storage, and client compatibility all affect the system.</p></div><div><h3>What could go wrong</h3><ul><li>Exposing unauthenticated model APIs beyond the intended network</li><li>Letting experiments compete for GPU memory without clear limits</li><li>Assuming OpenAI-compatible means every client behaves identically</li><li>Tying agents to one model or provider with no operational fallback</li><li>Treating agent credentials and conversation data as harmless test material</li></ul></div></div></section>
-<section class="panel"><div class="container case-grid"><div><p class="section-kicker">What I did</p><h2>The working sequence</h2><ul class="check-list"><li>Built the workstation on Ubuntu with NVIDIA drivers and CUDA</li><li>Ran models through LM Studio, Ollama, llama.cpp, and vLLM</li><li>Published OpenAI-compatible endpoints for controlled LAN and Tailscale use</li><li>Deployed OpenClaw Gateway in a Proxmox Ubuntu container and connected it to local models</li><li>Configured aliases, context windows, API authentication, agent credentials, and SSH tunneling</li><li>Connected Hermes to local and hosted providers, Telegram, Tailscale, and systemd</li><li>Separated general-task and coding models and evaluated routing by workload</li><li>Compared memory use, context behavior, inference engines, and quantization formats</li></ul></div><div><p class="section-kicker">How I validated it</p><h2>Evidence before completion</h2><ul class="check-list"><li>Confirmed models loaded within available VRAM and served repeatable API responses</li><li>Tested client compatibility through real applications and agent gateways</li><li>Verified access remained limited to intended LAN or Tailscale paths</li><li>Checked service startup and recovery under systemd or container supervision</li><li>Compared model behavior on the task types the routing was intended to serve</li></ul></div></div></section>
-<section class="panel alt"><div class="container split-callout"><div><p class="section-kicker">What this demonstrates</p><h2>The skill behind the tools</h2><p>This work shows how I approach AI as an operational system: hardware, serving, APIs, identity, networks, clients, data boundaries, and recovery all matter.</p><p class="disclosure">Production details are intentionally anonymized. I do not publish organization names, internal addresses, credentials, private topology, or sensitive recovery information.</p></div><div class="card"><h3>Platforms and tools</h3><div class="tech-list"><span>NVIDIA RTX A6000 48 GB</span><span>Ubuntu</span><span>CUDA</span><span>vLLM</span><span>llama.cpp</span><span>LM Studio</span><span>Ollama</span><span>OpenClaw</span><span>Hermes</span><span>Proxmox</span><span>Tailscale</span></div></div></div></section>
-<section class="panel"><div class="container centered narrow"><h2>Continue through the project inventory</h2><div class="actions centered-actions"><a class="btn primary" href="/projects.html">All projects</a><a class="btn ghost" href="/experience.html">Experience</a></div></div></section>
-</main>
-  <footer class="footer"><div class="container"><p><strong>Joseph Miller</strong> · Sandy, Oregon</p><p class="footer-links"><a href="https://github.com/socket23" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://www.linkedin.com/in/joseph-miller-cybersecurity" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://www.credly.com/users/josephamiller" target="_blank" rel="noopener noreferrer">Credly</a></p><p class="fine-print">© <span id="year"></span> Joseph Miller. Socket23 is my personal technical lab and publishing handle.</p></div></footer>
-</body>
+   <section class="hero case-hero">
+    <div class="container hero-copy">
+     <p class="breadcrumbs">
+      <a href="/projects.html">
+       Projects
+      </a>
+      / Building a local AI agent platform
+     </p>
+     <p class="eyebrow">
+      Personal engineering lab · Private AI · GPUs · Agents
+     </p>
+     <h1>
+      Building a local AI agent platform
+     </h1>
+     <p class="lead">
+      I built a local AI environment around a high-memory professional NVIDIA GPU so I could operate model serving, APIs, gateways, and agent integrations myself.
+     </p>
+    </div>
+   </section>
+   <section class="panel">
+    <div class="container">
+     <div class="project-meta">
+      <article class="card">
+       <p class="status">
+        Context
+       </p>
+       <p>
+        The environment combines Ubuntu, NVIDIA drivers, CUDA, several inference engines, OpenAI-compatible APIs, Proxmox-hosted components, Tailscale, OpenClaw, Hermes, and local and hosted model providers.
+       </p>
+      </article>
+      <article class="card">
+       <p class="status">
+        My role
+       </p>
+       <p>
+        I built and operated the workstation, model servers, network access, agent gateways, service management, and model-routing experiments.
+       </p>
+      </article>
+      <article class="card">
+       <p class="status">
+        Result
+       </p>
+       <p>
+        I created a private platform where local applications and agents can use controlled model endpoints and where I can compare models, runtimes, context, memory use, and task fit directly.
+       </p>
+      </article>
+     </div>
+    </div>
+   </section>
+   <section class="panel alt">
+    <div class="container">
+     <p class="section-kicker">
+      Safe working sequence
+     </p>
+     <h2>
+      How I reduced risk
+     </h2>
+     <ol class="process-flow flow-6">
+      <li>
+       Define boundary
+      </li>
+      <li>
+       Authenticate
+      </li>
+      <li>
+       Route
+      </li>
+      <li>
+       Serve
+      </li>
+      <li>
+       Observe
+      </li>
+      <li>
+       Tune
+      </li>
+     </ol>
+     <p class="fine-print centered">
+      Conceptual workflow only. No live topology, identifiers, or operational data are shown.
+     </p>
+    </div>
+   </section>
+   <section class="panel alt">
+    <div class="container case-grid">
+     <div>
+      <p class="section-kicker">
+       The problem
+      </p>
+      <h2>
+       Why the work needed more than one tool
+      </h2>
+      <p>
+       Running a model is not the same as operating a dependable AI service. Model format, quantization, context length, VRAM, API behavior, authentication, network scope, startup, logs, storage, and client compatibility all affect the system.
+      </p>
+     </div>
+     <div>
+      <h3>
+       What could go wrong
+      </h3>
+      <ul>
+       <li>
+        Exposing unauthenticated model APIs beyond the intended network
+       </li>
+       <li>
+        Letting experiments compete for GPU memory without clear limits
+       </li>
+       <li>
+        Assuming OpenAI-compatible means every client behaves identically
+       </li>
+       <li>
+        Tying agents to one model or provider with no operational fallback
+       </li>
+       <li>
+        Treating agent credentials and conversation data as harmless test material
+       </li>
+      </ul>
+     </div>
+    </div>
+   </section>
+   <section class="panel">
+    <div class="container case-grid">
+     <div>
+      <p class="section-kicker">
+       What I did
+      </p>
+      <h2>
+       The working sequence
+      </h2>
+      <ul class="check-list">
+       <li>
+        Built the workstation on Ubuntu with NVIDIA drivers and CUDA
+       </li>
+       <li>
+        Ran models through LM Studio, Ollama, llama.cpp, and vLLM
+       </li>
+       <li>
+        Published OpenAI-compatible endpoints for controlled LAN and Tailscale use
+       </li>
+       <li>
+        Deployed OpenClaw Gateway in a Proxmox Ubuntu container and connected it to local models
+       </li>
+       <li>
+        Configured aliases, context windows, API authentication, agent credentials, and SSH tunneling
+       </li>
+       <li>
+        Connected Hermes to local and hosted providers, Telegram, Tailscale, and systemd
+       </li>
+       <li>
+        Separated general-task and coding models and evaluated routing by workload
+       </li>
+       <li>
+        Compared memory use, context behavior, inference engines, and quantization formats
+       </li>
+      </ul>
+     </div>
+     <div>
+      <p class="section-kicker">
+       How I validated it
+      </p>
+      <h2>
+       Evidence before completion
+      </h2>
+      <ul class="check-list">
+       <li>
+        Confirmed models loaded within available VRAM and served repeatable API responses
+       </li>
+       <li>
+        Tested client compatibility through real applications and agent gateways
+       </li>
+       <li>
+        Verified access remained limited to intended LAN or Tailscale paths
+       </li>
+       <li>
+        Checked service startup and recovery under systemd or container supervision
+       </li>
+       <li>
+        Compared model behavior on the task types the routing was intended to serve
+       </li>
+      </ul>
+     </div>
+    </div>
+   </section>
+   <section class="panel alt">
+    <div class="container split-callout">
+     <div>
+      <p class="section-kicker">
+       What this demonstrates
+      </p>
+      <h2>
+       The skill behind the tools
+      </h2>
+      <p>
+       This work shows how I approach AI as an operational system: hardware, serving, APIs, identity, networks, clients, data boundaries, and recovery all matter.
+      </p>
+      <p class="disclosure">
+       Production details are intentionally anonymized. I do not publish organization names, internal addresses, credentials, private topology, or sensitive recovery information.
+      </p>
+     </div>
+     <div class="card">
+      <h3>
+       Platforms and tools
+      </h3>
+      <div class="tech-list">
+       <span>
+        High-memory professional NVIDIA GPU
+       </span>
+       <span>
+        Ubuntu
+       </span>
+       <span>
+        CUDA
+       </span>
+       <span>
+        vLLM
+       </span>
+       <span>
+        llama.cpp
+       </span>
+       <span>
+        LM Studio
+       </span>
+       <span>
+        Ollama
+       </span>
+       <span>
+        OpenClaw
+       </span>
+       <span>
+        Hermes
+       </span>
+       <span>
+        Proxmox
+       </span>
+       <span>
+        Tailscale
+       </span>
+      </div>
+     </div>
+    </div>
+   </section>
+   <section class="panel">
+    <div class="container centered narrow">
+     <h2>
+      Continue through the project inventory
+     </h2>
+     <div class="actions centered-actions">
+      <a class="btn primary" href="/projects.html">
+       All projects
+      </a>
+      <a class="btn ghost" href="/experience.html">
+       Experience
+      </a>
+     </div>
+    </div>
+   </section>
+  </main>
+  <footer class="footer">
+   <div class="container">
+    <p>
+     <strong>
+      Joseph Miller
+     </strong>
+     · Oregon
+    </p>
+    <p class="footer-links">
+     <a href="https://github.com/socket23" rel="noopener noreferrer" target="_blank">
+      GitHub
+     </a>
+     <a href="https://www.linkedin.com/in/joseph-miller-cybersecurity" rel="noopener noreferrer" target="_blank">
+      LinkedIn
+     </a>
+     <a href="https://www.credly.com/users/josephamiller" rel="noopener noreferrer" target="_blank">
+      Credly
+     </a>
+    </p>
+    <p class="fine-print">
+     ©
+     <span id="year">
+     </span>
+     Joseph Miller. Socket23 is my personal technical lab and publishing handle.
+    </p>
+   </div>
+  </footer>
+ </body>
 </html>

@@ -1,54 +1,298 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>About Joseph Miller | Systems Engineer and Builder</title>
-  <meta name="description" content="I am Joseph Miller, a systems engineer and builder interested in infrastructure, cybersecurity, recovery, automation, private AI, and difficult technical problems." />
-  <meta property="og:title" content="About Joseph Miller | Systems Engineer and Builder" />
-  <meta property="og:description" content="I am Joseph Miller, a systems engineer and builder interested in infrastructure, cybersecurity, recovery, automation, private AI, and difficult technical problems." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://socket23.com/about.html" />
-  <link rel="canonical" href="https://socket23.com/about.html" />
-  <meta name="color-scheme" content="dark light" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%2300D1B2'/><text x='50' y='58' font-size='42' text-anchor='middle' fill='white'>J</text></svg>" />
-  <link rel="stylesheet" href="/styles.css?v=20260720-projects1" />
-  <script src="/scripts.js?v=20260720-projects1" defer></script>
-</head>
-<body>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>
+   About Joseph Miller | Systems Engineer and Builder
+  </title>
+  <meta content="I am Joseph Miller, a systems engineer and builder interested in infrastructure, cybersecurity, recovery, automation, private AI, and difficult technical problems." name="description"/>
+  <meta content="About Joseph Miller | Systems Engineer and Builder" property="og:title"/>
+  <meta content="I am Joseph Miller, a systems engineer and builder interested in infrastructure, cybersecurity, recovery, automation, private AI, and difficult technical problems." property="og:description"/>
+  <meta content="website" property="og:type"/>
+  <meta content="https://socket23.com/about.html" property="og:url"/>
+  <link href="https://socket23.com/about.html" rel="canonical"/>
+  <meta content="dark light" name="color-scheme"/>
+  <link href="/assets/favicon.svg" rel="icon"/>
+  <script src="/theme-init.js?v=20260724-polish4">
+  </script>
+  <link href="/styles.css?v=20260724-polish4" rel="stylesheet"/>
+  <script defer="" src="/scripts.js?v=20260724-polish4">
+  </script>
+  <meta content="https://socket23.com/assets/og/socket23-portfolio.png" property="og:image"/>
+  <meta content="1200" property="og:image:width"/>
+  <meta content="630" property="og:image:height"/>
+  <meta content="Joseph Miller — infrastructure, cybersecurity, and private AI portfolio" property="og:image:alt"/>
+  <meta content="summary_large_image" name="twitter:card"/>
+ </head>
+ <body>
   <header class="nav">
-    <div class="container nav-inner">
-      <a class="brand" href="/">Joseph Miller <span>@socket23</span></a>
-      <nav id="menu" class="menu" data-state="closed" aria-label="Primary navigation">
-        <a href="/projects.html">Projects</a>
-        <a href="/experience.html">Experience</a>
-        <a href="/about.html">About</a>
-        <a href="/lab.html">Lab</a>
-        <a href="/blog.html">Notes</a>
-        <a href="/contact.html">Connect</a>
-      </nav>
-      <button id="menuBtn" class="menu-btn" aria-expanded="false" aria-controls="menu" aria-label="Open navigation">&#9776;</button>
+   <div class="container nav-inner">
+    <a class="brand" href="/">
+     Joseph Miller
+     <span>
+      @socket23
+     </span>
+    </a>
+    <nav aria-label="Primary navigation" class="menu" data-state="closed" id="menu">
+     <a href="/projects.html">
+      Projects
+     </a>
+     <a href="/experience.html">
+      Experience
+     </a>
+     <a href="/about.html">
+      About
+     </a>
+     <a href="/lab.html">
+      Lab
+     </a>
+     <a href="/blog.html">
+      Notes
+     </a>
+     <a href="/contact.html">
+      Connect
+     </a>
+    </nav>
+    <div class="nav-actions">
+     <button aria-label="Theme: system. Activate to use dark." class="theme-btn" id="themeBtn" title="Theme: system" type="button">
+      <span aria-hidden="true" class="theme-symbol">
+       ◐
+      </span>
+      <span class="theme-label" id="themeLabel">
+       System
+      </span>
+     </button>
+     <button aria-controls="menu" aria-expanded="false" aria-label="Open navigation" class="menu-btn" id="menuBtn">
+      ☰
+     </button>
     </div>
+   </div>
   </header>
   <main>
-    <section class="hero"><div class="container hero-copy"><p class="eyebrow">About me</p><h1>I’m Joseph Miller. I like the problems without an obvious owner.</h1><p class="lead">I’m at my best when a technical problem crosses boundaries: identity touches networking, storage changes affect virtualization, a cloud symptom starts on a Windows host, or a migration is really a recovery problem in disguise.</p><p>I live in Sandy, Oregon, and I spend a lot of my time building, troubleshooting, documenting, and learning how complex systems behave under real constraints.</p></div></section>
-
-    <section class="panel"><div class="container prose"><h2>How I got here</h2><p>I did not follow one narrow product track. I kept following the problems. That took me through Windows Server, Active Directory, Microsoft 365, virtualization, SAN storage, networks, firewalls, backups, security monitoring, Linux, containers, automation, GPUs, local inference, and agent systems.</p><p>That breadth became one of my strengths. I can move between the architectural view and the low-level evidence: the migration sequence and the disk layout, the identity design and the token failure, the public service and the DNS, firewall, TLS, proxy, container, and application path behind it.</p><p>I care about safe execution because the most interesting systems are usually the ones people already depend on. I want a clear starting state, a recovery option, observable checkpoints, and proof that the complete function recovered—not just a green status beside the component I touched.</p></div></section>
-
-    <section class="panel alt"><div class="container split-callout"><div><p class="section-kicker">What Socket23 means</p><h2>It’s my personal lab and public notebook.</h2><p>Socket23 is the handle I use for my technical projects, lab work, notes, and long-term body of work. It gives me one place to connect infrastructure, cybersecurity, recovery, automation, and private AI.</p><p>The work here represents me: what I have built, what I have successfully worked through, what I am still learning, and how I think about risk.</p></div><div class="card"><h3>What belongs here</h3><ul><li>Projects I can explain honestly</li><li>Sanitized lessons from production work</li><li>Lab systems and experiments</li><li>Technical notes and decision records</li><li>New ideas with clear boundaries</li></ul></div></div></section>
-
-    <section class="panel"><div class="container"><p class="section-kicker">Things I’m proud of</p><h2>Success, to me, is more than getting past the error</h2><div class="grid-2"><article class="card"><h3>Safe migrations</h3><p>I’ve moved production workloads across virtualization platforms while protecting shared storage, source data, application dependencies, and rollback options.</p></article><article class="card"><h3>Making old systems supportable</h3><p>I’ve mapped and stabilized inherited Windows environments where the documentation did not tell the whole story.</p></article><article class="card"><h3>Recovering the complete function</h3><p>I look beyond backup-job success and validate boot, identity, data, applications, dependencies, and the actual user outcome.</p></article><article class="card"><h3>Building my own platform</h3><p>I built the public delivery system for this site and a private AI lab so I can test architecture, security, automation, and failure behavior directly.</p></article></div></div></section>
-
-    <section class="panel alt"><div class="container"><p class="section-kicker">How I work</p><h2>Curious, careful, and evidence-driven</h2><div class="grid-3"><article class="card"><h3>I verify the environment</h3><p>I do not assume the system matches the diagram, ticket, memory, or original design.</p></article><article class="card"><h3>I make risk visible</h3><p>I identify the authoritative data, hidden dependencies, irreversible steps, and recovery options before changing the system.</p></article><article class="card"><h3>I write down what matters</h3><p>I document the observed state, the decision, the result, what remains uncertain, and the next safe action.</p></article></div></div></section>
-
-    <section class="panel"><div class="container split-callout"><div><p class="section-kicker">Education and credentials</p><h2>I keep learning close to the work</h2><p>My background includes cybersecurity education and verified credentials across monitoring, incident handling, network analysis, Python automation, cloud security automation, and machine learning engineering.</p><p>Credly is the current source for credential status rather than a static badge count on this site.</p></div><div class="card"><h3>My public profiles</h3><p><a href="https://www.credly.com/users/josephamiller" target="_blank" rel="noopener noreferrer">Verified credentials on Credly →</a></p><p><a href="https://github.com/socket23" target="_blank" rel="noopener noreferrer">Projects and code on GitHub →</a></p><p><a href="https://www.linkedin.com/in/joseph-miller-cybersecurity" target="_blank" rel="noopener noreferrer">Career history on LinkedIn →</a></p></div></div></section>
+   <section class="hero">
+    <div class="container hero-copy">
+     <p class="eyebrow">
+      About me
+     </p>
+     <h1>
+      I’m Joseph Miller. I like the problems without an obvious owner.
+     </h1>
+     <p class="lead">
+      I’m at my best when a technical problem crosses boundaries: identity touches networking, storage changes affect virtualization, a cloud symptom starts on a Windows host, or a migration is really a recovery problem in disguise.
+     </p>
+     <p>
+      I live in Oregon, and I spend a lot of my time building, troubleshooting, documenting, and learning how complex systems behave under real constraints.
+     </p>
+    </div>
+   </section>
+   <section class="panel">
+    <div class="container prose">
+     <h2>
+      How I got here
+     </h2>
+     <p>
+      I did not follow one narrow product track. I kept following the problems. That took me through Windows Server, Active Directory, Microsoft 365, virtualization, SAN storage, networks, firewalls, backups, security monitoring, Linux, containers, automation, GPUs, local inference, and agent systems.
+     </p>
+     <p>
+      That breadth became one of my strengths. I can move between the architectural view and the low-level evidence: the migration sequence and the disk layout, the identity design and the token failure, the public service and the DNS, firewall, TLS, proxy, container, and application path behind it.
+     </p>
+     <p>
+      I care about safe execution because the most interesting systems are usually the ones people already depend on. I want a clear starting state, a recovery option, observable checkpoints, and proof that the complete function recovered—not just a green status beside the component I touched.
+     </p>
+    </div>
+   </section>
+   <section class="panel alt">
+    <div class="container split-callout">
+     <div>
+      <p class="section-kicker">
+       What Socket23 means
+      </p>
+      <h2>
+       It’s my personal lab and public notebook.
+      </h2>
+      <p>
+       Socket23 is the handle I use for my technical projects, lab work, notes, and long-term body of work. It gives me one place to connect infrastructure, cybersecurity, recovery, automation, and private AI.
+      </p>
+      <p>
+       The work here represents me: what I have built, what I have successfully worked through, what I am still learning, and how I think about risk.
+      </p>
+     </div>
+     <div class="card">
+      <h3>
+       What belongs here
+      </h3>
+      <ul>
+       <li>
+        Projects I can explain honestly
+       </li>
+       <li>
+        Sanitized lessons from production work
+       </li>
+       <li>
+        Lab systems and experiments
+       </li>
+       <li>
+        Technical notes and decision records
+       </li>
+       <li>
+        New ideas with clear boundaries
+       </li>
+      </ul>
+     </div>
+    </div>
+   </section>
+   <section class="panel">
+    <div class="container">
+     <p class="section-kicker">
+      Things I’m proud of
+     </p>
+     <h2>
+      Success, to me, is more than getting past the error
+     </h2>
+     <div class="grid-2">
+      <article class="card">
+       <h3>
+        Safe migrations
+       </h3>
+       <p>
+        I’ve moved production workloads across virtualization platforms while protecting shared storage, source data, application dependencies, and rollback options.
+       </p>
+      </article>
+      <article class="card">
+       <h3>
+        Making old systems supportable
+       </h3>
+       <p>
+        I’ve mapped and stabilized inherited Windows environments where the documentation did not tell the whole story.
+       </p>
+      </article>
+      <article class="card">
+       <h3>
+        Recovering the complete function
+       </h3>
+       <p>
+        I look beyond backup-job success and validate boot, identity, data, applications, dependencies, and the actual user outcome.
+       </p>
+      </article>
+      <article class="card">
+       <h3>
+        Building my own platform
+       </h3>
+       <p>
+        I built the public delivery system for this site and a private AI lab so I can test architecture, security, automation, and failure behavior directly.
+       </p>
+      </article>
+     </div>
+    </div>
+   </section>
+   <section class="panel alt">
+    <div class="container">
+     <p class="section-kicker">
+      How I work
+     </p>
+     <h2>
+      Curious, careful, and evidence-driven
+     </h2>
+     <div class="grid-3">
+      <article class="card">
+       <h3>
+        I verify the environment
+       </h3>
+       <p>
+        I do not assume the system matches the diagram, ticket, memory, or original design.
+       </p>
+      </article>
+      <article class="card">
+       <h3>
+        I make risk visible
+       </h3>
+       <p>
+        I identify the authoritative data, hidden dependencies, irreversible steps, and recovery options before changing the system.
+       </p>
+      </article>
+      <article class="card">
+       <h3>
+        I write down what matters
+       </h3>
+       <p>
+        I document the observed state, the decision, the result, what remains uncertain, and the next safe action.
+       </p>
+      </article>
+     </div>
+    </div>
+   </section>
+   <section class="panel">
+    <div class="container split-callout">
+     <div>
+      <p class="section-kicker">
+       Education and credentials
+      </p>
+      <h2>
+       I keep learning close to the work
+      </h2>
+      <p>
+       My background includes cybersecurity education and verified credentials across monitoring, incident handling, network analysis, Python automation, cloud security automation, and machine learning engineering.
+      </p>
+      <p>
+       Credly is the current source for credential status rather than a static badge count on this site.
+      </p>
+     </div>
+     <div class="card">
+      <div aria-hidden="true" class="project-icon-wrap">
+       <svg class="project-icon" focusable="false" viewBox="0 0 24 24">
+        <use href="/assets/icons.svg#credential">
+        </use>
+       </svg>
+      </div>
+      <h3>
+       My public profiles
+      </h3>
+      <p>
+       <a href="https://www.credly.com/users/josephamiller" rel="noopener noreferrer" target="_blank">
+        Verified credentials on Credly →
+       </a>
+      </p>
+      <p>
+       <a href="https://github.com/socket23" rel="noopener noreferrer" target="_blank">
+        Projects and code on GitHub →
+       </a>
+      </p>
+      <p>
+       <a href="https://www.linkedin.com/in/joseph-miller-cybersecurity" rel="noopener noreferrer" target="_blank">
+        Career history on LinkedIn →
+       </a>
+      </p>
+     </div>
+    </div>
+   </section>
   </main>
   <footer class="footer">
-    <div class="container">
-      <p><strong>Joseph Miller</strong> · Sandy, Oregon</p>
-      <p class="footer-links"><a href="https://github.com/socket23" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://www.linkedin.com/in/joseph-miller-cybersecurity" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://www.credly.com/users/josephamiller" target="_blank" rel="noopener noreferrer">Credly</a></p>
-      <p class="fine-print">© <span id="year"></span> Joseph Miller. Socket23 is my personal technical lab and publishing handle.</p>
-    </div>
+   <div class="container">
+    <p>
+     <strong>
+      Joseph Miller
+     </strong>
+     · Oregon
+    </p>
+    <p class="footer-links">
+     <a href="https://github.com/socket23" rel="noopener noreferrer" target="_blank">
+      GitHub
+     </a>
+     <a href="https://www.linkedin.com/in/joseph-miller-cybersecurity" rel="noopener noreferrer" target="_blank">
+      LinkedIn
+     </a>
+     <a href="https://www.credly.com/users/josephamiller" rel="noopener noreferrer" target="_blank">
+      Credly
+     </a>
+    </p>
+    <p class="fine-print">
+     ©
+     <span id="year">
+     </span>
+     Joseph Miller. Socket23 is my personal technical lab and publishing handle.
+    </p>
+   </div>
   </footer>
-</body>
+ </body>
 </html>

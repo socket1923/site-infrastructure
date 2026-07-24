@@ -51,6 +51,15 @@ done
 grep -q 'Socket23' "$TMP/index.html"
 grep -q 'I make difficult systems work.' "$TMP/index.html"
 grep -q 'Selected successful work' "$TMP/index.html"
+grep -q 'class="hero-art"' "$TMP/index.html"
+grep -q 'class="role-panel"' "$TMP/index.html"
+grep -q 'Public engineering artifacts' "$TMP/index.html"
+grep -q 'nothing from the assistant is exposed through this public site' "$TMP/index.html"
+grep -q '/theme-init.js' "$TMP/index.html"
+if grep -Eq 'Sandy, Oregon|RTX A6000|ME4024|PowerEdge R620' "$TMP/index.html"; then
+  echo 'private or unnecessarily specific public detail remains on the homepage' >&2
+  exit 1
+fi
 
 curl --silent --show-error --fail \
   --cacert "$TMP/fullchain.pem" \
@@ -59,6 +68,23 @@ curl --silent --show-error --fail \
   -o "$TMP/case-study.html"
 grep -q 'How I validated it' "$TMP/case-study.html"
 grep -q 'My role' "$TMP/case-study.html"
+grep -q 'class="process-flow flow-6"' "$TMP/case-study.html"
+
+curl --silent --show-error --fail \
+  --cacert "$TMP/fullchain.pem" \
+  --resolve "socket23.com:$PORT:127.0.0.1" \
+  "https://socket23.com:$PORT/projects.html" \
+  -o "$TMP/projects.html"
+[[ "$(grep -c 'data-project-filter=' "$TMP/projects.html")" == "6" ]]
+[[ "$(grep -c 'data-project-category=' "$TMP/projects.html")" == "8" ]]
+
+for ASSET in /assets/icons.svg /assets/favicon.svg /assets/og/socket23-portfolio.png /theme-init.js; do
+  curl --silent --show-error --fail \
+    --cacert "$TMP/fullchain.pem" \
+    --resolve "socket23.com:$PORT:127.0.0.1" \
+    "https://socket23.com:$PORT$ASSET" \
+    -o /dev/null
+done
 
 curl --silent --show-error --fail \
   --cacert "$TMP/fullchain.pem" \
@@ -81,6 +107,7 @@ HEADERS=$(curl --silent --show-error --fail \
   "https://socket23.com:$PORT/")
 grep -qi '^content-security-policy:' <<<"$HEADERS"
 grep -qi "^content-security-policy:.*form-action 'none'" <<<"$HEADERS"
+grep -qi "^content-security-policy:.*img-src 'self';" <<<"$HEADERS"
 if grep -qi "^content-security-policy:.*unsafe-inline" <<<"$HEADERS"; then
   echo "CSP still permits unsafe-inline" >&2
   exit 1
